@@ -1,5 +1,11 @@
 # badexperiment
-Convert Index of Terms to LinkML YAML. Many moving parts = bad experiment.
+Convert Index of Terms to LinkML YAML. 
+
+TODOs: 
+- convert to actual LinkML artifcats after that
+- convert to DataHarmonizer template
+
+Many moving parts = bad experiment.
 
 Development or use within the repo requires [Poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions)
 
