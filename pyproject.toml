@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "badexperiment"
+version = "0.1.9"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+click = "^8.0.3"
+google-api-python-client = "*"
+google-auth-oauthlib = "*"
+pandas = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+becli = "badexperiment.becli:hello"
