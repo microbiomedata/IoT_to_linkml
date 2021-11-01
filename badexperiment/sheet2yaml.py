@@ -20,11 +20,12 @@ IOT_RANGE_NAME = "Glossary of terms!A1:Z"
 
 CV_RANGE_NAME = "Controlled Terms!A1:Z"
 
+
 # reusing google_api_credentials.json from https://github.com/cancerDHC/sheet2linkml
-client_secret_flie = "../google_api_credentials.json"
+# client_secret_file = "../google_api_credentials.json"
 
 
-def get_creds():
+def get_creds(client_secret_file="../google_api_credentials.json"):
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -36,7 +37,7 @@ def get_creds():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(client_secret_flie, SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(client_secret_file, SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open("token.json", "w") as token:
@@ -62,16 +63,16 @@ def get_gsheet_tab(sheet_service, sheet_id, range_name):
 # #  lighter weight?
 # #  harder to program?
 
-def get_iot_glassary_frame():
-    creds = get_creds()
+def get_iot_glossary_frame(client_secret_file="../google_api_credentials.json"):
+    creds = get_creds(client_secret_file=client_secret_file)
     sheet_service = get_sheet_service(creds)
     iot_glossary_tab = get_gsheet_tab(sheet_service, IOT_SPREADSHEET_ID, IOT_RANGE_NAME)
     iot_glossary_frame = pd.DataFrame(iot_glossary_tab["values"], columns=iot_glossary_tab["values"][0]).drop(0)
     return iot_glossary_frame
 
 
-def get_iot_controlled_terms_frame():
-    creds = get_creds()
+def get_iot_controlled_terms_frame(client_secret_file="../google_api_credentials.json"):
+    creds = get_creds(client_secret_file=client_secret_file)
     sheet_service = get_sheet_service(creds)
     controlled_terms_tab = get_gsheet_tab(sheet_service, IOT_SPREADSHEET_ID, CV_RANGE_NAME)
     controlled_terms_frame = pd.DataFrame(controlled_terms_tab["values"],
@@ -91,8 +92,8 @@ def get_ct_keys(ct_dol):
 
 
 # parameterize column names
-def get_slot_to_pack(iot_glassary_frame):
-    slot_to_pack = iot_glassary_frame[["name", "mixs_6_slot_name", "Associated Packages"]]
+def get_slot_to_pack(iot_glossary_frame):
+    slot_to_pack = iot_glossary_frame[["name", "mixs_6_slot_name", "Associated Packages"]]
     temp = slot_to_pack["Associated Packages"].str.split(" *; *", expand=False).copy()
     slot_to_pack.loc[:, "ap_list"] = temp
     return slot_to_pack
@@ -148,13 +149,3 @@ def get_pack_to_slot(slot_to_pack, iot_packages, ap_colname="ap_list"):
     slot_to_pack.columns = ["package", "slots"]
     # print(slot_to_pack)
     return slot_to_pack
-
-# my_iot_glassary_frame = get_iot_glassary_frame()
-# my_slot_to_pack = get_slot_to_pack(my_iot_glassary_frame)
-# # print(slot_to_pack)
-# my_iot_packages = get_iot_packages(my_slot_to_pack)
-# # print(iot_packages)
-# coalesced_package_names = coalesce_package_names(my_slot_to_pack)
-# # print(coalesced_package_names)
-# isolated_slot_to_package = get_pack_to_slot(coalesced_package_names, my_iot_packages)
-# print(isolated_slot_to_package)
