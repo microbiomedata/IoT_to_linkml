@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from shutil import copyfile
 
 # pip install --upgrade google-api-python-client
 from google.auth.transport.requests import Request
@@ -149,3 +150,138 @@ def get_pack_to_slot(slot_to_pack, iot_packages, ap_colname="ap_list"):
     slot_to_pack.columns = ["package", "slots"]
     # print(slot_to_pack)
     return slot_to_pack
+
+
+# template_package(
+#     "soil",
+#     slot_to_package_df=slot_to_pack_4_dh,
+#     slot_details_df=slot_details_4_dh,
+#     enums_dict=ct_dol,
+#     template_prefix=dh_template_prefix,
+#     template_suffix=dh_template_suffix,
+# )
+
+# required columns can be asserted without putting them in a section entitled "required" etc.
+#   ie it might be possible to use the section for something orthogonal
+# required_sections = ["sample identification", "required", "required where applicable"]
+
+
+def template_package(
+        current_package,
+        slot_to_package_df,
+        slot_details_df,
+        enums_dict,
+        template_prefix,
+        slot_categories,
+        ct_keys,
+        required_sections=["sample identification", "required", "required where applicable"],
+        dh_template_root="../../DataHarmonizer/template/",
+        ref_temp_filename="reference_template.html",
+        template_suffix="/data.tsv",
+        blank_row={
+            "Ontology ID": "",
+            "parent class": "",
+            "label": "",
+            "datatype": "",
+            "source": "",
+            "data status": "",
+            "requirement": "",
+            "min value": "",
+            "max value": "",
+            "capitalize": "",
+            "pattern": "",
+            "description": "",
+            "guidance": "",
+            "examples": "",
+        }
+
+):
+    print(current_package)
+
+    main_row_list = []
+    enum_row_list = []
+
+    for i in slot_categories:
+        current_row = blank_row.copy()
+        current_row["label"] = i
+        main_row_list.append(current_row)
+
+    package_slots = slot_to_package_df["slots"].loc[
+        slot_to_package_df["package"] == current_package
+        ]
+    package_slots = package_slots.iloc[0]
+    package_slots = package_slots.split(";")
+
+    for i in package_slots:
+        current_details = slot_details_df.loc[slot_details_df["repaired_name"] == i]
+        current_row = blank_row.copy()
+        #     "Ontology ID"
+        current_row["parent class"] = current_details["Category"].iloc[0]
+        current_row["label"] = i
+        current_row["datatype"] = "xs:token"
+        # day resolution may not be specific enough
+        if current_details["syntax"].iloc[0] == "{timestamp}":
+            current_row["datatype"] = "xs:date"
+        if current_details["syntax"].iloc[0] == "{float}":
+            current_row["datatype"] = "xs:decimal"
+        if current_details["syntax"].iloc[0] == "{value}":
+            current_row["datatype"] = "xs:decimal"
+        # {integer} doesn't actually = xs:nonNegativeInteger
+        if current_details["syntax"].iloc[0] == "{integer}":
+            current_row["datatype"] = "xs:nonNegativeInteger"
+        if i == "unique_ID":
+            current_row["datatype"] = "xs:unique"
+        if current_details["syntax"].iloc[0] == "{float} {unit}":
+            current_row["pattern"] = "^[+-]?([0-9]*[.])?[0-9]+ \S+$"
+        #     "source": "",
+        #     "data status": "",
+        if current_details["Category"].iloc[0] in required_sections:
+            current_row["requirement"] = "required"
+        #     "min value": "",
+        #     "max value": "",
+        #     "capitalize": "",
+        current_row["description"] = current_details["Column Header"].iloc[0]
+        current_row["guidance"] = current_details["Guidance"].iloc[0]
+        current_row["examples"] = current_details["syntax"].iloc[0]
+        if i in ct_keys:
+            current_row["datatype"] = "select"
+            # map?
+            # indent?
+            current_enums = enums_dict[i]
+            current_enums.sort()
+            for j in current_enums:
+                current_enum_row = blank_row.copy()
+                current_enum_row["label"] = j
+                current_enum_row["parent class"] = i
+                enum_row_list.append(current_enum_row)
+        main_row_list.append(current_row)
+    print("\n")
+
+    current_frame = pd.DataFrame(main_row_list)
+    enum_frame = pd.DataFrame(enum_row_list)
+    assembled_frame = pd.concat([current_frame, enum_frame])
+
+    # # create directory if necessary
+    # required_directory = template_prefix + current_package
+    # # print(required_directory)
+    # os.makedirs(required_directory, exist_ok=True)
+    # # copy from soil directory to new required_directory?
+    # ref_temp_src = dh_template_root + ref_temp_filename
+    # ref_temp_dest = required_directory + "/" + ref_temp_filename
+    # copyfile(ref_temp_src, ref_temp_dest)
+    #
+    # ref_temp_src = dh_template_root + "export.js"
+    # ref_temp_dest = required_directory + "/" + "export.js"
+    # copyfile(ref_temp_src, ref_temp_dest)
+    #
+    # # should escape characters that break filenames like whitespaces
+    # current_template_file = required_directory + template_suffix
+    # assembled_frame.to_csv(current_template_file, index=False, sep="\t")
+
+
+def make_yaml():
+    the_yaml = {"name": "IndexOfTerms", "id": "http://example.com/IoT",
+                "prefixes": {"linkml": "https://w3id.org/linkml/"},
+                "imports": ["linkml:types"],
+                "default_range": "string"}
+    return the_yaml

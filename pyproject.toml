@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "badexperiment"
-version = "0.1.15"
-description = ""
-authors = ["Your Name <you@example.com>"]
+version = "0.1.19"
+description = "see https://github.com/turbomam/badexperiment"
+authors = ["Mark A. Miller <mamillerpa@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -10,6 +10,8 @@ click = "^8.0.3"
 google-api-python-client = "*"
 google-auth-oauthlib = "*"
 pandas = "*"
+# linkml = "*"
+pyyaml = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -19,4 +21,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-becli = "badexperiment.becli:hello"
+becli = "badexperiment.becli:make_iot_yaml"
