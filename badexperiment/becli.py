@@ -8,6 +8,14 @@ import badexperiment.sheet2yaml as s2y
 
 # import linkml
 
+def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_slot_name",
+                           coalesced="repaired_name", ):
+    df[coalesced] = df[repaired_col_name]
+    df[coalesced].loc[
+        df[coalesced] == ""
+        ] = df[orig_col_name].loc[df[coalesced] == ""]
+    return df
+
 
 @click.command()
 # @click.option('--count', default=1, help='Number of greetings.')
@@ -22,6 +30,8 @@ def make_iot_yaml(cred, yamlout):
     print(f"Getting credentials from {cred}")
 
     my_iot_glossary_frame = s2y.get_iot_glossary_frame(client_secret_file="google_api_credentials.json")
+
+    my_iot_glossary_frame = coalesce_package_names(my_iot_glossary_frame, "name", "mixs_6_slot_name", "coalesced")
 
     # replace leading ?s in slot names with Q
     raw_name = my_iot_glossary_frame['name']
@@ -43,7 +53,23 @@ def make_iot_yaml(cred, yamlout):
 
     my_iot_glossary_frame['packlist'] = my_iot_glossary_frame['explicit_packs'].str.split(pat='; *')
 
-    iot_glossary_exploded = my_iot_glossary_frame.explode('packlist')
+    dupe_search = my_iot_glossary_frame['coalesced'].value_counts()
+    dupe_yes = dupe_search.loc[dupe_search > 1]
+    dupe_yes_slots = dupe_yes.index
+    dupe_yes_frame = my_iot_glossary_frame.loc[my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
+
+    dupe_no = dupe_search.loc[dupe_search == 1]
+    dupe_no_slots = dupe_no.index
+    dupe_no_frame = my_iot_glossary_frame.loc[~ my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
+
+    iot_glossary_exploded = dupe_no_frame.explode('packlist')
+
+    # print(iot_glossary_exploded.columns)
+
+    # ['Column Header', 'name', 'mixs_6_slot_name', 'different?', 'Definition',
+    #        'Guidance', 'Expected Value', 'syntax', 'Category',
+    #        'Associated Packages', 'Origin', 'Notes', 'GitHub Ticket', 'no_quest',
+    #        'explicit_packs', 'packlist']
 
     made_yaml = s2y.make_yaml()
 
@@ -52,7 +78,8 @@ def make_iot_yaml(cred, yamlout):
     for package in all_packages_list:
         package_details_row = iot_glossary_exploded.loc[iot_glossary_exploded['packlist'].eq(package)]
         pack_slots = []
-        for slot in package_details_row['name']:
+        slot_usages = {}
+        for slot in package_details_row['coalesced']:
             pack_slots.append(slot)
             all_slots.add(slot)
         collected_classes[package] = {'slots': pack_slots}
@@ -64,10 +91,41 @@ def make_iot_yaml(cred, yamlout):
     model_slots = {}
     for slot in all_slots:
         model_slots[slot] = {}
+        slot_details = dupe_no_frame.loc[dupe_no_frame['coalesced'].eq(slot)].to_dict(orient="records")
+        # don't forget duplicated slot names -> per class usage
+        # check for matching mixs term
+        # check Column Header against ???
+        # check definition
+        annotations = []
+        if len(slot_details) == 1:
+            temp = slot_details[0]
+            if temp['Column Header'] != "":
+                model_slots[slot]['aliases'] = temp['Column Header']
+            if temp['Guidance'] != "":
+                annotations.append({'guidance': temp['Guidance']})
+            if temp['name'] != temp['mixs_6_slot_name']:
+                if temp['mixs_6_slot_name'] == "":
+                    annotations.append({'supplementary_slot': True})
+                else:
+                    annotations.append({'source_name': temp['name']})
+                    # linkml pattern?
+            if temp['syntax'] != "":
+                annotations.append({'syntax': temp['syntax']})
+            if temp['Category'] != "":
+                annotations.append({'category': temp['Category']})
+            # look for better LinkML term
+            if temp['Origin'] != "":
+                annotations.append({'origin': temp['Origin']})
+            # are notes internal or external
+            if temp['Notes'] != "":
+                model_slots[slot]['notes'] = temp['Notes']
+            # if temp['GitHub Ticket'] != "":
+            #     annotations.append({'ght': temp['GitHub Ticket']})
+        model_slots[slot]['annotations'] = annotations
 
     made_yaml['slots'] = model_slots
 
-    made_yaml['classes']['soil']['slot_usage'] = {"samp_name": {'required': True}}
+    # made_yaml['classes']['soil']['slot_usage'] = {"samp_name": {'required': True, 'aliases': ['specimen moniker 2']}}
 
     with open(yamlout, 'w') as outfile:
         yaml.dump(made_yaml, outfile, default_flow_style=False, sort_keys=False)
