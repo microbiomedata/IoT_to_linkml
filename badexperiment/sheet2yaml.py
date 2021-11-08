@@ -1,17 +1,16 @@
 import os
-import pandas as pd
-from shutil import copyfile
 
+import pandas as pd
 # pip install --upgrade google-api-python-client
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-
 # sudo pip install google-auth-oauthlib
 from google_auth_oauthlib.flow import InstalledAppFlow
-
 # AttributeError: module 'pyparsing' has no attribute 'downcaseTokens'
 # ERROR: httplib2 0.20.1 has requirement pyparsing<3,>=2.4.2, but you'll have pyparsing 3.0.3 which is incompatible.
 from googleapiclient.discovery import build
+
+# from shutil import copyfile
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 

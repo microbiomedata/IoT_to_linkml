@@ -13,6 +13,7 @@ pandas = "*"
 linkml = "*"
 linkml_runtime = "*"
 pyyaml = "*"
+StringIO = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
