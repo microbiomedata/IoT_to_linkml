@@ -2,6 +2,8 @@ name: IndexOfTerms
 id: http://example.com/IoT
 prefixes:
   linkml: https://w3id.org/linkml/
+  MIXS: https://gensc.org/mixs/
+  IoT: https://www.emsl.pnnl.gov/
 imports:
 - linkml:types
 default_range: string
@@ -5920,184 +5922,184 @@ slots:
 enums:
   biol_stat_enum:
     permissible_values:
-    - mutant
-    - inbred line
-    - clonal selection
     - breeder's line
-    - wild
-    - hybrid
     - natural
+    - mutant
     - semi-natural
+    - inbred line
+    - hybrid
+    - clonal selection
+    - wild
   biotic_relationship_enum:
     permissible_values:
     - commensalism
-    - mutualism
-    - parasitism
     - free living
+    - parasitism
     - symbiotic
+    - mutualism
   cur_land_use_enum:
     permissible_values:
-    - Mines/Quarries
-    - Marshlands (grass,sedges,rushes)
-    - Oil Waste Areas
-    - Meadows (grasses,alfalfa,fescue,bromegrass,timothy)
-    - Rangeland
-    - Hardwoods (e.g. oak,hickory,elm,aspen)
-    - Crop Trees (nuts,fruit,christmas trees,nursery trees)
-    - Permanent Snow or Ice
-    - Pastureland (grasslands used for livestock grazing)
-    - Shrub Land (e.g. mesquite,sage-brush,creosote bush,shrub oak,eucalyptus)
-    - Saline Seeps
-    - Farmstead
-    - Tundra (mosses,lichens)
-    - Horticultural Plants (e.g. tulips)
-    - Rock
-    - Industrial Areas
-    - Swamp (permanent or semi-permanent water body dominated by woody plants)
-    - Tropical (e.g. mangrove,palms)
-    - Intermixed Hardwood and Conifers
-    - Conifers (e.g. pine,spruce,fir,cypress)
     - Rainforest (evergreen forest receiving >406 cm annual rainfall)
-    - Badlands
-    - Row Crops
-    - Vegetable Crops
-    - Mudflats
-    - Gravel
-    - Cities
-    - Shrub Crops (blueberries,nursery ornamentals,filberts)
-    - Salt Flats
+    - Industrial Areas
+    - Oil Waste Areas
     - Roads/Railroads
     - Small Grains
-    - Hayland
+    - Crop Trees (nuts,fruit,christmas trees,nursery trees)
     - Successional Shrub Land (tree saplings,hazels,sumacs,chokecherry,shrub dogwoods,blackberries)
+    - Tundra (mosses,lichens)
+    - Shrub Crops (blueberries,nursery ornamentals,filberts)
+    - Farmstead
+    - Salt Flats
+    - Tropical (e.g. mangrove,palms)
+    - Vegetable Crops
+    - Shrub Land (e.g. mesquite,sage-brush,creosote bush,shrub oak,eucalyptus)
     - Vine Crops (grapes)
+    - Permanent Snow or Ice
+    - Badlands
+    - Hayland
+    - Horticultural Plants (e.g. tulips)
+    - Mines/Quarries
+    - Intermixed Hardwood and Conifers
+    - Cities
+    - Swamp (permanent or semi-permanent water body dominated by woody plants)
+    - Rangeland
+    - Meadows (grasses,alfalfa,fescue,bromegrass,timothy)
+    - Pastureland (grasslands used for livestock grazing)
+    - Mudflats
+    - Rock
+    - Hardwoods (e.g. oak,hickory,elm,aspen)
+    - Saline Seeps
+    - Gravel
+    - Row Crops
+    - Conifers (e.g. pine,spruce,fir,cypress)
     - Sand
+    - Marshlands (grass,sedges,rushes)
   drainage_class_enum:
     permissible_values:
-    - Poorly
-    - Moderately Well
-    - Excessively Drained
-    - Somewhat Poorly
     - Well
+    - Poorly
     - Very Poorly
+    - Somewhat Poorly
+    - Excessively Drained
+    - Moderately Well
   fao_class_enum:
     permissible_values:
-    - Gypsisols
-    - Gleysols
-    - Luvisols
-    - Podzols
-    - Phaeozems
-    - Ferralsols
-    - Yermosols
-    - Solonchaks
-    - Nitosols
-    - Fluvisols
-    - Kastanozems
-    - Andosols
-    - Histosols
-    - Greyzems
     - Chernozems
-    - Planosols
-    - Solonetz
-    - Regosols
-    - Lithosols
-    - Cambisols
+    - Histosols
     - Podzoluvisols
-    - Rankers
-    - Acrisols
     - Arenosols
+    - Lithosols
+    - Gypsisols
+    - Cambisols
+    - Rankers
+    - Solonetz
+    - Nitosols
+    - Gleysols
+    - Greyzems
+    - Fluvisols
     - Rendzinas
     - Vertisols
+    - Regosols
+    - Phaeozems
+    - Podzols
+    - Andosols
+    - Solonchaks
+    - Kastanozems
+    - Yermosols
+    - Acrisols
+    - Ferralsols
+    - Planosols
+    - Luvisols
   growth_facil_enum:
     permissible_values:
-    - field
-    - lab_incubation
-    - growth_chamber
     - experimental_garden
-    - other
+    - lab_incubation
+    - greenhouse
     - field_incubation
     - open_top_chamber
-    - greenhouse
+    - field
+    - other
+    - growth_chamber
   growth_habit_enum:
     permissible_values:
-    - erect
     - prostrate
-    - semi-erect
+    - erect
     - spreading
+    - semi-erect
   growth_medium_enum:
     permissible_values:
-    - bioreactor
-    - 3D-structure
-    - media_composition
     - broth
+    - media_composition
     - agar_plate
+    - bioreactor
     - plate
+    - 3D-structure
   horizon_enum:
     permissible_values:
-    - O Horizon
-    - A Horizon
     - C Horizon
+    - R Layer
     - B Horizon
     - Permafrost
-    - R Layer
+    - A Horizon
     - E Horizon
+    - O Horizon
   investigation_type_enum:
     permissible_values:
-    - genome
-    - lipidome
     - imaging- electron
+    - lipidome
+    - chemical speciation/mapping
     - metabolome
+    - organic matter
+    - transcriptome
+    - genome
+    - proteome
     - molecular structure
     - imaging- light
-    - chemical speciation/mapping
-    - transcriptome
-    - organic matter
-    - proteome
     - imaging- ion
   oxy_stat_samp_enum:
     permissible_values:
     - obligate anaerobe
-    - microaerophilic
+    - anoxic
+    - obligate aerobe
     - anaerobic
     - aerobic
     - facultative
     - microanaerobe
-    - obligate aerobe
-    - anoxic
+    - microaerophilic
   plant_sex_enum:
     permissible_values:
-    - Polygamous
-    - Imperfect
-    - Monoecious
-    - Androecious
-    - Gynomonoecious
-    - Gynodioecious
-    - Diclinous
-    - Trimonoecious
-    - Androdioecious
-    - Trioecious
-    - Gynoecious
-    - Polygamodioecious
-    - Monoclinous
-    - Protogynous
-    - Synoecious
-    - Subdioecious
     - Hermaphroditic
+    - Trioecious
+    - Subdioecious
+    - Gynodioecious
     - Subandroecious
-    - Dichogamous
-    - Protandrous
-    - Unisexual
-    - Androgynomonoecious
-    - Dioecious
-    - Polygamomonoecious
+    - Gynoecious
     - Subgynoecious
+    - Polygamomonoecious
+    - Androdioecious
     - Andromonoecious
+    - Imperfect
     - Bisexual
+    - Monoecious
+    - Dioecious
+    - Protogynous
+    - Dichogamous
+    - Synoecious
+    - Trimonoecious
     - Perfect
+    - Polygamodioecious
+    - Diclinous
+    - Gynomonoecious
+    - Unisexual
+    - Androecious
+    - Monoclinous
+    - Androgynomonoecious
+    - Protandrous
+    - Polygamous
   plant_struc_enum:
     permissible_values:
-    - leaf
     - stem
+    - leaf
     - root
     - whole_plant
     - rhizodeposits
@@ -6105,95 +6107,95 @@ enums:
   profile_position_enum:
     permissible_values:
     - Shoulder
-    - Toeslope
     - Backslope
     - profile_position
     - Footslope
     - Summit
+    - Toeslope
   samp_capt_status_enum:
     permissible_values:
-    - farm sample
     - active surveillance not initiated by an outbreak
-    - other
-    - active surveillance in response to an outbreak
     - market sample
+    - active surveillance in response to an outbreak
+    - farm sample
+    - other
   samp_dis_stage_enum:
     permissible_values:
-    - penetration
-    - growth and reproduction
-    - other
-    - infection
     - dissemination
+    - penetration
     - inoculation
+    - growth and reproduction
+    - infection
+    - other
   samp_store_temp_enum:
     permissible_values:
     - -20 degree Celsius
-    - -80 degree Celsius
+    - room temperature
     - other
     - 4 degree Celsius
-    - room temperature
+    - -80 degree Celsius
   sediment_type_enum:
     permissible_values:
-    - cosmogenous
-    - hydrogenous
     - biogenous
     - lithogenous
+    - hydrogenous
+    - cosmogenous
   store_cond_enum:
     permissible_values:
-    - frozen
-    - fresh
     - lyophilized
     - other
+    - frozen
+    - fresh
   tidal_stage_enum:
     permissible_values:
-    - flood tide
-    - ebb tide
     - low tide
     - high tide
+    - flood tide
+    - ebb tide
   tillage_enum:
     permissible_values:
     - Disc Plough
-    - Tined
     - Strip Tillage
-    - Zonal Tillage
-    - Ridge Till
     - Cutting Disc
     - Chisel
-    - Drill
+    - Zonal Tillage
     - Mouldboard
+    - Drill
+    - Tined
+    - Ridge Till
   trophic_level_enum:
     permissible_values:
-    - chemosynthetic
-    - phototroph
-    - chemoautotroph
-    - photosynthetic
-    - lithotroph
-    - heterotroph
-    - organoheterotroph
-    - chemoheterotroph
-    - chemolithotroph
-    - diazotroph
-    - methanotroph
-    - chemotroph
-    - chemoautolithotroph
-    - chemolithoautotroph
-    - oligotroph
-    - autotroph
-    - photoautotroph
-    - mixotroph
-    - lithoheterotroph
-    - copiotroph
-    - chemoorganoheterotroph
-    - obligate
-    - chemoorganotroph
-    - methylotroph
-    - photoheterotroph
-    - lithoautotroph
-    - organotroph
-    - facultative
     - photolithotroph
+    - lithoautotroph
+    - photoautotroph
+    - facultative
+    - chemolithoautotroph
     - photolithoautotroph
+    - photosynthetic
     - carboxydotroph
+    - organoheterotroph
+    - photoheterotroph
+    - organotroph
+    - lithoheterotroph
+    - chemoorganoheterotroph
+    - methylotroph
+    - autotroph
+    - chemosynthetic
+    - chemolithotroph
+    - chemotroph
+    - oligotroph
+    - chemoorganotroph
+    - methanotroph
+    - obligate
+    - chemoheterotroph
+    - diazotroph
+    - heterotroph
+    - phototroph
+    - lithotroph
+    - copiotroph
+    - chemoautotroph
+    - chemoautolithotroph
+    - mixotroph
   organism_count_enum:
     name: organism_count_enum
     from_schema: http://w3id.org/mixs/terms

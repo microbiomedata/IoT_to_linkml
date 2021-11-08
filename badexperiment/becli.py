@@ -14,9 +14,10 @@ dupe_unresolved_filename = "iot_duplciated_names.tsv"
 mixs_uri = "https://gensc.org/mixs/"
 emsl_uri = "https://www.emsl.pnnl.gov/"
 
-
 # WARNING:YAMLGenerator:File "<file>", line 820, col 15: Unrecognized prefix: IoT
 # WARNING:YAMLGenerator:File "<file>", line 838, col 15: Unrecognized prefix: MIXS
+
+prefixes = {"MIXS": mixs_uri, "IoT": emsl_uri}
 
 
 def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_slot_name",
@@ -334,6 +335,11 @@ def make_iot_yaml(cred, mixs, yamlout):
     # use slot usage in cases where a slot name appears on two rows,
     #   with completely different packages on the two rows?
     # made_yaml['classes']['soil']['slot_usage'] = {"samp_name": {'required': True, 'aliases': ['specimen moniker 2']}}
+
+    for k, v in prefixes.items():
+        print(k)
+        print(v)
+        made_yaml['prefixes'][k] = v
 
     with open(yamlout, 'w') as outfile:
         yaml.dump(made_yaml, outfile, default_flow_style=False, sort_keys=False)
