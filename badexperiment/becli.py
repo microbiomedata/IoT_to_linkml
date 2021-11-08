@@ -1,12 +1,16 @@
 import re
 
 import click
+import pandas as pd
+import numpy as np
 import yaml
 
 import badexperiment.sheet2yaml as s2y
 
-
 # import linkml
+
+dupe_unresolved_filename = "iot_duplciated_names.tsv"
+
 
 def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_slot_name",
                            coalesced="repaired_name", ):
@@ -23,6 +27,8 @@ def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_s
 #               help='The person to greet.')
 @click.option('--cred', default='google_api_credentials.json', help="path to google_api_credentials.json",
               type=click.Path(exists=True))
+@click.option('--mixs', default='google_api_credentials.json', help="path to mixs.yaml and friends",
+              type=click.Path(exists=True))
 @click.option('--yamlout', default='iot.yaml', help="YAML output file name",
               type=click.Path())
 def make_iot_yaml(cred, yamlout):
@@ -30,6 +36,14 @@ def make_iot_yaml(cred, yamlout):
     print(f"Getting credentials from {cred}")
 
     my_iot_glossary_frame = s2y.get_iot_glossary_frame(client_secret_file="google_api_credentials.json")
+
+    ctf = s2y.get_iot_controlled_terms_frame()
+
+    ct_dol = s2y.get_ct_dol(ctf)
+
+    ct_keys = s2y.get_ct_keys(ct_dol)
+
+    print(ct_keys)
 
     my_iot_glossary_frame = coalesce_package_names(my_iot_glossary_frame, "name", "mixs_6_slot_name", "coalesced")
 
@@ -53,14 +67,82 @@ def make_iot_yaml(cred, yamlout):
 
     my_iot_glossary_frame['packlist'] = my_iot_glossary_frame['explicit_packs'].str.split(pat='; *')
 
+    # are there any rows that share names?
     dupe_search = my_iot_glossary_frame['coalesced'].value_counts()
     dupe_yes = dupe_search.loc[dupe_search > 1]
     dupe_yes_slots = dupe_yes.index
     dupe_yes_frame = my_iot_glossary_frame.loc[my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
 
-    dupe_no = dupe_search.loc[dupe_search == 1]
-    dupe_no_slots = dupe_no.index
+    # dupe_no = dupe_search.loc[dupe_search == 1]
+    # dupe_no_slots = dupe_no.index
     dupe_no_frame = my_iot_glossary_frame.loc[~ my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
+
+    dupe_unresolved_frame = pd.DataFrame(columns=dupe_no_frame.columns)
+
+    # working agreement with Montana:
+    #   if there are two rows with the same name, use the one with the larger number of packages
+    #   if that is inclusive of the other row
+    #   no attributes from the discarded row will be propagated
+    print("\n")
+    dysl = list(dupe_yes_slots)
+    dysl.sort()
+    for i in dysl:
+        print(i)
+        per_slot_frame = dupe_yes_frame.loc[dupe_yes_frame['name'].eq(i)]
+        dupe_unresolved_frame = dupe_unresolved_frame.append(per_slot_frame)
+        dupe_row_count = len(per_slot_frame.index)
+        if dupe_row_count > 2:
+            print("More than two rows with the same name. Discarding.")
+            break
+
+        packlists = list(per_slot_frame["packlist"])
+        pl0 = packlists[0]
+        pl0_len = len(pl0)
+        pl1 = packlists[1]
+        pl1_len = len(pl1)
+        pl0_only = set(pl0) - set(pl0)
+        pl1_only = set(pl1) - set(pl0)
+        # p_intersection = set(pl0).intersection(set(pl1))
+
+        if pl0_len > pl1_len:
+            print("Row 0 has more packages")
+            pl1_only = set(pl1) - set(pl0)
+            if len(pl1_only) > 0:
+                print(f"But only row 1 contains {pl1_only}")
+            else:
+                print("and includes all row 1 packages")
+                temp = per_slot_frame.iloc[[0]]
+                dupe_no_frame = dupe_no_frame.append(temp)
+
+        elif pl0_len < pl1_len:
+            print("Row 1 has more packages")
+            if len(pl0_only) > 0:
+                print(f"But only row 0 contains {pl0_only}")
+            else:
+                print("and includes all row 0 packages")
+                temp = per_slot_frame.iloc[[1]]
+                dupe_no_frame = dupe_no_frame.append(temp)
+
+        elif pl0_len == pl1_len == 0:
+            print("Both rows have 0 packages")
+
+        else:
+            print("Both rows have the same, non-zero number of packages")
+            intersection_only = True
+            # print(p_intersection)
+            if len(pl0_only) > 0:
+                print(f"but only row 0 contains packages: {pl0_only}")
+                intersection_only = False
+            elif len(pl1_only) > 0:
+                print(f"but only row 1 contains packages: {pl1_only}")
+                intersection_only = False
+            else:
+                print("and both rows contain the same packages")
+                temp = per_slot_frame.iloc[[0]]
+                dupe_no_frame = dupe_no_frame.append(temp)
+        print("\n")
+
+    dupe_unresolved_frame.to_csv(dupe_unresolved_filename, index=False, sep="\t")
 
     iot_glossary_exploded = dupe_no_frame.explode('packlist')
 
@@ -78,6 +160,8 @@ def make_iot_yaml(cred, yamlout):
         collected_classes[package] = {'slots': pack_slots}
 
     made_yaml['classes'] = collected_classes
+
+    enums = {}
 
     all_slots = list(all_slots)
     all_slots.sort()
@@ -115,42 +199,30 @@ def make_iot_yaml(cred, yamlout):
             # if temp['GitHub Ticket'] != "":
             #     annotations.append({'ght': temp['GitHub Ticket']})
         model_slots[slot]['annotations'] = annotations
-        # change some of these from annotatiosn to slot slots
+        # change some of these from annotations to slot slots
         # look for enum ranges
-        
+        # are any enums duplicated?
+        if slot in ct_keys:
+            current_pvs = ct_dol[slot]
+            current_pvs.sort()
+            values, counts = np.unique(current_pvs, return_counts=True)
+            any_over = any(i for i in counts if i > 1)
+            if any_over:
+                print(slot)
+                unique_count = len(counts)
+                for current_index in range(unique_count):
+                    if counts[current_index] > 1:
+                        print("  " + values[current_index])
+            enum_name = slot + "_enum"
+            model_slots[slot]['range'] = enum_name
+            current_pvs_set = list(set(current_pvs))
+            enums[enum_name] = {"permissible_values": current_pvs_set}
 
     made_yaml['slots'] = model_slots
+    made_yaml['enums'] = enums
 
-    phase2 = dupe_yes_frame.explode('packlist')
-
-    temp = phase2.loc[phase2['packlist'].eq('water')]
-    temp.to_csv("temp.tsv", sep="\t")
-
-    # print(phase2.columns)
-    #
-    # # Index(['Column Header', 'name', 'mixs_6_slot_name', 'different?', 'Definition',
-    # #        'Guidance', 'Expected Value', 'syntax', 'Category',
-    # #        'Associated Packages', 'Origin', 'Notes', 'GitHub Ticket', 'coalesced',
-    # #        'no_quest', 'explicit_packs', 'packlist'],
-    # #       dtype='object')
-    #
-    # phase2_packages = list(phase2['packlist'].unique())
-    # phase2_packages.sort()
-    # for i in phase2_packages:
-    #     print(i)
-    #     temp = phase2.loc[phase2['packlist'].eq(i)]
-    #     # t2 = temp.drop(
-    #     #     labels=['no_quest', 'explicit_packs', 'Associated Packages', 'different?', 'GitHub Ticket', 'Definition',
-    #     #             'Notes'], axis=1, inplace=True)
-    #     t2 = temp.drop(
-    #         labels=['no_quest', 'explicit_packs', 'Associated Packages', 'different?'], axis=1)
-    #     t3 = t2.drop_duplicates()
-    #     print(t3)
-    #     # slots_per_pack = list(i['coalesced'].unique())
-    #     # # slots_per_pack.sort()
-    #     # # temp = phase2.loc[phase2['packlist'].eq(i) & phase2['coalesced'].eq(j)]
-    #     # # print(temp)
-
+    # use slot usage in cases where a slot name appears on two rows,
+    #   with completely different packages on the two rows?
     # made_yaml['classes']['soil']['slot_usage'] = {"samp_name": {'required': True, 'aliases': ['specimen moniker 2']}}
 
     with open(yamlout, 'w') as outfile:
