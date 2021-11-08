@@ -11,6 +11,7 @@ google-api-python-client = "*"
 google-auth-oauthlib = "*"
 pandas = "*"
 linkml = "*"
+linkml_runtime = "*"
 pyyaml = "*"
 
 [tool.poetry.dev-dependencies]

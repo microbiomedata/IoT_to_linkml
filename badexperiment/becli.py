@@ -1,15 +1,19 @@
 import re
 
 import click
-import pandas as pd
 import numpy as np
+import pandas as pd
 import yaml
+from linkml_runtime.utils.schemaview import SchemaView
 
 import badexperiment.sheet2yaml as s2y
 
 # import linkml
 
 dupe_unresolved_filename = "iot_duplciated_names.tsv"
+mixs_uri = "https://gensc.org/mixs/"
+emsl_uri = "https://www.emsl.pnnl.gov/"
+IoT_url = "https://docs.google.com/spreadsheets/d/1lj4OuEE4IYwy2v7RzcG79lHjNdFwmDETMDTDaRAWojY/edit#gid=1133203354"
 
 
 def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_slot_name",
@@ -27,23 +31,30 @@ def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_s
 #               help='The person to greet.')
 @click.option('--cred', default='google_api_credentials.json', help="path to google_api_credentials.json",
               type=click.Path(exists=True))
-@click.option('--mixs', default='google_api_credentials.json', help="path to mixs.yaml and friends",
+@click.option('--mixs', default='../mixs-source/model/schema/mixs.yaml', help="path to mixs.yaml and friends",
               type=click.Path(exists=True))
 @click.option('--yamlout', default='iot.yaml', help="YAML output file name",
               type=click.Path())
-def make_iot_yaml(cred, yamlout):
+def make_iot_yaml(cred, mixs, yamlout):
     """Command line wrapper for processing the Index of Terms."""
+
+    mixs_view = SchemaView(mixs)
+
+    mixs_slotnames = []
+    mixs_slots = mixs_view.all_slots()
+    # there's got to be a better way
+    for i in mixs_slots:
+        # print(i)
+        mixs_slotnames.append(i)
+    # print(mixs_slotnames)
+
     print(f"Getting credentials from {cred}")
 
     my_iot_glossary_frame = s2y.get_iot_glossary_frame(client_secret_file="google_api_credentials.json")
 
     ctf = s2y.get_iot_controlled_terms_frame()
-
     ct_dol = s2y.get_ct_dol(ctf)
-
     ct_keys = s2y.get_ct_keys(ct_dol)
-
-    print(ct_keys)
 
     my_iot_glossary_frame = coalesce_package_names(my_iot_glossary_frame, "name", "mixs_6_slot_name", "coalesced")
 
@@ -52,11 +63,12 @@ def make_iot_yaml(cred, yamlout):
     no_quest = raw_name.str.replace('^\?+', 'Q', regex=True)
     my_iot_glossary_frame['no_quest'] = no_quest
 
-    temp = list(my_iot_glossary_frame['Associated Packages'].unique())
-    temp = [i for i in temp if i not in ['all', '', None]]
-    temp = [re.split('; *', i) for i in temp]
-    temp = [item for sublist in temp for item in sublist]
-    all_packages_list = list(set(temp))
+    uap = list(my_iot_glossary_frame['Associated Packages'].unique())
+    uap = [i for i in uap if i not in ['all', '', None]]
+    uap = [re.split('; *', i) for i in uap]
+    uap = [item for sublist in uap for item in sublist]
+    
+    all_packages_list = list(set(uap))
     all_packages_list.sort()
     all_packages_str = '; '.join(all_packages_list)
 
@@ -169,35 +181,60 @@ def make_iot_yaml(cred, yamlout):
     for slot in all_slots:
         model_slots[slot] = {}
         slot_details = dupe_no_frame.loc[dupe_no_frame['coalesced'].eq(slot)].to_dict(orient="records")
-        # don't forget duplicated slot names -> per class usage
-        # check for matching mixs term
-        # check Column Header against ???
-        # check definition
-        annotations = []
         if len(slot_details) == 1:
-            temp = slot_details[0]
-            if temp['Column Header'] != "":
-                model_slots[slot]['aliases'] = temp['Column Header']
-            if temp['Guidance'] != "":
-                annotations.append({'guidance': temp['Guidance']})
-            if temp['name'] != temp['mixs_6_slot_name']:
-                if temp['mixs_6_slot_name'] == "":
-                    annotations.append({'supplementary_slot': True})
-                else:
-                    annotations.append({'source_name': temp['name']})
-                    # linkml pattern?
-            if temp['syntax'] != "":
-                annotations.append({'syntax': temp['syntax']})
-            if temp['Category'] != "":
-                annotations.append({'category': temp['Category']})
-            # look for better LinkML term
-            if temp['Origin'] != "":
-                annotations.append({'origin': temp['Origin']})
-            # are notes internal or external
-            if temp['Notes'] != "":
-                model_slots[slot]['notes'] = temp['Notes']
-            # if temp['GitHub Ticket'] != "":
-            #     annotations.append({'ght': temp['GitHub Ticket']})
+            sd_row = slot_details[0]
+        annotations = []
+
+        if slot in mixs_slotnames:
+            mixs_slot_def = mixs_view.get_slot(slot)
+            model_slots[slot]['comments'] = []
+            for i in mixs_slot_def.comments:
+                model_slots[slot]['comments'].append(str(i))
+            model_slots[slot]['conforms_to'] = mixs_uri
+            model_slots[slot]['description'] = str(mixs_slot_def.description)
+            model_slots[slot]['notes'] = mixs_slot_def.notes
+            model_slots[slot]['recommended'] = mixs_slot_def.recommended
+            model_slots[slot]['required'] = mixs_slot_def.required
+            model_slots[slot]['slot_uri'] = str(mixs_slot_def.slot_uri)
+            # could be a list?
+            model_slots[slot]['pattern'] = str(mixs_slot_def.pattern)
+            model_slots[slot]['multivalued'] = str(mixs_slot_def.multivalued)
+            # core attribute in is_a could have gone in category?
+        else:
+            if len(slot_details) == 1:
+                if sd_row['Category'] == "required":
+                    model_slots[slot]['required'] = True
+                    annotations.append({"Category": 'required where applicable'})
+                if sd_row['Category'] == "required where applicable":
+                    model_slots[slot]['recommended'] = True
+                    annotations.append({"Category": 'required where applicable'})
+                if sd_row['Category'] == "sample identification":
+                    annotations.append({"Category": 'sample identification'})
+                if sd_row['Notes'] != "":
+                    model_slots[slot]['notes'] = sd_row['Notes']
+                if sd_row['Origin'] == "EMSL":
+                    model_slots[slot]['conforms_to'] = emsl_uri
+                if sd_row['syntax'] != "":
+                    model_slots[slot]['pattern'] = sd_row['syntax']
+                model_slots[slot]['description'] = sd_row['Definition']
+                model_slots[slot]['slot_uri'] = "IoT:" + slot
+
+        if len(slot_details) == 1:
+            if sd_row['Column Header'] != "":
+                # temp = {"local_name_source": "IoT", "local_name_value": sd_row['Column Header']}
+                # model_slots[slot]['local_names'] = temp
+                model_slots[slot]['title'] = sd_row['Column Header']
+            if sd_row['GitHub Ticket'] != "":
+                model_slots[slot]['see_also'] = sd_row['GitHub Ticket']
+            if sd_row['Guidance'] != "":
+                model_slots[slot]['comments'] = sd_row['Guidance']
+            if sd_row['name'] != '' and sd_row['mixs_6_slot_name'] != '' and sd_row['name'] != sd_row[
+                'mixs_6_slot_name']:
+                model_slots[slot]['aliases'] = sd_row['name']
+
+        # don't forget duplicated slot names -> per class usage
+        # check Column Header against ???
+
         model_slots[slot]['annotations'] = annotations
         # change some of these from annotations to slot slots
         # look for enum ranges
@@ -208,7 +245,7 @@ def make_iot_yaml(cred, yamlout):
             values, counts = np.unique(current_pvs, return_counts=True)
             any_over = any(i for i in counts if i > 1)
             if any_over:
-                print(slot)
+                print(f"{slot} has duplicated enumerated values")
                 unique_count = len(counts)
                 for current_index in range(unique_count):
                     if counts[current_index] > 1:

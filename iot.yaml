@@ -1,0 +1,5461 @@
+name: IndexOfTerms
+id: http://example.com/IoT
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+default_range: string
+classes:
+  culture_environmental:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - size_frac
+    - sieving
+    - samp_collect_device
+    - host_common_name
+    - host_taxid
+    - alt
+    - growth_medium
+    - practice_method-dev
+    - biotic_relationship
+    - encoded_traits
+    - host_spec_range
+    - oxy_stat_samp
+    - pathogenicity
+    - propagation
+    - ref_biomaterial
+    - specific_host
+    - subspecf_gen_lin
+    - trophic_level
+    - chem_administration
+    - other
+    - size_frac_low
+    - size_frac_up
+  mixed_culture:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - samp_collect_device
+    - host_common_name
+    - host_taxid
+    - growth_medium
+    - practice_method-dev
+    - biotic_relationship
+    - encoded_traits
+    - host_spec_range
+    - oxy_stat_samp
+    - pathogenicity
+    - propagation
+    - ref_biomaterial
+    - specific_host
+    - subspecf_gen_lin
+    - trophic_level
+    - chem_administration
+    - other
+  plant_associated:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - samp_collect_device
+    - plant_struc
+    - host_common_name
+    - host_taxid
+    - alt
+    - practice_method-dev
+    - ances_data
+    - antibiotic_regm
+    - biol_stat
+    - biotic_relationship
+    - chem_mutagen
+    - cult_root_med
+    - fertilizer_regm
+    - fungicide_regm
+    - genetic_mod
+    - gravity
+    - growth_habit
+    - growth_hormone_regm
+    - herbicide_regm
+    - host_age
+    - host_disease_stat
+    - host_dry_mass
+    - host_genotype
+    - host_height
+    - host_infra_specific_name
+    - host_infra_specific_rank
+    - host_length
+    - host_life_stage
+    - host_phenotype
+    - host_symbiont
+    - host_tot_mass
+    - host_wet_mass
+    - mechanical_damage
+    - mineral_nutr_regm
+    - misc_param
+    - non_min_nutr_regm
+    - organism_count
+    - oxy_stat_samp
+    - perturbation
+    - pesticide_regm
+    - ph_regm
+    - plant_growth_med
+    - plant_product
+    - plant_sex
+    - radiation_regm
+    - rainfall_regm
+    - root_cond
+    - root_med_carbon
+    - root_med_macronutr
+    - root_med_micronutr
+    - root_med_ph
+    - root_med_regl
+    - root_med_solid
+    - root_med_suppl
+    - salt_regm
+    - samp_capt_status
+    - samp_dis_stage
+    - samp_salinity
+    - season_environment
+    - standing_water_regm
+    - temp
+    - tiss_cult_growth_med
+    - water_temp_regm
+    - chem_administration
+    - other
+  pore_water:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - depth
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - size_frac
+    - samp_collect_device
+    - alt
+    - practice_method-dev
+    - alkalinity
+    - alkalinity_method
+    - alkyl_diethers
+    - aminopept_act
+    - ammonium
+    - atmospheric_data
+    - bac_prod
+    - bac_resp
+    - bacteria_carb_prod
+    - biomass
+    - bishomohopanol
+    - bromide
+    - calcium
+    - carb_nitro_ratio
+    - chloride
+    - chlorophyll
+    - conduc
+    - density
+    - diether_lipids
+    - diss_carb_dioxide
+    - diss_hydrogen
+    - diss_inorg_carb
+    - diss_inorg_nitro
+    - diss_inorg_phosp
+    - diss_org_carb
+    - diss_org_nitro
+    - diss_oxygen
+    - down_par
+    - fluor
+    - glucosidase_act
+    - light_intensity
+    - magnesium
+    - mean_frict_vel
+    - mean_peak_frict_vel
+    - misc_param
+    - n_alkanes
+    - nitrate
+    - nitrite
+    - nitro
+    - org_carb
+    - org_matter
+    - org_nitro
+    - organism_count
+    - oxy_stat_samp
+    - part_org_carb
+    - part_org_nitro
+    - perturbation
+    - petroleum_hydrocarb
+    - ph
+    - ph_meth
+    - phaeopigments
+    - phosphate
+    - phosplipid_fatt_acid
+    - photon_flux
+    - potassium
+    - pressure
+    - primary_prod
+    - redox_potential
+    - salinity
+    - silicate
+    - sodium
+    - soluble_react_phosp
+    - sulfate
+    - sulfide
+    - suspend_part_matter
+    - temp
+    - tidal_stage
+    - tot_depth_water_col
+    - tot_diss_nitro
+    - tot_inorg_nitro
+    - tot_nitro
+    - tot_part_carb
+    - tot_phosp
+    - turbidity
+    - water_current
+    - chem_administration
+    - other
+    - size_frac_low
+    - size_frac_up
+  pure_culture:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - samp_collect_device
+    - host_common_name
+    - host_taxid
+    - growth_medium
+    - practice_method-dev
+    - biotic_relationship
+    - encoded_traits
+    - host_spec_range
+    - oxy_stat_samp
+    - pathogenicity
+    - propagation
+    - ref_biomaterial
+    - specific_host
+    - subspecf_gen_lin
+    - trophic_level
+    - chem_administration
+    - other
+  sediment:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - depth
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - sieving
+    - samp_collect_device
+    - alt
+    - practice_method-dev
+    - alkalinity
+    - alkalinity_method
+    - alkyl_diethers
+    - aminopept_act
+    - ammonium
+    - bacteria_carb_prod
+    - biomass
+    - biotic_relationship
+    - bishomohopanol
+    - bromide
+    - calcium
+    - carb_nitro_ratio
+    - chloride
+    - chlorophyll
+    - density
+    - diether_lipids
+    - diss_carb_dioxide
+    - diss_hydrogen
+    - diss_inorg_carb
+    - diss_org_carb
+    - diss_org_nitro
+    - diss_oxygen
+    - extreme_event
+    - fire
+    - flooding
+    - glucosidase_act
+    - magnesium
+    - mean_frict_vel
+    - mean_peak_frict_vel
+    - methane
+    - microbial_biomass
+    - microbial_biomass_meth
+    - misc_param
+    - n_alkanes
+    - nitrate
+    - nitrite
+    - nitro
+    - org_carb
+    - org_matter
+    - org_nitro
+    - organism_count
+    - oxy_stat_samp
+    - part_org_carb
+    - particle_class
+    - perturbation
+    - petroleum_hydrocarb
+    - ph
+    - ph_meth
+    - phaeopigments
+    - phosphate
+    - phosplipid_fatt_acid
+    - porosity
+    - potassium
+    - pressure
+    - redox_potential
+    - salinity
+    - sediment_type
+    - silicate
+    - sodium
+    - sulfate
+    - sulfide
+    - temp
+    - tidal_stage
+    - tot_carb
+    - tot_depth_water_col
+    - tot_nitro_content
+    - tot_n_meth
+    - tot_org_c_meth
+    - tot_org_carb
+    - turbidity
+    - water_content
+    - water_cont_soil_meth
+    - chem_administration
+    - other
+  soil:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - depth
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - sieving
+    - samp_collect_device
+    - alt
+    - practice_method-dev
+    - agrochem_addition
+    - al_sat
+    - al_sat_meth
+    - annual_precpt
+    - annual_temp
+    - biotic_relationship
+    - crop_rotation
+    - cur_land_use
+    - cur_vegetation
+    - cur_vegetation_meth
+    - drainage_class
+    - extreme_event
+    - extreme_salinity
+    - fao_class
+    - fire
+    - flooding
+    - heavy_metals
+    - heavy_metals_meth
+    - horizon
+    - horizon_meth
+    - link_addit_analys
+    - link_class_info
+    - link_climate_info
+    - local_class
+    - local_class_meth
+    - microbial_biomass
+    - microbial_biomass_meth
+    - misc_param
+    - oxy_stat_samp
+    - ph
+    - ph_meth
+    - previous_land_use
+    - previous_land_use_meth
+    - profile_position
+    - salinity_meth
+    - season_precpt
+    - season_temp
+    - slope_aspect
+    - slope_gradient
+    - soil_type
+    - soil_type_meth
+    - texture
+    - texture_meth
+    - tillage
+    - tot_nitro_content
+    - tot_n_meth
+    - tot_org_c_meth
+    - tot_org_carb
+    - water_content
+    - water_cont_soil_meth
+    - chem_administration
+    - other
+  water:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - depth
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - size_frac
+    - samp_collect_device
+    - alt
+    - practice_method-dev
+    - alkalinity
+    - alkalinity_method
+    - alkyl_diethers
+    - aminopept_act
+    - ammonium
+    - atmospheric_data
+    - bac_prod
+    - bac_resp
+    - bacteria_carb_prod
+    - biomass
+    - bishomohopanol
+    - bromide
+    - calcium
+    - carb_nitro_ratio
+    - chloride
+    - chlorophyll
+    - conduc
+    - density
+    - diether_lipids
+    - diss_carb_dioxide
+    - diss_hydrogen
+    - diss_inorg_carb
+    - diss_inorg_nitro
+    - diss_inorg_phosp
+    - diss_org_carb
+    - diss_org_nitro
+    - diss_oxygen
+    - down_par
+    - fluor
+    - glucosidase_act
+    - light_intensity
+    - magnesium
+    - mean_frict_vel
+    - mean_peak_frict_vel
+    - misc_param
+    - n_alkanes
+    - nitrate
+    - nitrite
+    - nitro
+    - org_carb
+    - org_matter
+    - org_nitro
+    - organism_count
+    - oxy_stat_samp
+    - part_org_carb
+    - part_org_nitro
+    - perturbation
+    - petroleum_hydrocarb
+    - ph
+    - ph_meth
+    - phaeopigments
+    - phosphate
+    - phosplipid_fatt_acid
+    - photon_flux
+    - potassium
+    - pressure
+    - primary_prod
+    - redox_potential
+    - salinity
+    - silicate
+    - sodium
+    - soluble_react_phosp
+    - sulfate
+    - sulfide
+    - suspend_part_matter
+    - temp
+    - tidal_stage
+    - tot_depth_water_col
+    - tot_diss_nitro
+    - tot_inorg_nitro
+    - tot_nitro
+    - tot_part_carb
+    - tot_phosp
+    - turbidity
+    - water_current
+    - chem_administration
+    - other
+    - size_frac_low
+    - size_frac_up
+  water_extract_biosolid:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - samp_collect_device
+    - alt
+    - practice_method-dev
+    - alkalinity
+    - alkalinity_method
+    - biochem_oxygen_dem
+    - chem_oxygen_dem
+    - efficiency_percent
+    - emulsions
+    - gaseous_substances
+    - indust_eff_percent
+    - inorg_particles
+    - misc_param
+    - nitrate
+    - org_particles
+    - organism_count
+    - oxy_stat_samp
+    - perturbation
+    - ph
+    - ph_meth
+    - phosphate
+    - pre_treatment
+    - primary_treatment
+    - reactor_type
+    - samp_salinity
+    - secondary_treatment
+    - sewage_type
+    - sludge_retent_time
+    - sodium
+    - soluble_inorg_mat
+    - soluble_org_mat
+    - suspend_solids
+    - temp
+    - tertiary_treatment
+    - tot_phosphate
+    - wastewater_type
+    - chem_administration
+    - other
+  water_extract_soil:
+    slots:
+    - ID
+    - samp_name
+    - project_ID
+    - investigation_type
+    - package
+    - source_mat_id
+    - replicate_number
+    - technical_reps
+    - growth_facil
+    - collection_date
+    - samp_mat_process
+    - store_cond
+    - samp_store_temp
+    - samp_size
+    - geo_loc_name
+    - lat_lon
+    - elev
+    - depth
+    - watering_regm
+    - air_temp_regm
+    - gaseous_environment
+    - isotope_exposure
+    - climate_environment
+    - humidity_regm
+    - light_regm
+    - biotic_regm
+    - size_frac
+    - sieving
+    - samp_collect_device
+    - alt
+    - practice_method-dev
+    - agrochem_addition
+    - al_sat
+    - al_sat_meth
+    - annual_precpt
+    - annual_temp
+    - biotic_relationship
+    - crop_rotation
+    - cur_land_use
+    - cur_vegetation
+    - cur_vegetation_meth
+    - drainage_class
+    - extreme_event
+    - extreme_salinity
+    - fao_class
+    - fire
+    - flooding
+    - heavy_metals
+    - heavy_metals_meth
+    - horizon
+    - horizon_meth
+    - link_addit_analys
+    - link_class_info
+    - link_climate_info
+    - local_class
+    - local_class_meth
+    - microbial_biomass
+    - microbial_biomass_meth
+    - misc_param
+    - oxy_stat_samp
+    - ph
+    - ph_meth
+    - previous_land_use
+    - previous_land_use_meth
+    - profile_position
+    - salinity_meth
+    - season_precpt
+    - season_temp
+    - slope_aspect
+    - slope_gradient
+    - soil_type
+    - soil_type_meth
+    - texture
+    - texture_meth
+    - tillage
+    - tot_nitro_content
+    - tot_n_meth
+    - tot_org_c_meth
+    - tot_org_carb
+    - water_content
+    - chem_administration
+    - other
+    - size_frac_low
+    - size_frac_up
+slots:
+  ID:
+    notes: v6 has unique ID and sample name synonymous. But I think we need a unique
+      ID to link & something human-readable
+    conforms_to: https://www.emsl.pnnl.gov/
+    pattern: '{text}'
+    description: A globally unique identifier assigned to the biological sample to
+      link all analytes and subsamples derived from it.
+    slot_uri: IoT:ID
+    title: Globally Unique ID
+    see_also: null
+    comments: 'Field REQUIRED for ALL sample submission. Options: IGSN- http://www.geosamples.org/getigsn
+      ; UUID- https://www.uuidgenerator.net/'
+    annotations:
+    - Category: sample identification
+  agrochem_addition:
+    comments:
+    - 'Expected value: agrochemical name;agrochemical amount;timestamp'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Addition of fertilizers, pesticides, etc. - amount and time of applications
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000639
+    pattern: '{text};{float} {unit};{timestamp}'
+    multivalued: 'True'
+    title: history/agrochemical additions
+    see_also: null
+    annotations: []
+  air_temp_regm:
+    comments:
+    - 'Expected value: temperature value;treatment interval and duration'
+    - 'Preferred unit: meter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving an exposure to varying temperatures;
+      should include the temperature, treatment regimen including how many times the
+      treatment was repeated, how long each treatment lasted, and the start and end
+      time of the entire treatment; can include different temperature regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000551
+    pattern: '{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: air temperature regimen treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+  al_sat:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: percentage'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: soil'
+    conforms_to: https://gensc.org/mixs/
+    description: Aluminum saturation (esp. For tropical soils)
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000607
+    pattern: None
+    multivalued: 'False'
+    title: extreme_unusual_properties/Al saturation
+    see_also: null
+    annotations: []
+  al_sat_meth:
+    comments:
+    - 'Expected value: PMID,DOI or URL'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: soil'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining Al saturation
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000324
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: extreme_unusual_properties/Al saturation method
+    see_also: null
+    annotations: []
+  alkalinity:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milliequivalent per liter, milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 7 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, wastewater_sludge, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Alkalinity, the ability of a solution to neutralize acids to the
+      equivalence point of carbonate or bicarbonate
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000421
+    pattern: None
+    multivalued: 'False'
+    title: alkalinity
+    see_also: null
+    annotations: []
+  alkalinity_method:
+    comments:
+    - 'Expected value: description of method'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Method used for alkalinity measurement
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000298
+    pattern: '{text}'
+    multivalued: 'False'
+    title: alkalinity method
+    see_also: null
+    annotations: []
+  alkyl_diethers:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: mole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of alkyl diethers
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000490
+    pattern: None
+    multivalued: 'False'
+    title: alkyl diethers
+    see_also: null
+    annotations: []
+  alt:
+    comments:
+    - 'Expected value: measurement value'
+    - 'This field is used in: 4 packages: air, host-associated, miscellaneous natural
+      or artificial environment, symbiont-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Altitude is a term used to identify heights of objects such as airplanes,
+      space shuttles, rockets, atmospheric balloons and heights of places such as
+      atmospheric layers and clouds. It is used to measure the height of an object
+      which is above the earth's surface. In this context, the altitude measurement
+      is the vertical distance between the earth's surface above sea level and the
+      sampled position in the air
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000094
+    pattern: None
+    multivalued: 'False'
+    title: altitude-meters
+    see_also: null
+    annotations: []
+  aminopept_act:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: mole per liter per hour'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of aminopeptidase activity
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000172
+    pattern: None
+    multivalued: 'False'
+    title: aminopeptidase activity
+    see_also: null
+    annotations: []
+  ammonium:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of ammonium in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000427
+    pattern: None
+    multivalued: 'False'
+    title: ammonium
+    see_also: null
+    annotations: []
+  ances_data:
+    comments:
+    - 'Expected value: free text'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: host-associated, plant-associated, food-farm
+      environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about either pedigree or other ancestral information
+      description (e.g. parental variety in case of mutant or selection), e.g. A/3*B
+      (meaning [(A x B) x B] x B)
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000247
+    pattern: '{text}'
+    multivalued: 'False'
+    title: ancestral data
+    see_also: null
+    annotations: []
+  annual_precpt:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: millimeter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The average of all annual precipitation values known, or an estimated
+      equivalent value derived by such methods as regional indexes or Isohyetal maps.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000644
+    pattern: None
+    multivalued: 'False'
+    title: mean annual precipitation
+    see_also: null
+    annotations: []
+  annual_temp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: degree Celsius'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Mean annual temperature
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000642
+    pattern: None
+    multivalued: 'False'
+    title: mean annual temperature
+    see_also: null
+    annotations: []
+  antibiotic_regm:
+    comments:
+    - 'Expected value: antibiotic name;antibiotic amount;treatment interval and duration'
+    - 'Preferred unit: milligram'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving antibiotic administration;
+      should include the name of antibiotic, amount administered, treatment regimen
+      including how many times the treatment was repeated, how long each treatment
+      lasted, and the start and end time of the entire treatment; can include multiple
+      antibiotic regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000553
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: antibiotic regimen
+    see_also: null
+    annotations: []
+  atmospheric_data:
+    comments:
+    - 'Expected value: atmospheric data name;measurement value'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of atmospheric data; can include multiple data
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001097
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: atmospheric data
+    see_also: null
+    annotations: []
+  bac_prod:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per cubic meter per day'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Bacterial production in the water column measured by isotope uptake
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000683
+    pattern: None
+    multivalued: 'False'
+    title: bacterial production
+    see_also: null
+    annotations: []
+  bac_resp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per cubic meter per day, micromole oxygen per liter
+      per hour'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of bacterial respiration in the water column
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000684
+    pattern: None
+    multivalued: 'False'
+    title: bacterial respiration
+    see_also: null
+    annotations: []
+  bacteria_carb_prod:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: nanogram per hour'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of bacterial carbon production
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000173
+    pattern: None
+    multivalued: 'False'
+    title: bacterial carbon production
+    see_also: null
+    annotations: []
+  biochem_oxygen_dem:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Amount of dissolved oxygen needed by aerobic biological organisms
+      in a body of water to break down organic material present in a given water sample
+      at certain temperature over a specific time period
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000653
+    pattern: None
+    multivalued: 'False'
+    title: biochemical oxygen demand
+    see_also: null
+    annotations: []
+  biol_stat:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: host-associated, plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: The level of genome modification.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000858
+    pattern: '[wild|natural|semi-natural|inbred line|breeder''s line|hybrid|clonal
+      selection|mutant]'
+    multivalued: 'False'
+    title: biological status
+    see_also: null
+    annotations: []
+    range: biol_stat_enum
+  biomass:
+    comments:
+    - 'Expected value: biomass type;measurement value'
+    - 'Preferred unit: ton, kilogram, gram'
+    - 'Occurrence: m'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Amount of biomass; should include the name for the part of biomass
+      measured, e.g. Microbial, total. Can include multiple measurements
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000174
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: biomass
+    see_also: null
+    annotations: []
+  biotic_regm:
+    comments:
+    - 'Expected value: free text'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: plant-associated, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment(s) involving use of biotic factors, such
+      as bacteria, viruses or fungi.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001038
+    pattern: '{text}'
+    multivalued: 'False'
+    title: biotic regimen/addition treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+  biotic_relationship:
+    comments:
+    - 'Expected value: enumeration'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Description of relationship(s) between the subject organism and other
+      organism(s) it is associated with. E.g., parasite on species X; mutualist with
+      species Y. The target organism is the subject of the relationship, and the other
+      organism(s) is the object
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000028
+    pattern: '[free living|parasitism|commensalism|symbiotic|mutualism]'
+    multivalued: 'False'
+    title: biotic relationship
+    see_also: null
+    annotations: []
+    range: biotic_relationship_enum
+  bishomohopanol:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, microgram per gram'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of bishomohopanol
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000175
+    pattern: None
+    multivalued: 'False'
+    title: bishomohopanol
+    see_also: null
+    annotations: []
+  bromide:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of bromide
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000176
+    pattern: None
+    multivalued: 'False'
+    title: bromide
+    see_also: null
+    annotations: []
+  calcium:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter, micromole per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of calcium in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000432
+    pattern: None
+    multivalued: 'False'
+    title: calcium
+    see_also: null
+    annotations: []
+  carb_nitro_ratio:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Ratio of amount or concentrations of carbon to nitrogen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000310
+    pattern: None
+    multivalued: 'False'
+    title: carbon/nitrogen ratio
+    see_also: null
+    annotations: []
+  chem_administration:
+    comments:
+    - 'Expected value: CHEBI;timestamp'
+    - 'Occurrence: m'
+    - 'This field is used in: 16 packages: air, host-associated, human-associated,
+      human-gut, human-oral, human-skin, human-vaginal, microbial mat_biofilm, miscellaneous
+      natural or artificial environment, plant-associated, sediment, wastewater_sludge,
+      water, symbiont-associated, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: List of chemical compounds administered to the host or site where
+      sampling occurred, and when (e.g. Antibiotics, n fertilizer, air filter); can
+      include multiple compounds. For chemical entities of biological interest ontology
+      (chebi) (v 163), http://purl.bioontology.org/ontology/chebi
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000751
+    pattern: '{termLabel} {[termID]};{timestamp}'
+    multivalued: 'True'
+    title: chemical administration/addition treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+  chem_mutagen:
+    comments:
+    - 'Expected value: mutagen name;mutagen amount;treatment interval and duration'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Treatment involving use of mutagens; should include the name of mutagen,
+      amount administered, treatment regimen including how many times the treatment
+      was repeated, how long each treatment lasted, and the start and end time of
+      the entire treatment; can include multiple mutagen regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000555
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: chemical mutagen
+    see_also: null
+    annotations: []
+  chem_oxygen_dem:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: A measure of the capacity of water to consume oxygen during the decomposition
+      of organic matter and the oxidation of inorganic chemicals such as ammonia and
+      nitrite
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000656
+    pattern: None
+    multivalued: 'False'
+    title: chemical oxygen demand
+    see_also: null
+    annotations: []
+  chloride:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of chloride in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000429
+    pattern: None
+    multivalued: 'False'
+    title: chloride
+    see_also: null
+    annotations: []
+  chlorophyll:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per cubic meter, microgram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of chlorophyll
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000177
+    pattern: None
+    multivalued: 'False'
+    title: chlorophyll
+    see_also: null
+    annotations: []
+  climate_environment:
+    comments:
+    - 'Expected value: climate name;treatment interval and duration'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Treatment involving an exposure to a particular climate; treatment
+      regimen including how many times the treatment was repeated, how long each treatment
+      lasted, and the start and end time of the entire treatment; can include multiple
+      climates
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001040
+    pattern: '{text};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: climate environment treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+  collection_date:
+    comments:
+    - 'Expected value: date and time'
+    - 'This field is used in: 5 packages: symbiont-associated, food-human foods, food-animal
+      and animal feed, food-food production facility, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: 'The time of sampling, either as an instance (single point in time)
+      or interval. In case no exact time is available, the date/time can be right
+      truncated i.e. all of these are valid times: 2008-01-23T19:23:10+00:00; 2008-01-23T19:23:10;
+      2008-01-23; 2008-01; 2008; Except: 2008-01; 2008 all are ISO8601 compliant'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000011
+    pattern: None
+    multivalued: 'False'
+    title: Collection Date
+    see_also: null
+    annotations: []
+  conduc:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milliSiemens per centimeter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: water, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Electrical conductivity of water
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000692
+    pattern: None
+    multivalued: 'False'
+    title: conductivity
+    see_also: null
+    annotations: []
+  crop_rotation:
+    comments:
+    - 'Expected value: crop rotation status;schedule'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Whether or not crop is rotated, and if yes, rotation schedule
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000318
+    pattern: '{boolean};{Rn/start_time/end_time/duration}'
+    multivalued: 'False'
+    title: history/crop rotation
+    see_also: null
+    annotations: []
+  cult_root_med:
+    comments:
+    - 'Expected value: name, PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Name or reference for the hydroponic or in vitro culture rooting
+      medium; can be the name of a commonly used medium or reference to a specific
+      medium, e.g. Murashige and Skoog medium. If the medium has not been formally
+      published, use the rooting medium descriptors.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001041
+    pattern: '{text}|{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: culture rooting medium
+    see_also: null
+    annotations: []
+  cur_land_use:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Present state of sample site
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001080
+    pattern: '[cities|farmstead|industrial areas|roads/railroads|rock|sand|gravel|mudflats|salt
+      flats|badlands|permanent snow or ice|saline seeps|mines/quarries|oil waste areas|small
+      grains|row crops|vegetable crops|horticultural plants (e.g. tulips)|marshlands
+      (grass,sedges,rushes)|tundra (mosses,lichens)|rangeland|pastureland (grasslands
+      used for livestock grazing)|hayland|meadows (grasses,alfalfa,fescue,bromegrass,timothy)|shrub
+      land (e.g. mesquite,sage-brush,creosote bush,shrub oak,eucalyptus)|successional
+      shrub land (tree saplings,hazels,sumacs,chokecherry,shrub dogwoods,blackberries)|shrub
+      crops (blueberries,nursery ornamentals,filberts)|vine crops (grapes)|conifers
+      (e.g. pine,spruce,fir,cypress)|hardwoods (e.g. oak,hickory,elm,aspen)|intermixed
+      hardwood and conifers|tropical (e.g. mangrove,palms)|rainforest (evergreen forest
+      receiving >406 cm annual rainfall)|swamp (permanent or semi-permanent water
+      body dominated by woody plants)|crop trees (nuts,fruit,christmas trees,nursery
+      trees)]'
+    multivalued: 'False'
+    title: current land use
+    see_also: null
+    annotations: []
+    range: cur_land_use_enum
+  cur_vegetation:
+    comments:
+    - 'Expected value: current vegetation type'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Vegetation classification from one or more standard classification
+      systems, or agricultural crop
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000312
+    pattern: '{text}'
+    multivalued: 'False'
+    title: current vegetation
+    see_also: null
+    annotations: []
+  cur_vegetation_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in vegetation classification
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000314
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: current vegetation method
+    see_also: null
+    annotations: []
+  density:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: gram per cubic meter, gram per cubic centimeter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, miscellaneous natural or artificial environment, sediment,
+      water'
+    conforms_to: https://gensc.org/mixs/
+    description: Density of the sample, which is its mass per unit volume (aka volumetric
+      mass density)
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000435
+    pattern: None
+    multivalued: 'False'
+    title: density
+    see_also: null
+    annotations: []
+  depth:
+    comments: When sample is collected with a ___ depth and homogenized, please report
+      depth as a ____. (example, 0-10cm for soil collected from the surface to 10cm
+      below and homogenized, or 10-20 for soil collected and homogenized from 10cm
+      below the surface to 20cm).
+    conforms_to: https://gensc.org/mixs/
+    description: The vertical distance below local surface, e.g. for sediment or soil
+      samples depth is measured from sediment or soil surface, respectively. Depth
+      can be reported as an interval for subsurface samples.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000018
+    pattern: None
+    multivalued: 'False'
+    title: depth-meters
+    see_also: null
+    annotations: []
+  diether_lipids:
+    comments:
+    - 'Expected value: diether lipid name;measurement value'
+    - 'Preferred unit: nanogram per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of diether lipids; can include multiple types of diether
+      lipids
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000178
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: diether lipids
+    see_also: null
+    annotations: []
+  diss_carb_dioxide:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of dissolved carbon dioxide in the sample or liquid
+      portion of the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000436
+    pattern: None
+    multivalued: 'False'
+    title: dissolved carbon dioxide
+    see_also: null
+    annotations: []
+  diss_hydrogen:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of dissolved hydrogen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000179
+    pattern: None
+    multivalued: 'False'
+    title: dissolved hydrogen
+    see_also: null
+    annotations: []
+  diss_inorg_carb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Dissolved inorganic carbon concentration in the sample, typically
+      measured after filtering the sample using a 0.45 micrometer filter
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000434
+    pattern: None
+    multivalued: 'False'
+    title: dissolved inorganic carbon
+    see_also: null
+    annotations: []
+  diss_inorg_nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of dissolved inorganic nitrogen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000698
+    pattern: None
+    multivalued: 'False'
+    title: dissolved inorganic nitrogen
+    see_also: null
+    annotations: []
+  diss_inorg_phosp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of dissolved inorganic phosphorus in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000106
+    pattern: None
+    multivalued: 'False'
+    title: Concentration of dissolved inorganic phosphorus in the sample
+    see_also: null
+    annotations: []
+  diss_org_carb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of dissolved organic carbon in the sample, liquid portion
+      of the sample, or aqueous phase of the fluid
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000433
+    pattern: None
+    multivalued: 'False'
+    title: dissolved organic carbon
+    see_also: null
+    annotations: []
+  diss_org_nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Dissolved organic nitrogen concentration measured as; total dissolved
+      nitrogen - NH4 - NO3 - NO2
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000162
+    pattern: None
+    multivalued: 'False'
+    title: dissolved organic nitrogen
+    see_also: null
+    annotations: []
+  diss_oxygen:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per kilogram, milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of dissolved oxygen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000119
+    pattern: None
+    multivalued: 'False'
+    title: dissolved oxygen
+    see_also: null
+    annotations: []
+  down_par:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microEinstein per square meter per second, microEinstein per
+      square centimeter per second'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Visible waveband radiance and irradiance measurements in the water
+      column
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000703
+    pattern: None
+    multivalued: 'False'
+    title: downward PAR
+    see_also: null
+    annotations: []
+  drainage_class:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Drainage classification from a standard system such as the USDA system
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001085
+    pattern: '[very poorly|poorly|somewhat poorly|moderately well|well|excessively
+      drained]'
+    multivalued: 'False'
+    title: drainage classification
+    see_also: null
+    annotations: []
+    range: drainage_class_enum
+  efficiency_percent:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Percentage of volatile solids removed from the anaerobic digestor
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000657
+    pattern: None
+    multivalued: 'False'
+    title: efficiency percent
+    see_also: null
+    annotations: []
+  elev:
+    comments:
+    - 'Expected value: measurement value'
+    - 'This field is used in: 11 packages: air, host-associated, hydrocarbon resources-cores,
+      microbial mat_biofilm, miscellaneous natural or artificial environment, plant-associated,
+      sediment, soil, water, symbiont-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Elevation of the sampling site is its height above a fixed reference
+      point, most commonly the mean sea level. Elevation is mainly used when referring
+      to points on the earth's surface, while altitude is used for points above the
+      surface, such as an aircraft in flight or a spacecraft in orbit.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000093
+    pattern: None
+    multivalued: 'False'
+    title: elevation-meters
+    see_also: null
+    annotations: []
+  emulsions:
+    comments:
+    - 'Expected value: emulsion name;measurement value'
+    - 'Preferred unit: gram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Amount or concentration of substances such as paints, adhesives,
+      mayonnaise, hair colorants, emulsified oils, etc.; can include multiple emulsion
+      types
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000660
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: emulsions
+    see_also: null
+    annotations: []
+  encoded_traits:
+    comments:
+    - 'Expected value: for plasmid: antibiotic resistance; for phage: converting genes'
+    conforms_to: https://gensc.org/mixs/
+    description: Should include key traits like antibiotic resistance or xenobiotic
+      degradation phenotypes for plasmids, converting genes for phage
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000034
+    pattern: '{text}'
+    multivalued: 'False'
+    title: encoded traits
+    see_also: null
+    annotations: []
+  extreme_event:
+    comments:
+    - 'Expected value: date'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Unusual physical events that may have affected microbial populations
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000320
+    pattern: None
+    multivalued: 'False'
+    title: history/extreme events
+    see_also: null
+    annotations: []
+  extreme_salinity:
+    notes: null
+    pattern: '{float} {unit}'
+    description: Measured salinity
+    slot_uri: IoT:extreme_salinity
+    title: extreme_unusual_properties/salinity
+    see_also: null
+    annotations: []
+  fao_class:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Soil classification from the FAO World Reference Database for Soil
+      Resources. The list can be found at http://www.fao.org/nr/land/sols/soil/wrb-soil-maps/reference-groups
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001083
+    pattern: '[Acrisols|Andosols|Arenosols|Cambisols|Chernozems|Ferralsols|Fluvisols|Gleysols|Greyzems|Gypsisols|Histosols|Kastanozems|Lithosols|Luvisols|Nitosols|Phaeozems|Planosols|Podzols|Podzoluvisols|Rankers|Regosols|Rendzinas|Solonchaks|Solonetz|Vertisols|Yermosols]'
+    multivalued: 'False'
+    title: soil_taxonomic/FAO classification
+    see_also: null
+    annotations: []
+    range: fao_class_enum
+  fertilizer_regm:
+    comments:
+    - 'Expected value: fertilizer name;fertilizer amount;treatment interval and duration'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving the use of fertilizers; should
+      include the name of fertilizer, amount administered, treatment regimen including
+      how many times the treatment was repeated, how long each treatment lasted, and
+      the start and end time of the entire treatment; can include multiple fertilizer
+      regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000556
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: fertilizer regimen
+    see_also: null
+    annotations: []
+  fire:
+    comments:
+    - 'Expected value: date'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Historical and/or physical evidence of fire
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001086
+    pattern: None
+    multivalued: 'False'
+    title: history/fire
+    see_also: null
+    annotations: []
+  flooding:
+    comments:
+    - 'Expected value: date'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Historical and/or physical evidence of flooding
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000319
+    pattern: None
+    multivalued: 'False'
+    title: history/flooding
+    see_also: null
+    annotations: []
+  fluor:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram chlorophyll a per cubic meter, volts'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Raw or converted fluorescence of water
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000704
+    pattern: None
+    multivalued: 'False'
+    title: fluorescence
+    see_also: null
+    annotations: []
+  fungicide_regm:
+    comments:
+    - 'Expected value: fungicide name;fungicide amount;treatment interval and duration'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving use of fungicides; should include
+      the name of fungicide, amount administered, treatment regimen including how
+      many times the treatment was repeated, how long each treatment lasted, and the
+      start and end time of the entire treatment; can include multiple fungicide regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000557
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: fungicide regimen
+    see_also: null
+    annotations: []
+  gaseous_environment:
+    comments:
+    - 'Expected value: gaseous compound name;gaseous compound amount;treatment interval
+      and duration'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Use of conditions with differing gaseous environments; should include
+      the name of gaseous compound, amount administered, treatment duration, interval
+      and total experimental duration; can include multiple gaseous environment regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000558
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: gas evironment/exposure treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+  gaseous_substances:
+    comments:
+    - 'Expected value: gaseous substance name;measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Amount or concentration of substances such as hydrogen sulfide, carbon
+      dioxide, methane, etc.; can include multiple substances
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000661
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: gaseous substances
+    see_also: null
+    annotations: []
+  genetic_mod:
+    comments:
+    - 'Expected value: PMID,DOI,url or free text'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: host-associated, plant-associated, food-human
+      foods, food-food production facility, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Genetic modifications of the genome of an organism, which may occur
+      naturally by spontaneous mutation, or be introduced by some experimental means,
+      e.g. specification of a transgene or the gene knocked-out or details of transient
+      transfection
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000859
+    pattern: '{PMID}|{DOI}|{URL}|{text}'
+    multivalued: 'False'
+    title: genetic modification
+    see_also: null
+    annotations: []
+  geo_loc_name:
+    comments:
+    - 'Expected value: country or sea name (INSDC or GAZ): region(GAZ), specific location
+      name'
+    - 'This field is used in: 5 packages: symbiont-associated, food-human foods, food-animal
+      and animal feed, food-food production facility, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: The geographical origin of the sample as defined by the country or
+      sea name followed by specific region name. Country or sea names should be chosen
+      from the INSDC country list (http://insdc.org/country.html), or the GAZ ontology
+      (http://purl.bioontology.org/ontology/GAZ)
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000010
+    pattern: '{term}: {term}, {text}'
+    multivalued: 'False'
+    title: Geographical Location Name
+    see_also: null
+    annotations: []
+  glucosidase_act:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: mol per liter per hour'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of glucosidase activity
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000137
+    pattern: None
+    multivalued: 'False'
+    title: glucosidase activity
+    see_also: null
+    annotations: []
+  gravity:
+    comments:
+    - 'Expected value: gravity factor value;treatment interval and duration'
+    - 'Preferred unit: meter per square second, g'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving use of gravity factor to study
+      various types of responses in presence, absence or modified levels of gravity;
+      treatment regimen including how many times the treatment was repeated, how long
+      each treatment lasted, and the start and end time of the entire treatment; can
+      include multiple treatments
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000559
+    pattern: '{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: gravity
+    see_also: null
+    annotations: []
+  growth_facil:
+    comments: Type of facility or location form where the sample was harvested
+    conforms_to: https://gensc.org/mixs/
+    description: 'Type of facility where the sampled plant was grown; controlled vocabulary:
+      growth chamber, open top chamber, glasshouse, experimental garden, field. Alternatively
+      use Crop Ontology (CO) terms, see http://www.cropontology.org/ontology/CO_715/Crop%20Research'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001043
+    pattern: '{text}|{termLabel} {[termID]}'
+    multivalued: 'False'
+    title: Growth Facility
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/258
+    annotations: []
+    range: growth_facil_enum
+  growth_habit:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: plant-associated, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Characteristic shape, appearance or growth form of a plant species
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001044
+    pattern: '[erect|semi-erect|spreading|prostrate]'
+    multivalued: 'False'
+    title: growth habit
+    see_also: null
+    annotations: []
+    range: growth_habit_enum
+  growth_hormone_regm:
+    comments:
+    - 'Expected value: growth hormone name;growth hormone amount;treatment interval
+      and duration'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving use of growth hormones; should
+      include the name of growth hormone, amount administered, treatment regimen including
+      how many times the treatment was repeated, how long each treatment lasted, and
+      the start and end time of the entire treatment; can include multiple growth
+      hormone regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000560
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: growth hormone regimen
+    see_also: null
+    annotations: []
+  growth_medium:
+    comments:
+    - 'Expected value: text'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: A liquid or gel containing nutrients, salts, and other factors formulated
+      to support the growth of microorganisms, cells, or plants (National Cancer Institute
+      Thesaurus).  The name of the medium used to grow the microorganism.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001108
+    pattern: '{text}'
+    multivalued: 'False'
+    title: Growth Medium
+    see_also: null
+    annotations: []
+    range: growth_medium_enum
+  heavy_metals:
+    comments:
+    - 'Expected value: heavy metal name;measurement value unit'
+    - 'Preferred unit: microgram per gram'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: soil'
+    conforms_to: https://gensc.org/mixs/
+    description: Heavy metals present in the sequenced sample and their concentrations.
+      For multiple heavy metals and concentrations, add multiple copies of this field.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000652
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: extreme_unusual_properties/heavy metals
+    see_also: null
+    annotations: []
+  heavy_metals_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining heavy metals
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000343
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: extreme_unusual_properties/heavy metals method
+    see_also: null
+    annotations: []
+  herbicide_regm:
+    comments:
+    - 'Expected value: herbicide name;herbicide amount;treatment interval and duration'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving use of herbicides; information
+      about treatment involving use of growth hormones; should include the name of
+      herbicide, amount administered, treatment regimen including how many times the
+      treatment was repeated, how long each treatment lasted, and the start and end
+      time of the entire treatment; can include multiple regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000561
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: herbicide regimen
+    see_also: null
+    annotations: []
+  horizon:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Specific layer in the land area which measures parallel to the soil
+      surface and possesses physical characteristics which differ from the layers
+      above and beneath
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001082
+    pattern: '[O horizon|A horizon|E horizon|B horizon|C horizon|R layer|Permafrost]'
+    multivalued: 'False'
+    title: horizon
+    see_also: null
+    annotations: []
+    range: horizon_enum
+  horizon_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining the horizon
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000321
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: horizon method
+    see_also: null
+    annotations: []
+  host_age:
+    comments:
+    - 'Expected value: value'
+    - 'Preferred unit: year, day, hour'
+    - 'Occurrence: 1'
+    - 'This field is used in: 10 packages: host-associated, human-associated, human-gut,
+      human-oral, human-skin, human-vaginal, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Age of host at the time of sampling; relevant scale depends on species
+      and study, e.g. Could be seconds for amoebae or centuries for trees
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000255
+    pattern: None
+    multivalued: 'False'
+    title: host age
+    see_also: null
+    annotations: []
+  host_common_name:
+    comments:
+    - 'Expected value: common name'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: host-associated, plant-associated, symbiont-associated,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Common name of the host.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000248
+    pattern: '{text}'
+    multivalued: 'False'
+    title: common name
+    see_also: null
+    annotations: []
+  host_disease_stat:
+    comments:
+    - 'Expected value: disease name or Disease Ontology term'
+    - 'This field is used in: 9 packages: host-associated, human-associated, human-gut,
+      human-oral, human-skin, human-vaginal, plant-associated, food-farm environment,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: List of diseases with which the host has been diagnosed; can include
+      multiple diagnoses. The value of the field depends on host; for humans the terms
+      should be chosen from the DO (Human Disease Ontology) at https://www.disease-ontology.org,
+      non-human host diseases are free text
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000031
+    pattern: '{termLabel} {[termID]}|{text}'
+    multivalued: 'False'
+    title: host disease status
+    see_also: null
+    annotations: []
+  host_dry_mass:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: kilogram, gram'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: host-associated, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of dry mass
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000257
+    pattern: None
+    multivalued: 'False'
+    title: host dry mass
+    see_also: null
+    annotations: []
+  host_genotype:
+    comments:
+    - 'Expected value: genotype'
+    - 'Occurrence: 1'
+    - 'This field is used in: 10 packages: host-associated, human-associated, human-gut,
+      human-oral, human-skin, human-vaginal, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Observed genotype
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000365
+    pattern: '{text}'
+    multivalued: 'False'
+    title: host genotype
+    see_also: null
+    annotations: []
+  host_height:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: centimeter, millimeter, meter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 10 packages: host-associated, human-associated, human-gut,
+      human-oral, human-skin, human-vaginal, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The height of subject
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000264
+    pattern: None
+    multivalued: 'False'
+    title: host height
+    see_also: null
+    annotations: []
+  host_infra_specific_name:
+    comments:
+    - 'Expected value: name of the symbiotic organism (host of the samples)'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: symbiont-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Taxonomic information about the host below subspecies level.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000253
+    pattern: '{text}'
+    multivalued: 'False'
+    title: host infra-specific name
+    see_also: null
+    aliases: host_infra_spec_name
+    annotations: []
+  host_infra_specific_rank:
+    comments:
+    - 'Expected value: rank of the symbiotic organism (host of the samples)'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: symbiont-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Taxonomic rank information about the host below subspecies level,
+      such as variety, form, rank etc.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000254
+    pattern: '{text}'
+    multivalued: 'False'
+    title: host infra-specific rank
+    see_also: null
+    aliases: host_infra_spec_rank
+    annotations: []
+  host_length:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: centimeter, millimeter, meter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: host-associated, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The length of subject
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000256
+    pattern: None
+    multivalued: 'False'
+    title: host length
+    see_also: null
+    annotations: []
+  host_life_stage:
+    comments:
+    - 'Expected value: stage'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: host-associated, plant-associated, symbiont-associated,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Description of life stage of host
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000251
+    pattern: '{text}'
+    multivalued: 'False'
+    title: host life stage
+    see_also: null
+    annotations: []
+  host_phenotype:
+    comments:
+    - 'Expected value: PATO or HP'
+    - 'Occurrence: 1'
+    - 'This field is used in: 10 packages: host-associated, human-associated, human-gut,
+      human-oral, human-skin, human-vaginal, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Phenotype of human or other host. For phenotypic quality ontology
+      (pato) (v 2018-03-27) terms, please see http://purl.bioontology.org/ontology/pato.
+      For Human Phenotype Ontology (HP) (v 2018-06-13) please see http://purl.bioontology.org/ontology/HP
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000874
+    pattern: '{termLabel} {[termID]}'
+    multivalued: 'False'
+    title: host phenotype
+    see_also: null
+    annotations: []
+  host_spec_range:
+    comments:
+    - 'Expected value: NCBI taxid'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The range and diversity of host species that an organism is capable
+      of infecting, defined by NCBI taxonomy identifier.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000030
+    pattern: None
+    multivalued: 'False'
+    title: host specificity or range
+    see_also: null
+    annotations: []
+  host_symbiont:
+    comments:
+    - 'Expected value: species name or common name'
+    - 'Occurrence: m'
+    - 'This field is used in: 9 packages: host-associated, human-associated, human-gut,
+      human-oral, human-skin, human-vaginal, plant-associated, symbiont-associated,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The taxonomic name of the organism(s) found living in mutualistic,
+      commensalistic, or parasitic symbiosis with the specific host.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001298
+    pattern: '{text}'
+    multivalued: 'True'
+    title: observed host symbionts
+    see_also: null
+    annotations: []
+  host_taxid:
+    comments:
+    - 'Expected value: NCBI taxon identifier'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: host-associated, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: NCBI taxon id of the host, e.g. 9606
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000250
+    pattern: '{NCBI taxid}'
+    multivalued: 'False'
+    title: NCBI ID
+    see_also: null
+    annotations: []
+  host_tot_mass:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: kilogram, gram'
+    - 'Occurrence: 1'
+    - 'This field is used in: 10 packages: host-associated, human-associated, human-gut,
+      human-oral, human-skin, human-vaginal, plant-associated, symbiont-associated,
+      food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Total mass of the host at collection, the unit depends on host
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000263
+    pattern: None
+    multivalued: 'False'
+    title: host total mass
+    see_also: null
+    annotations: []
+  host_wet_mass:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: kilogram, gram'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of wet mass
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000567
+    pattern: None
+    multivalued: 'False'
+    title: host wet mass
+    see_also: null
+    annotations: []
+  humidity_regm:
+    comments:
+    - 'Expected value: humidity value;treatment interval and duration'
+    - 'Preferred unit: gram per cubic meter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving an exposure to varying degree
+      of humidity; information about treatment involving use of growth hormones; should
+      include amount of humidity administered, treatment regimen including how many
+      times the treatment was repeated, how long each treatment lasted, and the start
+      and end time of the entire treatment; can include multiple regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000568
+    pattern: '{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: humidity regimen/adition treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+  indust_eff_percent:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: percentage'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Percentage of industrial effluents received by wastewater treatment
+      plant
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000662
+    pattern: None
+    multivalued: 'False'
+    title: industrial effluent percent
+    see_also: null
+    annotations: []
+  inorg_particles:
+    comments:
+    - 'Expected value: inorganic particle name;measurement value'
+    - 'Preferred unit: mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of particles such as sand, grit, metal particles, ceramics,
+      etc.; can include multiple particles
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000664
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: inorganic particles
+    see_also: null
+    annotations: []
+  investigation_type:
+    notes: enumeration values are EMSL origin, MIxS has different values. V6 is removing
+      this? Need to talk to Chris
+    pattern: drop down selection list
+    description: ''
+    slot_uri: IoT:investigation_type
+    title: Analysis/Data Type
+    see_also: null
+    comments: This field is constrained to contain only a set of limited terms (listed
+      under Expected value) that indicate the types of data that were generated. Include
+      all the data types, this field can have multiple values separated by a ;
+    annotations:
+    - Category: sample identification
+    range: investigation_type_enum
+  isotope_exposure:
+    recommended: true
+    conforms_to: https://www.emsl.pnnl.gov/
+    pattern: '{text}'
+    description: ''
+    slot_uri: IoT:isotope_exposure
+    title: isotope exposure/addition treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/260
+    annotations:
+    - Category: required where applicable
+  lat_lon:
+    comments:
+    - 'Expected value: decimal degrees,  limit to 8 decimal points'
+    - 'This field is used in: 5 packages: symbiont-associated, food-human foods, food-animal
+      and animal feed, food-food production facility, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: The geographical origin of the sample as defined by latitude and
+      longitude. The values should be reported in decimal degrees and in WGS84 system
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000009
+    pattern: '{float} {float}'
+    multivalued: 'False'
+    title: latitude, longitude
+    see_also: null
+    annotations: []
+  light_intensity:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: lux'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of light intensity
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000706
+    pattern: None
+    multivalued: 'False'
+    title: light intensity
+    see_also: null
+    annotations: []
+  light_regm:
+    comments:
+    - 'Expected value: exposure type;light intensity;light quality'
+    - 'Preferred unit: lux; micrometer, nanometer, angstrom'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment(s) involving exposure to light, including
+      both light intensity and quality.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000569
+    pattern: '{text};{float} {unit};{float} {unit}'
+    multivalued: 'False'
+    title: light regimen treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+  link_addit_analys:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: soil'
+    conforms_to: https://gensc.org/mixs/
+    description: Link to additional analysis results performed on the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000340
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: links to additional analysis
+    see_also: null
+    annotations: []
+  link_class_info:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Link to digitized soil maps or other soil classification information
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000329
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: link to classification information
+    see_also: null
+    annotations: []
+  link_climate_info:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Link to climate resource
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000328
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: link to climate information
+    see_also: null
+    annotations: []
+  local_class:
+    comments:
+    - 'Expected value: local classification name'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Soil classification based on local soil classification system
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000330
+    pattern: '{text}'
+    multivalued: 'False'
+    title: soil_taxonomic/local classification
+    see_also: null
+    annotations: []
+  local_class_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining the local soil classification
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000331
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: soil_taxonomic/local classification method
+    see_also: null
+    annotations: []
+  magnesium:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: mole per liter, milligram per liter, parts per million, micromole
+      per kilogram'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of magnesium in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000431
+    pattern: None
+    multivalued: 'False'
+    title: magnesium
+    see_also: null
+    annotations: []
+  mean_frict_vel:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: meter per second'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of mean friction velocity
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000498
+    pattern: None
+    multivalued: 'False'
+    title: mean friction velocity
+    see_also: null
+    annotations: []
+  mean_peak_frict_vel:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: meter per second'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of mean peak friction velocity
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000502
+    pattern: None
+    multivalued: 'False'
+    title: mean peak friction velocity
+    see_also: null
+    annotations: []
+  mechanical_damage:
+    comments:
+    - 'Expected value: damage type;body site'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about any mechanical damage exerted on the plant; can
+      include multiple damages and sites
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001052
+    pattern: '{text};{text}'
+    multivalued: 'True'
+    title: mechanical damage
+    see_also: null
+    annotations: []
+  methane:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, parts per billion, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: air, microbial mat_biofilm, sediment'
+    conforms_to: https://gensc.org/mixs/
+    description: Methane (gas) amount or concentration at the time of sampling
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000101
+    pattern: None
+    multivalued: 'False'
+    title: methane
+    see_also: null
+    annotations: []
+  microbial_biomass:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: ton, kilogram, gram per kilogram soil'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The part of the organic matter in the soil that constitutes living
+      microorganisms smaller than 5-10 micrometer. If you keep this, you would need
+      to have correction factors used for conversion to the final units
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000650
+    pattern: None
+    multivalued: 'False'
+    title: microbial biomass
+    see_also: null
+    annotations: []
+  microbial_biomass_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining microbial biomass
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000339
+    pattern: '{PMID|DOI|URL}'
+    multivalued: 'False'
+    title: microbial biomass method
+    see_also: null
+    annotations: []
+  mineral_nutr_regm:
+    comments:
+    - 'Expected value: mineral nutrient name;mineral nutrient amount;treatment interval
+      and duration'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving the use of mineral supplements;
+      should include the name of mineral nutrient, amount administered, treatment
+      regimen including how many times the treatment was repeated, how long each treatment
+      lasted, and the start and end time of the entire treatment; can include multiple
+      mineral nutrient regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000570
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: mineral nutrient regimen
+    see_also: null
+    annotations: []
+  misc_param:
+    comments:
+    - 'Expected value: parameter name;measurement value'
+    - 'Occurrence: m'
+    - 'This field is used in: 22 packages: air, host-associated, human-associated,
+      human-gut, human-oral, human-skin, human-vaginal, hydrocarbon resources-cores,
+      hydrocarbon resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural
+      or artificial environment, plant-associated, sediment, soil, wastewater_sludge,
+      water, symbiont-associated, food-human foods, food-animal and animal feed, food-food
+      production facility, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Any other measurement performed or parameter collected, that is not
+      listed here
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000752
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: miscellaneous parameter
+    see_also: null
+    annotations: []
+  n_alkanes:
+    comments:
+    - 'Expected value: n-alkane name;measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of n-alkanes; can include multiple n-alkanes
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000503
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: n-alkanes
+    see_also: null
+    annotations: []
+  nitrate:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 7 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, wastewater_sludge, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of nitrate in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000425
+    pattern: None
+    multivalued: 'False'
+    title: nitrate
+    see_also: null
+    annotations: []
+  nitrite:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of nitrite in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000426
+    pattern: None
+    multivalued: 'False'
+    title: nitrite
+    see_also: null
+    annotations: []
+  nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of nitrogen (total)
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000504
+    pattern: None
+    multivalued: 'False'
+    title: nitrogen
+    see_also: null
+    annotations: []
+  non_min_nutr_regm:
+    comments:
+    - 'Expected value: non-mineral nutrient name;non-mineral nutrient amount;treatment
+      interval and duration'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving the exposure of plant to non-mineral
+      nutrient such as oxygen, hydrogen or carbon; should include the name of non-mineral
+      nutrient, amount administered, treatment regimen including how many times the
+      treatment was repeated, how long each treatment lasted, and the start and end
+      time of the entire treatment; can include multiple non-mineral nutrient regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000571
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: non-mineral nutrient regimen
+    see_also: null
+    annotations: []
+  org_carb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of organic carbon
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000508
+    pattern: None
+    multivalued: 'False'
+    title: organic carbon
+    see_also: null
+    annotations: []
+  org_matter:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of organic matter
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000204
+    pattern: None
+    multivalued: 'False'
+    title: organic matter
+    see_also: null
+    annotations: []
+  org_nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of organic nitrogen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000205
+    pattern: None
+    multivalued: 'False'
+    title: organic nitrogen
+    see_also: null
+    annotations: []
+  org_particles:
+    comments:
+    - 'Expected value: particle name;measurement value'
+    - 'Preferred unit: gram per liter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of particles such as faeces, hairs, food, vomit, paper
+      fibers, plant material, humus, etc.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000665
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: organic particles
+    see_also: null
+    annotations: []
+  organism_count:
+    comments:
+    - 'Expected value: organism name;measurement value;enumeration'
+    - 'Preferred unit: number of cells per cubic meter, number of cells per milliliter,
+      number of cells per cubic centimeter'
+    - 'Occurrence: m'
+    - 'This field is used in: 22 packages: air, built environment, host-associated,
+      human-associated, human-gut, human-oral, human-skin, human-vaginal, hydrocarbon
+      resources-cores, hydrocarbon resources-fluids_swabs, microbial mat_biofilm,
+      miscellaneous natural or artificial environment, plant-associated, sediment,
+      wastewater_sludge, water, symbiont-associated, food-human foods, food-animal
+      and animal feed, food-food production facility, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: 'Total cell count of any organism (or group of organisms) per gram,
+      volume or area of sample, should include name of organism followed by count.
+      The method that was used for the enumeration (e.g. qPCR, atp, mpn, etc.) Should
+      also be provided. (example: total prokaryotes; 3.5e7 cells per ml; qpcr)'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000103
+    pattern: '{text};{float} {unit};[qPCR|ATP|MPN|other]'
+    multivalued: 'True'
+    title: organism count
+    see_also: null
+    annotations: []
+  other:
+    recommended: true
+    notes: link github ticket - i haven't made one. Chris, thoughts? Just a general
+      "allow for other treatment details to be captured?
+    conforms_to: https://www.emsl.pnnl.gov/
+    pattern: '{text}'
+    description: ''
+    slot_uri: IoT:other
+    title: treatment-other details
+    see_also: null
+    annotations:
+    - Category: required where applicable
+  oxy_stat_samp:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 17 packages: air, host-associated, human-associated,
+      human-gut, human-oral, human-skin, human-vaginal, hydrocarbon resources-cores,
+      hydrocarbon resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural
+      or artificial environment, plant-associated, sediment, wastewater_sludge, water,
+      symbiont-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Oxygenation status of sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000753
+    pattern: '[aerobic|anaerobic|other]'
+    multivalued: 'False'
+    title: oxygenation status of sample
+    see_also: null
+    annotations: []
+    range: oxy_stat_samp_enum
+  package:
+    notes: This is assumed by the package, but I think should be in the metadata form
+      as well. Could be an "auto filled" section?
+    pattern: '{text}'
+    description: ''
+    slot_uri: IoT:package
+    title: Sample Type
+    see_also: null
+    comments: MIxS Package
+    annotations:
+    - Category: sample identification
+  part_org_carb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of particulate organic carbon
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000515
+    pattern: None
+    multivalued: 'False'
+    title: particulate organic carbon
+    see_also: null
+    annotations: []
+  part_org_nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of particulate organic nitrogen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000719
+    pattern: None
+    multivalued: 'False'
+    title: particulate organic nitrogen
+    see_also: null
+    annotations: []
+  particle_class:
+    comments:
+    - 'Expected value: particle name;measurement value'
+    - 'Preferred unit: micrometer'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: sediment'
+    conforms_to: https://gensc.org/mixs/
+    description: Particles are classified, based on their size, into six general categories:clay,
+      silt, sand, gravel, cobbles, and boulders; should include amount of particle
+      preceded by the name of the particle type; can include multiple values
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000206
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: particle classification
+    see_also: null
+    annotations: []
+  pathogenicity:
+    comments:
+    - 'Expected value: names of organisms that the entity is pathogenic to'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: To what is the entity pathogenic
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000027
+    pattern: '{text}'
+    multivalued: 'False'
+    title: known pathogenicity
+    see_also: null
+    annotations: []
+  perturbation:
+    comments:
+    - 'Expected value: perturbation type name;perturbation interval and duration'
+    - 'Occurrence: m'
+    - 'This field is used in: 18 packages: air, host-associated, human-associated,
+      human-gut, human-oral, human-skin, human-vaginal, microbial mat_biofilm, miscellaneous
+      natural or artificial environment, plant-associated, sediment, wastewater_sludge,
+      water, symbiont-associated, food-human foods, food-animal and animal feed, food-farm
+      environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Type of perturbation, e.g. chemical administration, physical disturbance,
+      etc., coupled with perturbation regimen including how many times the perturbation
+      was repeated, how long each perturbation lasted, and the start and end time
+      of the entire perturbation period; can include multiple perturbation types
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000754
+    pattern: '{text};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: perturbation
+    see_also: null
+    annotations: []
+  pesticide_regm:
+    comments:
+    - 'Expected value: pesticide name;pesticide amount;treatment interval and duration'
+    - 'Preferred unit: gram, mole per liter, milligram per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving use of insecticides; should
+      include the name of pesticide, amount administered, treatment regimen including
+      how many times the treatment was repeated, how long each treatment lasted, and
+      the start and end time of the entire treatment; can include multiple pesticide
+      regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000573
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: pesticide regimen
+    see_also: null
+    annotations: []
+  petroleum_hydrocarb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of petroleum hydrocarbon
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000516
+    pattern: None
+    multivalued: 'False'
+    title: petroleum hydrocarbon
+    see_also: null
+    annotations: []
+  ph:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Occurrence: 1'
+    - 'This field is used in: 9 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, soil, wastewater_sludge, water, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Ph measurement of the sample, or liquid portion of sample, or aqueous
+      phase of the fluid
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001001
+    pattern: None
+    multivalued: 'False'
+    title: pH
+    see_also: null
+    annotations: []
+  ph_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining ph
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001106
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: pH method
+    see_also: null
+    annotations: []
+  ph_regm:
+    comments:
+    - 'Expected value: measurement value;treatment interval and duration'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving exposure of plants to varying
+      levels of ph of the growth media, treatment regimen including how many times
+      the treatment was repeated, how long each treatment lasted, and the start and
+      end time of the entire treatment; can include multiple regimen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001056
+    pattern: '{float};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: pH regimen
+    see_also: null
+    annotations: []
+  phaeopigments:
+    comments:
+    - 'Expected value: phaeopigment name;measurement value'
+    - 'Preferred unit: milligram per cubic meter'
+    - 'Occurrence: m'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of phaeopigments; can include multiple phaeopigments
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000180
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: phaeopigments
+    see_also: null
+    annotations: []
+  phosphate:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, wastewater_sludge, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of phosphate
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000505
+    pattern: None
+    multivalued: 'False'
+    title: phosphate
+    see_also: null
+    annotations: []
+  phosplipid_fatt_acid:
+    comments:
+    - 'Expected value: phospholipid fatty acid name;measurement value'
+    - 'Preferred unit: mole per gram, mole per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of phospholipid fatty acids; can include multiple values
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000181
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: phospholipid fatty acid
+    see_also: null
+    annotations: []
+  photon_flux:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: number of photons per second per unit area'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of photon flux
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000725
+    pattern: None
+    multivalued: 'False'
+    title: photon flux
+    see_also: null
+    annotations: []
+  plant_growth_med:
+    comments:
+    - 'Expected value: EO or enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: plant-associated, food-farm environment,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Specification of the media for growing the plants or tissue cultured
+      samples, e.g. soil, aeroponic, hydroponic, in vitro solid culture medium, in
+      vitro liquid culture medium. Recommended value is a specific value from EO:plant
+      growth medium (follow this link for terms http://purl.obolibrary.org/obo/EO_0007147)
+      or other controlled vocabulary
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001057
+    pattern: '{termLabel} {[termID]} or [husk|other artificial liquid medium|other
+      artificial solid medium|peat moss|perlite|pumice|sand|soil|vermiculite|water]'
+    multivalued: 'False'
+    title: plant growth medium
+    see_also: null
+    annotations: []
+  plant_product:
+    comments:
+    - 'Expected value: product name'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Substance produced by the plant, where the sample was obtained from
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001058
+    pattern: '{text}'
+    multivalued: 'False'
+    title: plant product
+    see_also: null
+    annotations: []
+  plant_sex:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Sex of the reproductive parts on the whole plant, e.g. pistillate,
+      staminate, monoecieous, hermaphrodite.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001059
+    pattern: '[Androdioecious|Androecious|Androgynous|Androgynomonoecious|Andromonoecious|Bisexual|Dichogamous|Diclinous|Dioecious|Gynodioecious|Gynoecious|Gynomonoecious|Hermaphroditic|Imperfect|Monoclinous|Monoecious|Perfect|Polygamodioecious|Polygamomonoecious|Polygamous|Protandrous|Protogynous|Subandroecious|Subdioecious|Subgynoecious|Synoecious|Trimonoecious|Trioecious|Unisexual]'
+    multivalued: 'False'
+    title: plant sex
+    see_also: null
+    annotations: []
+    range: plant_sex_enum
+  plant_struc:
+    comments:
+    - 'Expected value: PO'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Name of plant structure the sample was obtained from; for Plant Ontology
+      (PO) (v releases/2017-12-14) terms, see http://purl.bioontology.org/ontology/PO,
+      e.g. petiole epidermis (PO_0000051). If an individual flower is sampled, the
+      sex of it can be recorded here.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001060
+    pattern: '{termLabel} {[termID]}'
+    multivalued: 'False'
+    title: Plant Structure
+    see_also: null
+    annotations: []
+    range: plant_struc_enum
+  porosity:
+    comments:
+    - 'Expected value: measurement value or range'
+    - 'Preferred unit: percentage'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: hydrocarbon resources-cores, sediment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Porosity of deposited sediment is volume of voids divided by the
+      total volume of sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000211
+    pattern: '{float} - {float} {unit}'
+    multivalued: 'False'
+    title: porosity
+    see_also: null
+    annotations: []
+  potassium:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of potassium in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000430
+    pattern: None
+    multivalued: 'False'
+    title: potassium
+    see_also: null
+    annotations: []
+  practice_method-dev:
+    notes: I am not sure NMDC will need to worry about this one, because I doubt EMLS
+      test samples will go to NMDC. Adding here just in case, but feel free to remove.
+    conforms_to: https://www.emsl.pnnl.gov/
+    description: If your sample is being sent as a test or practice sample, indicate
+      the target test or what this test sample is meant to resolve.
+    slot_uri: IoT:practice_method-dev
+    title: Practice Target
+    see_also: null
+    comments: Example, if it's unclear if lyophilizing will affect your results, so
+      you're sending a lyophilized and not lyophilized sample, the Practice Target
+      would be "lyophilization affect, dry (or wet)"
+    annotations: []
+  pre_treatment:
+    comments:
+    - 'Expected value: pre-treatment type'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: The process of pre-treatment removes materials that can be easily
+      collected from the raw wastewater
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000348
+    pattern: '{text}'
+    multivalued: 'False'
+    title: pre-treatment
+    see_also: null
+    annotations: []
+  pressure:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: atmosphere'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Pressure to which the sample is subject to, in atmospheres
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000412
+    pattern: None
+    multivalued: 'False'
+    title: pressure
+    see_also: null
+    annotations: []
+  previous_land_use:
+    comments:
+    - 'Expected value: land use name;date'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Previous land use and dates
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000315
+    pattern: '{text};{timestamp}'
+    multivalued: 'False'
+    title: history/previous land use
+    see_also: null
+    annotations: []
+  previous_land_use_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining previous land use and dates
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000316
+    pattern: '{PMID|DOI|URL}'
+    multivalued: 'False'
+    title: history/previous land use method
+    see_also: null
+    annotations: []
+  primary_prod:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per cubic meter per day, gram per square meter per
+      day'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of primary production, generally measured as isotope
+      uptake
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000728
+    pattern: None
+    multivalued: 'False'
+    title: primary production
+    see_also: null
+    annotations: []
+  primary_treatment:
+    comments:
+    - 'Expected value: primary treatment type'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: The process to produce both a generally homogeneous liquid capable
+      of being treated biologically and a sludge that can be separately treated or
+      processed
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000349
+    pattern: '{text}'
+    multivalued: 'False'
+    title: primary treatment
+    see_also: null
+    annotations: []
+  profile_position:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Cross-sectional position in the hillslope where sample was collected.sample
+      area position in relation to surrounding areas
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001084
+    pattern: '[summit|shoulder|backslope|footslope|toeslope]'
+    multivalued: 'False'
+    title: profile position
+    see_also: null
+    annotations: []
+    range: profile_position_enum
+  project_ID:
+    notes: null
+    conforms_to: https://www.emsl.pnnl.gov/
+    description: 5 digit EMSL user project ID
+    slot_uri: IoT:project_ID
+    title: Project ID
+    see_also: null
+    annotations:
+    - Category: sample identification
+  propagation:
+    comments:
+    - 'Expected value: for virus: lytic, lysogenic, temperate, obligately lytic; for
+      plasmid: incompatibility group; for eukaryote: asexual, sexual; other more specific
+      values (e.g., incompatibility group) are allowed'
+    conforms_to: https://gensc.org/mixs/
+    description: 'The type of reproduction from the parent stock. Values for this
+      field is specific to different taxa. For phage or virus: lytic/lysogenic/temperate/obligately
+      lytic. For plasmids: incompatibility group. For eukaryotes: sexual/asexual.'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000033
+    pattern: '{text}'
+    multivalued: 'False'
+    title: propagation
+    see_also: null
+    annotations: []
+  radiation_regm:
+    comments:
+    - 'Expected value: radiation type name;radiation amount;treatment interval and
+      duration'
+    - 'Preferred unit: rad, gray'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving exposure of plant or a plant
+      part to a particular radiation regimen; should include the radiation type, amount
+      or intensity administered, treatment regimen including how many times the treatment
+      was repeated, how long each treatment lasted, and the start and end time of
+      the entire treatment; can include multiple radiation regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000575
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: radiation regimen
+    see_also: null
+    annotations: []
+  rainfall_regm:
+    comments:
+    - 'Expected value: measurement value;treatment interval and duration'
+    - 'Preferred unit: millimeter'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving an exposure to a given amount
+      of rainfall, treatment regimen including how many times the treatment was repeated,
+      how long each treatment lasted, and the start and end time of the entire treatment;
+      can include multiple regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000576
+    pattern: '{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: rainfall regimen
+    see_also: null
+    annotations: []
+  reactor_type:
+    comments:
+    - 'Expected value: reactor type name'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Anaerobic digesters can be designed and engineered to operate using
+      a number of different process configurations, as batch or continuous, mesophilic,
+      high solid or low solid, and single stage or multistage
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000350
+    pattern: '{text}'
+    multivalued: 'False'
+    title: reactor type
+    see_also: null
+    annotations: []
+  redox_potential:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: millivolt'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Redox potential, measured relative to a hydrogen cell, indicating
+      oxidation or reduction potential
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000182
+    pattern: None
+    multivalued: 'False'
+    title: redox potential
+    see_also: null
+    annotations: []
+  ref_biomaterial:
+    comments:
+    - 'Expected value: PMID, DOI or URL'
+    conforms_to: https://gensc.org/mixs/
+    description: Primary publication if isolated before genome publication; otherwise,
+      primary genome report.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000025
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: reference for biomaterial
+    see_also: null
+    annotations: []
+  replicate_number:
+    notes: This isn't in the EMSL template yet. But has been requested by users &
+      will be in the new version
+    conforms_to: https://www.emsl.pnnl.gov/
+    description: If sending biological replicates, indicate the rep number here.
+    slot_uri: IoT:replicate_number
+    title: Replicate Number
+    see_also: null
+    comments: This will guide staff in ensuring your samples are block & randomized
+      correctly
+    annotations:
+    - Category: sample identification
+  root_cond:
+    comments:
+    - 'Expected value: PMID,DOI,url or free text'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: plant-associated, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Relevant rooting conditions such as field plot size, sowing density,
+      container dimensions, number of plants per container.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001061
+    pattern: '{PMID}|{DOI}|{URL}|{text}'
+    multivalued: 'False'
+    title: rooting conditions
+    see_also: null
+    annotations: []
+  root_med_carbon:
+    comments:
+    - 'Expected value: carbon source name;measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: plant-associated, food-farm environment,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Source of organic carbon in the culture rooting medium; e.g. sucrose.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000577
+    pattern: '{text};{float} {unit}'
+    multivalued: 'False'
+    title: rooting medium carbon
+    see_also: null
+    annotations: []
+  root_med_macronutr:
+    comments:
+    - 'Expected value: macronutrient name;measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: plant-associated, food-farm environment,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: "Measurement of the culture rooting medium macronutrients (N,P, K,\
+      \ Ca, Mg, S); e.g. KH2PO4 (170\xAC\u2020mg/L)."
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000578
+    pattern: '{text};{float} {unit}'
+    multivalued: 'False'
+    title: rooting medium macronutrients
+    see_also: null
+    annotations: []
+  root_med_micronutr:
+    comments:
+    - 'Expected value: micronutrient name;measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: plant-associated, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: "Measurement of the culture rooting medium micronutrients (Fe, Mn,\
+      \ Zn, B, Cu, Mo); e.g. H3BO3 (6.2\xAC\u2020mg/L)."
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000579
+    pattern: '{text};{float} {unit}'
+    multivalued: 'False'
+    title: rooting medium micronutrients
+    see_also: null
+    annotations: []
+  root_med_ph:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: plant-associated, food-farm environment,
+      agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: pH measurement of the culture rooting medium; e.g. 5.5.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001062
+    pattern: None
+    multivalued: 'False'
+    title: rooting medium pH
+    see_also: null
+    annotations: []
+  root_med_regl:
+    comments:
+    - 'Expected value: regulator name;measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: "Growth regulators in the culture rooting medium such as cytokinins,\
+      \ auxins, gybberellins, abscisic acid; e.g. 0.5\xAC\u2020mg/L NAA."
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000581
+    pattern: '{text};{float} {unit}'
+    multivalued: 'False'
+    title: rooting medium regulators
+    see_also: null
+    annotations: []
+  root_med_solid:
+    comments:
+    - 'Expected value: name'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Specification of the solidifying agent in the culture rooting medium;
+      e.g. agar.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001063
+    pattern: '{text}'
+    multivalued: 'False'
+    title: rooting medium solidifier
+    see_also: null
+    annotations: []
+  root_med_suppl:
+    comments:
+    - 'Expected value: supplement name;measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: "Organic supplements of the culture rooting medium, such as vitamins,\
+      \ amino acids, organic acids, antibiotics activated charcoal; e.g. nicotinic\
+      \ acid (0.5\xAC\u2020mg/L)."
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000580
+    pattern: '{text};{float} {unit}'
+    multivalued: 'False'
+    title: rooting medium organic supplements
+    see_also: null
+    annotations: []
+  salinity:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: practical salinity unit, percentage'
+    - 'Occurrence: 1'
+    - 'This field is used in: 16 packages: air, host-associated, human-associated,
+      human-gut, human-oral, human-skin, human-vaginal, hydrocarbon resources-cores,
+      hydrocarbon resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural
+      or artificial environment, plant-associated, sediment, wastewater_sludge, water,
+      food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: The total concentration of all dissolved salts in a liquid or solid
+      sample. While salinity can be measured by a complete chemical analysis, this
+      method is difficult and time consuming. More often, it is instead derived from
+      the conductivity measurement. This is known as practical salinity. These derivations
+      compare the specific conductance of the sample to a salinity standard such as
+      seawater.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000183
+    pattern: None
+    multivalued: 'False'
+    title: salinity
+    see_also: null
+    annotations: []
+  salinity_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining salinity
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000341
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: extreme_unusual_properties/salinity method
+    see_also: null
+    annotations: []
+  salt_regm:
+    comments:
+    - 'Expected value: salt name;salt amount;treatment interval and duration'
+    - 'Preferred unit: gram, microgram, mole per liter, gram per liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving use of salts as supplement
+      to liquid and soil growth media; should include the name of salt, amount administered,
+      treatment regimen including how many times the treatment was repeated, how long
+      each treatment lasted, and the start and end time of the entire treatment; can
+      include multiple salt regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000582
+    pattern: '{text};{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: salt regimen
+    see_also: null
+    annotations: []
+  samp_capt_status:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: host-associated, plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Reason for the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000860
+    pattern: '[active surveillance in response to an outbreak|active surveillance
+      not initiated by an outbreak|farm sample|market sample|other]'
+    multivalued: 'False'
+    title: sample capture status
+    see_also: null
+    annotations: []
+    range: samp_capt_status_enum
+  samp_collect_device:
+    comments: Report dimensions and details when applicable
+    conforms_to: https://gensc.org/mixs/
+    description: The device used to collect an environmental sample. This field accepts
+      terms listed under environmental sampling device (http://purl.obolibrary.org/obo/ENVO).
+      This field also accepts terms listed under specimen collection device (http://purl.obolibrary.org/obo/GENEPIO_0002094).
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000002
+    pattern: '{termLabel} {[termID]}|{text}'
+    multivalued: 'False'
+    title: sample collection device
+    see_also: null
+    annotations: []
+  samp_dis_stage:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: host-associated, plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Stage of the disease at the time of sample collection, e.g. inoculation,
+      penetration, infection, growth and reproduction, dissemination of pathogen.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000249
+    pattern: '[dissemination|growth and reproduction|infection|inoculation|penetration|other]'
+    multivalued: 'False'
+    title: sample disease stage
+    see_also: null
+    annotations: []
+    range: samp_dis_stage_enum
+  samp_mat_process:
+    comments:
+    - 'Expected value: text'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: A brief description of any processing applied to the sample during
+      or after retrieving the sample from environment, or a link to the relevant protocol(s)
+      performed.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000016
+    pattern: '{text}'
+    multivalued: 'False'
+    title: Material Processing
+    see_also: null
+    annotations: []
+  samp_name:
+    comments: ID that is present on the shipped sample. Human readable.
+    conforms_to: https://gensc.org/mixs/
+    description: A local identifier or name that for the material sample used for
+      extracting nucleic acids, and subsequent sequencing. It can refer either to
+      the original material collected or to any derived sub-samples. It can have any
+      format, but we suggest that you make it concise, unique and consistent within
+      your lab, and as informative as possible. INSDC requires every sample name from
+      a single Submitter to be unique. Use of a globally unique identifier for the
+      field source_mat_id is recommended in addition to sample_name.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001107
+    pattern: '{text}'
+    multivalued: 'False'
+    title: Sample Name
+    see_also: null
+    annotations: []
+  samp_salinity:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter, practical salinity unit, percentage'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: human-vaginal, symbiont-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Salinity is the total concentration of all dissolved salts in a liquid
+      or solid (in the form of an extract obtained by centrifugation) sample. While
+      salinity can be measured by a complete chemical analysis, this method is difficult
+      and time consuming. More often, it is instead derived from the conductivity
+      measurement. This is known as practical salinity. These derivations compare
+      the specific conductance of the sample to a salinity standard such as seawater
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000109
+    pattern: None
+    multivalued: 'False'
+    title: sample salinity
+    see_also: null
+    annotations: []
+  samp_size:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: millliter, gram, milligram, liter'
+    - 'This field is used in: 5 packages: food-human foods, food-animal and animal
+      feed, food-food production facility, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The total amount or size (volume (ml), mass (g) or area (m2) ) of
+      sample collected.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000001
+    pattern: None
+    multivalued: 'False'
+    title: Sample size
+    see_also: null
+    aliases: sample_size
+    annotations: []
+  samp_store_temp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: degree Celsius'
+    - 'Occurrence: 1'
+    - 'This field is used in: 16 packages: air, host-associated, human-associated,
+      human-gut, human-oral, human-skin, human-vaginal, hydrocarbon resources-cores,
+      hydrocarbon resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural
+      or artificial environment, plant-associated, sediment, wastewater_sludge, water,
+      symbiont-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Temperature at which sample was stored, e.g. -80 degree Celsius
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000110
+    pattern: None
+    multivalued: 'False'
+    title: Storage temperature
+    see_also: null
+    annotations: []
+    range: samp_store_temp_enum
+  season_environment:
+    comments:
+    - 'Expected value: seasonal environment name;treatment interval and duration'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Treatment involving an exposure to a particular season (e.g. Winter,
+      summer, rabi, rainy etc.), treatment regimen including how many times the treatment
+      was repeated, how long each treatment lasted, and the start and end time of
+      the entire treatment
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001068
+    pattern: '{text};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: seasonal environment
+    see_also: null
+    annotations: []
+  season_precpt:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: millimeter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The average of all seasonal precipitation values known, or an estimated
+      equivalent value derived by such methods as regional indexes or Isohyetal maps.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000645
+    pattern: None
+    multivalued: 'False'
+    title: mean seasonal precipitation
+    see_also: null
+    annotations: []
+  season_temp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: degree Celsius'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Mean seasonal temperature
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000643
+    pattern: None
+    multivalued: 'False'
+    title: mean seasonal temperature
+    see_also: null
+    annotations: []
+  secondary_treatment:
+    comments:
+    - 'Expected value: secondary treatment type'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: The process for substantially degrading the biological content of
+      the sewage
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000351
+    pattern: '{text}'
+    multivalued: 'False'
+    title: secondary treatment
+    see_also: null
+    annotations: []
+  sediment_type:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: sediment'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about the sediment type based on major constituents
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001078
+    pattern: '[biogenous|cosmogenous|hydrogenous|lithogenous]'
+    multivalued: 'False'
+    title: sediment type
+    see_also: null
+    annotations: []
+    range: sediment_type_enum
+  sewage_type:
+    comments:
+    - 'Expected value: sewage type name'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Type of wastewater treatment plant as municipial or industrial
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000215
+    pattern: '{text}'
+    multivalued: 'False'
+    title: sewage type
+    see_also: null
+    annotations: []
+  sieving:
+    comments:
+    - 'Expected value: design name and/or size;amount'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Collection design of pooled samples and/or sieve size and amount
+      of sample sieved
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000322
+    pattern: '{{text}|{float} {unit}};{float} {unit}'
+    multivalued: 'False'
+    title: Sieve Size
+    see_also: null
+    annotations: []
+  silicate:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, miscellaneous natural
+      or artificial environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of silicate
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000184
+    pattern: None
+    multivalued: 'False'
+    title: silicate
+    see_also: null
+    annotations: []
+  size_frac:
+    comments:
+    - 'Expected value: filter size value range'
+    conforms_to: https://gensc.org/mixs/
+    description: Filtering pore size used in sample preparation
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000017
+    pattern: '{float}-{float} {unit}'
+    multivalued: 'False'
+    title: Size Fraction- Filter Type
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/261
+    annotations: []
+  size_frac_low:
+    comments:
+    - 'Expected value: value'
+    - 'Preferred unit: micrometer'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: water, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Refers to the mesh/pore size used to pre-filter/pre-sort the sample.
+      Materials larger than the size threshold are excluded from the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000735
+    pattern: None
+    multivalued: 'False'
+    title: size-fraction lower threshold
+    see_also: null
+    annotations: []
+  size_frac_up:
+    comments:
+    - 'Expected value: value'
+    - 'Preferred unit: micrometer'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: water, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Refers to the mesh/pore size used to retain the sample. Materials
+      smaller than the size threshold are excluded from the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000736
+    pattern: None
+    multivalued: 'False'
+    title: size-fraction upper threshold
+    see_also: null
+    annotations: []
+  slope_aspect:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: degree'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The direction a slope faces. While looking down a slope use a compass
+      to record the direction you are facing (direction or degrees); e.g., nw or 315
+      degrees. This measure provides an indication of sun and wind exposure that will
+      influence soil temperature and evapotranspiration.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000647
+    pattern: None
+    multivalued: 'False'
+    title: slope aspect
+    see_also: null
+    annotations: []
+  slope_gradient:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: percentage'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: soil, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Commonly called 'slope'. The angle between ground surface and a horizontal
+      line (in percent). This is the direction that overland water would flow. This
+      measure is usually taken with a hand level meter or clinometer
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000646
+    pattern: None
+    multivalued: 'False'
+    title: slope gradient
+    see_also: null
+    annotations: []
+  sludge_retent_time:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: hours'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: The time activated sludge remains in reactor
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000669
+    pattern: None
+    multivalued: 'False'
+    title: sludge retention time
+    see_also: null
+    annotations: []
+  sodium:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 7 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, wastewater_sludge, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Sodium concentration in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000428
+    pattern: None
+    multivalued: 'False'
+    title: sodium
+    see_also: null
+    annotations: []
+  soil_type:
+    comments:
+    - 'Expected value: ENVO_00001998'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Description of the soil type or classification. This field accepts
+      terms under soil (http://purl.obolibrary.org/obo/ENVO_00001998).  Multiple terms
+      can be separated by pipes.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000332
+    pattern: '{termLabel} {[termID]}'
+    multivalued: 'False'
+    title: soil type
+    see_also: null
+    annotations: []
+  soil_type_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining soil series name or other
+      lower-level classification
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000334
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: soil type method
+    see_also: null
+    annotations: []
+  soluble_inorg_mat:
+    comments:
+    - 'Expected value: soluble inorganic material name;measurement value'
+    - 'Preferred unit: gram, microgram, mole per liter, gram per liter, parts per
+      million'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of substances such as ammonia, road-salt, sea-salt,
+      cyanide, hydrogen sulfide, thiocyanates, thiosulfates, etc.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000672
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: soluble inorganic material
+    see_also: null
+    annotations: []
+  soluble_org_mat:
+    comments:
+    - 'Expected value: soluble organic material name;measurement value'
+    - 'Preferred unit: gram, microgram, mole per liter, gram per liter, parts per
+      million'
+    - 'Occurrence: m'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of substances such as urea, fruit sugars, soluble proteins,
+      drugs, pharmaceuticals, etc.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000673
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: soluble organic material
+    see_also: null
+    annotations: []
+  soluble_react_phosp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of soluble reactive phosphorus
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000738
+    pattern: None
+    multivalued: 'False'
+    title: soluble reactive phosphorus
+    see_also: null
+    annotations: []
+  source_mat_id:
+    comments: A unique identifier assigned to an original material sample collected
+      or to any derived sub-samples. The source material should be listed as a sample
+      to inform details about parent material relationship.
+    conforms_to: https://gensc.org/mixs/
+    description: A unique identifier assigned to a material sample (as defined by
+      http://rs.tdwg.org/dwc/terms/materialSampleID, and as opposed to a particular
+      digital record of a material sample) used for extracting nucleic acids, and
+      subsequent sequencing. The identifier can refer either to the original material
+      collected or to any derived sub-samples. The INSDC qualifiers /specimen_voucher,
+      /bio_material, or /culture_collection may or may not share the same value as
+      the source_mat_id field. For instance, the /specimen_voucher qualifier and source_mat_id
+      may both contain 'UAM:Herps:14' , referring to both the specimen voucher and
+      sampled tissue with the same identifier. However, the /culture_collection qualifier
+      may refer to a value from an initial culture (e.g. ATCC:11775) while source_mat_id
+      would refer to an identifier from some derived culture from which the nucleic
+      acids were extracted (e.g. xatc123 or ark:/2154/R2).
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000026
+    pattern: '{text}'
+    multivalued: 'False'
+    title: Source Material ID
+    see_also: null
+    aliases: source_mat_ID
+    annotations: []
+  specific_host:
+    comments:
+    - 'Expected value: host scientific name, taxonomy ID'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Report the host's taxonomic name and/or NCBI taxonomy ID.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000029
+    pattern: '{text}|{NCBI taxid}'
+    multivalued: 'False'
+    title: specific host
+    see_also: null
+    annotations: []
+  standing_water_regm:
+    comments:
+    - 'Expected value: standing water type;treatment interval and duration'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Treatment involving an exposure to standing water during a plant's
+      life span, types can be flood water or standing water, treatment regimen including
+      how many times the treatment was repeated, how long each treatment lasted, and
+      the start and end time of the entire treatment; can include multiple regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001069
+    pattern: '{text};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: standing water regimen
+    see_also: null
+    annotations: []
+  store_cond:
+    comments: Informs how your sample was stored
+    conforms_to: https://gensc.org/mixs/
+    description: Explain how and for how long the soil sample was stored before DNA
+      extraction (fresh/frozen/other).
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000327
+    pattern: '{text};{duration}'
+    multivalued: 'False'
+    title: Storage Condition
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/259
+    annotations: []
+    range: store_cond_enum
+  subspecf_gen_lin:
+    comments:
+    - 'Expected value: Genetic lineage below lowest rank of NCBI taxonomy, which is
+      subspecies, e.g. serovar, biotype, ecotype, variety, cultivar.'
+    - 'This field is used uniquely in: food-food production facility'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about the genetic distinctness of the sequenced organism
+      below the subspecies level, e.g., serovar, serotype, biotype, ecotype, or any
+      relevant genetic typing schemes like Group I plasmid. Subspecies should not
+      be recorded in this term, but in the NCBI taxonomy. Supply both the lineage
+      name and the lineage rank separated by a colon, e.g., biovar:abc123.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000020
+    pattern: '{rank name}:{text}'
+    multivalued: 'False'
+    title: subspecific genetic lineage
+    see_also: null
+    annotations: []
+  sulfate:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of sulfate in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000423
+    pattern: None
+    multivalued: 'False'
+    title: sulfate
+    see_also: null
+    annotations: []
+  sulfide:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 6 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural or artificial
+      environment, sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of sulfide in the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000424
+    pattern: None
+    multivalued: 'False'
+    title: sulfide
+    see_also: null
+    annotations: []
+  suspend_part_matter:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of suspended particulate matter
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000741
+    pattern: None
+    multivalued: 'False'
+    title: suspended particulate matter
+    see_also: null
+    annotations: []
+  suspend_solids:
+    comments:
+    - 'Expected value: suspended solid name;measurement value'
+    - 'Preferred unit: gram, microgram, milligram per liter, mole per liter, gram
+      per liter, part per million'
+    - 'Occurrence: m'
+    - 'This field is used in: 3 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Concentration of substances including a wide variety of material,
+      such as silt, decaying plant and animal matter; can include multiple substances
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000150
+    pattern: '{text};{float} {unit}'
+    multivalued: 'True'
+    title: suspended solids
+    see_also: null
+    annotations: []
+  technical_reps:
+    notes: This isn't in the EMSL template yet. But has been requested by users &
+      will be in the new version
+    conforms_to: https://www.emsl.pnnl.gov/
+    description: If sending multiple technical replicates of the same sample, indicate
+      how many replicates are being sent
+    slot_uri: IoT:technical_reps
+    title: Number Technical Replicate
+    see_also: null
+    annotations:
+    - Category: sample identification
+  temp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: degree Celsius'
+    - 'This field is used in: 20 packages: air, host-associated, human-associated,
+      human-gut, human-oral, human-skin, human-vaginal, hydrocarbon resources-cores,
+      hydrocarbon resources-fluids_swabs, microbial mat_biofilm, miscellaneous natural
+      or artificial environment, plant-associated, sediment, wastewater_sludge, water,
+      symbiont-associated, food-human foods, food-animal and animal feed, food-farm
+      environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Temperature of the sample at the time of sampling.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000113
+    pattern: None
+    multivalued: 'False'
+    title: temperature
+    see_also: null
+    annotations: []
+  tertiary_treatment:
+    comments:
+    - 'Expected value: tertiary treatment type'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: The process providing a final treatment stage to raise the effluent
+      quality before it is discharged to the receiving environment
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000352
+    pattern: '{text}'
+    multivalued: 'False'
+    title: tertiary treatment
+    see_also: null
+    annotations: []
+  texture:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: The relative proportion of different grain sizes of mineral particles
+      in a soil, as described using a standard system; express as % sand (50 um to
+      2 mm), silt (2 um to 50 um), and clay (<2 um) with textural name (e.g., silty
+      clay loam) optional.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000335
+    pattern: None
+    multivalued: 'False'
+    title: texture
+    see_also: null
+    annotations: []
+  texture_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining soil texture.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000336
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: texture method
+    see_also: null
+    annotations: []
+  tidal_stage:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Stage of tide
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000750
+    pattern: '[low tide|ebb tide|flood tide|high tide]'
+    multivalued: 'False'
+    title: tidal stage
+    see_also: null
+    annotations: []
+    range: tidal_stage_enum
+  tillage:
+    comments:
+    - 'Expected value: enumeration'
+    - 'Occurrence: m'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Note method(s) used for tilling
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001081
+    pattern: '[drill|cutting disc|ridge till|strip tillage|zonal tillage|chisel|tined|mouldboard|disc
+      plough]'
+    multivalued: 'True'
+    title: history/tillage
+    see_also: null
+    annotations: []
+    range: tillage_enum
+  tiss_cult_growth_med:
+    comments:
+    - 'Expected value: PMID,DOI,url or free text'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: plant-associated'
+    conforms_to: https://gensc.org/mixs/
+    description: Description of plant tissue culture growth media used
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0001070
+    pattern: '{PMID}|{DOI}|{URL}|{text}'
+    multivalued: 'False'
+    title: tissue culture growth media
+    see_also: null
+    annotations: []
+  tot_carb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: microbial mat_biofilm, sediment'
+    conforms_to: https://gensc.org/mixs/
+    description: Total carbon content
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000525
+    pattern: None
+    multivalued: 'False'
+    title: total carbon
+    see_also: null
+    annotations: []
+  tot_depth_water_col:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: meter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: sediment, water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of total depth of water column
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000634
+    pattern: None
+    multivalued: 'False'
+    title: total depth of water column
+    see_also: null
+    annotations: []
+  tot_diss_nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: 'Total dissolved nitrogen concentration, reported as nitrogen, measured
+      by: total dissolved nitrogen = NH4 + NO3NO2 + dissolved organic nitrogen'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000744
+    pattern: None
+    multivalued: 'False'
+    title: total dissolved nitrogen
+    see_also: null
+    annotations: []
+  tot_inorg_nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Total inorganic nitrogen content
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000745
+    pattern: None
+    multivalued: 'False'
+    title: total inorganic nitrogen
+    see_also: null
+    annotations: []
+  tot_n_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining the total nitrogen
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000338
+    pattern: '{PMID|DOI|URL}'
+    multivalued: 'False'
+    title: total nitrogen content method
+    see_also: null
+    aliases: tot_nitro_content_meth
+    annotations: []
+  tot_nitro:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, micromole per liter, milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, wastewater_sludge, water, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: 'Total nitrogen concentration of water samples, calculated by: total
+      nitrogen = total dissolved nitrogen + particulate nitrogen. Can also be measured
+      without filtering, reported as nitrogen'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000102
+    pattern: None
+    multivalued: 'False'
+    title: total nitrogen concentration
+    see_also: null
+    annotations: []
+  tot_nitro_content:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, micromole per liter, milligram per liter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, sediment, soil, food-farm
+      environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Total nitrogen content of the sample
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000530
+    pattern: None
+    multivalued: 'False'
+    title: total nitrogen content
+    see_also: null
+    annotations: []
+  tot_org_c_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: soil, food-farm environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining total organic carbon
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000337
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: total organic carbon method
+    see_also: null
+    annotations: []
+  tot_org_carb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: gram Carbon per kilogram sample material'
+    - 'Occurrence: 1'
+    - 'This field is used in: 5 packages: microbial mat_biofilm, sediment, soil, food-farm
+      environment, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: 'Definition for soil: total organic carbon content of the soil, definition
+      otherwise: total organic carbon content'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000533
+    pattern: None
+    multivalued: 'False'
+    title: total organic carbon
+    see_also: null
+    annotations: []
+  tot_part_carb:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: water'
+    conforms_to: https://gensc.org/mixs/
+    description: Total particulate carbon content
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000747
+    pattern: None
+    multivalued: 'False'
+    title: total particulate carbon
+    see_also: null
+    annotations: []
+  tot_phosp:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: micromole per liter, milligram per liter, parts per million'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: hydrocarbon resources-cores, hydrocarbon
+      resources-fluids_swabs, water'
+    conforms_to: https://gensc.org/mixs/
+    description: 'Total phosphorus concentration in the sample, calculated by: total
+      phosphorus = total dissolved phosphorus + particulate phosphorus'
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000117
+    pattern: None
+    multivalued: 'False'
+    title: total phosphorus
+    see_also: null
+    annotations: []
+  tot_phosphate:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: microgram per liter, micromole per liter'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: Total amount or concentration of phosphate
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000689
+    pattern: None
+    multivalued: 'False'
+    title: total phosphate
+    see_also: null
+    annotations: []
+  trophic_level:
+    comments:
+    - 'Expected value: enumeration'
+    - 'This field is used uniquely in: agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Trophic levels are the feeding position in a food chain. Microbes
+      can be a range of producers (e.g. chemolithotroph)
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000032
+    pattern: '[autotroph|carboxydotroph|chemoautotroph|chemoheterotroph|chemolithoautotroph|chemolithotroph|chemoorganoheterotroph|chemoorganotroph|chemosynthetic|chemotroph|copiotroph|diazotroph|facultative|autotroph|heterotroph|lithoautotroph|lithoheterotroph|lithotroph|methanotroph|methylotroph|mixotroph|obligate|chemoautolithotroph|oligotroph|organoheterotroph|organotroph|photoautotroph|photoheterotroph|photolithoautotroph|photolithotroph|photosynthetic|phototroph]'
+    multivalued: 'False'
+    title: trophic level
+    see_also: null
+    annotations: []
+    range: trophic_level_enum
+  turbidity:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: formazin turbidity unit, formazin nephelometric units'
+    - 'Occurrence: 1'
+    - 'This field is used in: 4 packages: microbial mat_biofilm, sediment, water,
+      food-farm environment'
+    conforms_to: https://gensc.org/mixs/
+    description: Measure of the amount of cloudiness or haziness in water caused by
+      individual particles
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000191
+    pattern: None
+    multivalued: 'False'
+    title: turbidity
+    see_also: null
+    annotations: []
+  wastewater_type:
+    comments:
+    - 'Expected value: wastewater type name'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: wastewater_sludge'
+    conforms_to: https://gensc.org/mixs/
+    description: The origin of wastewater such as human waste, rainfall, storm drains,
+      etc.
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000353
+    pattern: '{text}'
+    multivalued: 'False'
+    title: wastewater type
+    see_also: null
+    annotations: []
+  water_cont_soil_meth:
+    comments:
+    - 'Expected value: PMID,DOI or url'
+    - 'Occurrence: 1'
+    - 'This field is used uniquely in: soil'
+    conforms_to: https://gensc.org/mixs/
+    description: Reference or method used in determining the water content of soil
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000323
+    pattern: '{PMID}|{DOI}|{URL}'
+    multivalued: 'False'
+    title: water content method
+    see_also: null
+    aliases: water_content_meth
+    annotations: []
+  water_content:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: gram per gram or cubic centimeter per cubic centimeter'
+    - 'Occurrence: 1'
+    - 'This field is used in: 3 packages: microbial mat_biofilm, sediment, soil'
+    conforms_to: https://gensc.org/mixs/
+    description: Water content measurement
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000185
+    pattern: None
+    multivalued: 'False'
+    title: water content
+    see_also: null
+    annotations: []
+  water_current:
+    comments:
+    - 'Expected value: measurement value'
+    - 'Preferred unit: cubic meter per second, knots'
+    - 'Occurrence: 1'
+    - 'This field is used in: 2 packages: miscellaneous natural or artificial environment,
+      water'
+    conforms_to: https://gensc.org/mixs/
+    description: Measurement of magnitude and direction of flow within a fluid
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000203
+    pattern: None
+    multivalued: 'False'
+    title: water current
+    see_also: null
+    annotations: []
+  water_temp_regm:
+    comments:
+    - 'Expected value: measurement value;treatment interval and duration'
+    - 'Preferred unit: degree Celsius'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving an exposure to water with varying
+      degree of temperature, treatment regimen including how many times the treatment
+      was repeated, how long each treatment lasted, and the start and end time of
+      the entire treatment; can include multiple regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000590
+    pattern: '{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: water temperature regimen
+    see_also: null
+    annotations: []
+  watering_regm:
+    comments:
+    - 'Expected value: measurement value;treatment interval and duration'
+    - 'Preferred unit: milliliter, liter'
+    - 'Occurrence: m'
+    - 'This field is used in: 2 packages: plant-associated, agriculture'
+    conforms_to: https://gensc.org/mixs/
+    description: Information about treatment involving an exposure to watering frequencies,
+      treatment regimen including how many times the treatment was repeated, how long
+      each treatment lasted, and the start and end time of the entire treatment; can
+      include multiple regimens
+    notes: []
+    recommended: null
+    required: null
+    slot_uri: MIXS:0000591
+    pattern: '{float} {unit};{Rn/start_time/end_time/duration}'
+    multivalued: 'True'
+    title: watering regimen/schedule treatment
+    see_also: https://github.com/GenomicsStandardsConsortium/mixs/issues/133
+    annotations: []
+enums:
+  biol_stat_enum:
+    permissible_values:
+    - semi-natural
+    - hybrid
+    - mutant
+    - natural
+    - clonal selection
+    - inbred line
+    - breeder's line
+    - wild
+  biotic_relationship_enum:
+    permissible_values:
+    - symbiotic
+    - commensalism
+    - free living
+    - parasitism
+    - mutualism
+  cur_land_use_enum:
+    permissible_values:
+    - Roads/Railroads
+    - Rock
+    - Row Crops
+    - Hayland
+    - Sand
+    - Rangeland
+    - Vine Crops (grapes)
+    - Industrial Areas
+    - Conifers (e.g. pine,spruce,fir,cypress)
+    - Successional Shrub Land (tree saplings,hazels,sumacs,chokecherry,shrub dogwoods,blackberries)
+    - Horticultural Plants (e.g. tulips)
+    - Vegetable Crops
+    - Permanent Snow or Ice
+    - Pastureland (grasslands used for livestock grazing)
+    - Salt Flats
+    - Shrub Land (e.g. mesquite,sage-brush,creosote bush,shrub oak,eucalyptus)
+    - Small Grains
+    - Shrub Crops (blueberries,nursery ornamentals,filberts)
+    - Crop Trees (nuts,fruit,christmas trees,nursery trees)
+    - Cities
+    - Marshlands (grass,sedges,rushes)
+    - Tropical (e.g. mangrove,palms)
+    - Intermixed Hardwood and Conifers
+    - Gravel
+    - Saline Seeps
+    - Tundra (mosses,lichens)
+    - Mines/Quarries
+    - Rainforest (evergreen forest receiving >406 cm annual rainfall)
+    - Oil Waste Areas
+    - Meadows (grasses,alfalfa,fescue,bromegrass,timothy)
+    - Farmstead
+    - Hardwoods (e.g. oak,hickory,elm,aspen)
+    - Mudflats
+    - Badlands
+    - Swamp (permanent or semi-permanent water body dominated by woody plants)
+  drainage_class_enum:
+    permissible_values:
+    - Very Poorly
+    - Excessively Drained
+    - Somewhat Poorly
+    - Poorly
+    - Moderately Well
+    - Well
+  fao_class_enum:
+    permissible_values:
+    - Yermosols
+    - Podzoluvisols
+    - Gypsisols
+    - Phaeozems
+    - Andosols
+    - Regosols
+    - Acrisols
+    - Kastanozems
+    - Vertisols
+    - Planosols
+    - Luvisols
+    - Chernozems
+    - Cambisols
+    - Histosols
+    - Gleysols
+    - Solonetz
+    - Arenosols
+    - Solonchaks
+    - Fluvisols
+    - Greyzems
+    - Rendzinas
+    - Nitosols
+    - Podzols
+    - Ferralsols
+    - Lithosols
+    - Rankers
+  growth_facil_enum:
+    permissible_values:
+    - experimental_garden
+    - field
+    - growth_chamber
+    - field_incubation
+    - other
+    - lab_incubation
+    - open_top_chamber
+    - greenhouse
+  growth_habit_enum:
+    permissible_values:
+    - prostrate
+    - erect
+    - spreading
+    - semi-erect
+  growth_medium_enum:
+    permissible_values:
+    - media_composition
+    - agar_plate
+    - bioreactor
+    - broth
+    - plate
+    - 3D-structure
+  horizon_enum:
+    permissible_values:
+    - O Horizon
+    - R Layer
+    - B Horizon
+    - C Horizon
+    - E Horizon
+    - A Horizon
+    - Permafrost
+  investigation_type_enum:
+    permissible_values:
+    - metabolome
+    - imaging- electron
+    - organic matter
+    - lipidome
+    - proteome
+    - imaging- ion
+    - transcriptome
+    - chemical speciation/mapping
+    - imaging- light
+    - molecular structure
+    - genome
+  oxy_stat_samp_enum:
+    permissible_values:
+    - anaerobic
+    - microaerophilic
+    - facultative
+    - anoxic
+    - obligate anaerobe
+    - microanaerobe
+    - aerobic
+    - obligate aerobe
+  plant_sex_enum:
+    permissible_values:
+    - Androgynomonoecious
+    - Polygamodioecious
+    - Subgynoecious
+    - Polygamomonoecious
+    - Subdioecious
+    - Monoclinous
+    - Diclinous
+    - Androdioecious
+    - Andromonoecious
+    - Monoecious
+    - Polygamous
+    - Trimonoecious
+    - Dichogamous
+    - Hermaphroditic
+    - Synoecious
+    - Subandroecious
+    - Androecious
+    - Trioecious
+    - Gynomonoecious
+    - Unisexual
+    - Gynodioecious
+    - Protandrous
+    - Perfect
+    - Protogynous
+    - Gynoecious
+    - Dioecious
+    - Bisexual
+    - Imperfect
+  plant_struc_enum:
+    permissible_values:
+    - root
+    - rhizodeposits
+    - leaf
+    - fine_roots
+    - whole_plant
+    - stem
+  profile_position_enum:
+    permissible_values:
+    - Backslope
+    - Shoulder
+    - Footslope
+    - profile_position
+    - Summit
+    - Toeslope
+  samp_capt_status_enum:
+    permissible_values:
+    - other
+    - active surveillance not initiated by an outbreak
+    - market sample
+    - farm sample
+    - active surveillance in response to an outbreak
+  samp_dis_stage_enum:
+    permissible_values:
+    - infection
+    - dissemination
+    - other
+    - inoculation
+    - growth and reproduction
+    - penetration
+  samp_store_temp_enum:
+    permissible_values:
+    - 4 degree Celsius
+    - other
+    - room temperature
+    - -20 degree Celsius
+    - -80 degree Celsius
+  sediment_type_enum:
+    permissible_values:
+    - lithogenous
+    - cosmogenous
+    - biogenous
+    - hydrogenous
+  store_cond_enum:
+    permissible_values:
+    - frozen
+    - lyophilized
+    - fresh
+    - other
+  tidal_stage_enum:
+    permissible_values:
+    - low tide
+    - ebb tide
+    - high tide
+    - flood tide
+  tillage_enum:
+    permissible_values:
+    - Zonal Tillage
+    - Disc Plough
+    - Drill
+    - Chisel
+    - Ridge Till
+    - Tined
+    - Cutting Disc
+    - Mouldboard
+    - Strip Tillage
+  trophic_level_enum:
+    permissible_values:
+    - mixotroph
+    - heterotroph
+    - chemoorganoheterotroph
+    - methylotroph
+    - copiotroph
+    - chemosynthetic
+    - photosynthetic
+    - chemoorganotroph
+    - photoautotroph
+    - photolithoautotroph
+    - facultative
+    - photoheterotroph
+    - phototroph
+    - chemolithotroph
+    - lithoautotroph
+    - chemoautolithotroph
+    - autotroph
+    - oligotroph
+    - obligate
+    - methanotroph
+    - lithoheterotroph
+    - chemoautotroph
+    - organoheterotroph
+    - chemolithoautotroph
+    - lithotroph
+    - diazotroph
+    - chemoheterotroph
+    - photolithotroph
+    - carboxydotroph
+    - chemotroph
+    - organotroph
