@@ -10,7 +10,7 @@ click = "*"
 google-api-python-client = "*"
 google-auth-oauthlib = "*"
 pandas = "*"
-# linkml = "*"
+linkml = "*"
 pyyaml = "*"
 
 [tool.poetry.dev-dependencies]

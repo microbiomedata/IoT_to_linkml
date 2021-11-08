@@ -64,13 +64,6 @@ def make_iot_yaml(cred, yamlout):
 
     iot_glossary_exploded = dupe_no_frame.explode('packlist')
 
-    # print(iot_glossary_exploded.columns)
-
-    # ['Column Header', 'name', 'mixs_6_slot_name', 'different?', 'Definition',
-    #        'Guidance', 'Expected Value', 'syntax', 'Category',
-    #        'Associated Packages', 'Origin', 'Notes', 'GitHub Ticket', 'no_quest',
-    #        'explicit_packs', 'packlist']
-
     made_yaml = s2y.make_yaml()
 
     collected_classes = {}
@@ -122,101 +115,46 @@ def make_iot_yaml(cred, yamlout):
             # if temp['GitHub Ticket'] != "":
             #     annotations.append({'ght': temp['GitHub Ticket']})
         model_slots[slot]['annotations'] = annotations
+        # change some of these from annotatiosn to slot slots
+        # look for enum ranges
+        
 
     made_yaml['slots'] = model_slots
+
+    phase2 = dupe_yes_frame.explode('packlist')
+
+    temp = phase2.loc[phase2['packlist'].eq('water')]
+    temp.to_csv("temp.tsv", sep="\t")
+
+    # print(phase2.columns)
+    #
+    # # Index(['Column Header', 'name', 'mixs_6_slot_name', 'different?', 'Definition',
+    # #        'Guidance', 'Expected Value', 'syntax', 'Category',
+    # #        'Associated Packages', 'Origin', 'Notes', 'GitHub Ticket', 'coalesced',
+    # #        'no_quest', 'explicit_packs', 'packlist'],
+    # #       dtype='object')
+    #
+    # phase2_packages = list(phase2['packlist'].unique())
+    # phase2_packages.sort()
+    # for i in phase2_packages:
+    #     print(i)
+    #     temp = phase2.loc[phase2['packlist'].eq(i)]
+    #     # t2 = temp.drop(
+    #     #     labels=['no_quest', 'explicit_packs', 'Associated Packages', 'different?', 'GitHub Ticket', 'Definition',
+    #     #             'Notes'], axis=1, inplace=True)
+    #     t2 = temp.drop(
+    #         labels=['no_quest', 'explicit_packs', 'Associated Packages', 'different?'], axis=1)
+    #     t3 = t2.drop_duplicates()
+    #     print(t3)
+    #     # slots_per_pack = list(i['coalesced'].unique())
+    #     # # slots_per_pack.sort()
+    #     # # temp = phase2.loc[phase2['packlist'].eq(i) & phase2['coalesced'].eq(j)]
+    #     # # print(temp)
 
     # made_yaml['classes']['soil']['slot_usage'] = {"samp_name": {'required': True, 'aliases': ['specimen moniker 2']}}
 
     with open(yamlout, 'w') as outfile:
         yaml.dump(made_yaml, outfile, default_flow_style=False, sort_keys=False)
-
-    # unique_packages = list(iot_glossary_exploded['packlist'].unique())
-    #
-    # unique_packages = [i for i in unique_packages if i not in ['all', '', None]]
-    #
-    # unique_packages.sort()
-    #
-    # print(unique_packages)
-    #
-    # iot_glossary_exploded['packlist'].loc[iot_glossary_exploded['packlist'].eq('all')] = unique_packages
-    #
-    # print(iot_glossary_exploded)
-
-    # my_slot_to_pack = s2y.get_slot_to_pack(my_iot_glossary_frame)
-    #
-    # my_iot_packages = s2y.get_iot_packages(my_slot_to_pack)
-    #
-    # coalesced_package_names = s2y.coalesce_package_names(my_slot_to_pack)
-    #
-    # isolated_slot_to_package = s2y.get_pack_to_slot(coalesced_package_names, my_iot_packages)
-    #
-    # iot_controlled_terms_frame = s2y.get_iot_controlled_terms_frame()
-    # ct_dol = s2y.get_ct_dol(iot_controlled_terms_frame)
-    # ct_keys = s2y.get_ct_keys(ct_dol)
-    #
-    # # ----
-    #
-    # my_iot_glossary_frame["Category"].loc[my_iot_glossary_frame["Category"] == ""] = "optional"
-    # my_iot_glossary_frame["Category"].loc[my_iot_glossary_frame["Category"].isnull()] = "optional"
-    #
-    # slot_categories = list(set(list(my_iot_glossary_frame["Category"])))
-    #
-    # # expects to have repaired name column in slot_details_df
-    # #   which would be my_iot_glossary_frame
-    # # looks like there's some slot names that appear on multiple rows due to different use cases
-    # # chem_administration
-    # # size_frac_up
-    # # size_frac_low
-    # # other
-    # # isol_growth_condt
-    #
-    # n_to_rn = coalesced_package_names[['name', 'repaired_name']]
-    #
-    # name_counts = my_iot_glossary_frame['name'].value_counts()
-    # dupe_names = name_counts.loc[name_counts > 1]
-    # print(dupe_names)
-    #
-    # my_iot_glossary_frame = pd.merge(left=my_iot_glossary_frame, right=n_to_rn, how="left", on="name")
-    #
-    # made_yaml = s2y.make_yaml()
-    # class_dict = {i: {} for i in list(isolated_slot_to_package['package'])}
-    # made_yaml['classes'] = class_dict
-    #
-    # # should have been a dict of lists
-    # for i in isolated_slot_to_package['package']:
-    #     print(i)
-    #     temp = isolated_slot_to_package[''].loc[isolated_slot_to_package[''].eq(i)]
-    #
-    # # print(isolated_slot_to_package)
-    #
-    # # slot_list = n_to_rn.drop_duplicates()
-    # # slot_list = list(slot_list['repaired_name'])
-    # # slot_list.sort()
-    # # slot_dict = {i: {} for i in slot_list}
-    # # made_yaml['slots'] = slot_dict
-    # #
-    # # # check this all against mixs
-    # # # don't add anything that mixs already knows
-    # # for k, v in slot_dict.items():
-    # #     current_row = my_iot_glossary_frame.loc[my_iot_glossary_frame['repaired_name'].eq(k)]
-    # #     current_annotations = []
-    # #     for ak, av in current_row.items():
-    # #         print(f"{ak}: {list(av)}")
-    # #         # if ak == "Column Header":
-    # #         #     slot_dict[k]['title'] = "hello"
-    # #         # if ak == "Definition":
-    # #         #     slot_dict[k]['definition'] = list[av]
-    # #         # if ak == "Notes":
-    # #         #     slot_dict[k]['notes'] = list[av]
-    # # #     #     # only add unique non blank entities
-    # # #     #     avl = list(av)
-    # # #     #     avl = [i for i in avl if i != ""]
-    # # #     #     avl = list(set(avl))
-    # # #     #     if len(avl) > 0:
-    # # #     #         current_annotations.append({ak: avl})
-    # # #     # slot_dict[k]['annotations'] = current_annotations
-    # # #     pass
-    #
 
 
 if __name__ == '__main__':
