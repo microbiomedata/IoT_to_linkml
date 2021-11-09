@@ -1,9 +1,11 @@
 # Convert Index of Terms to LinkML YAML. 
 
-TODOs: 
+Here's the active [Index of Terms](https://docs.google.com/spreadsheets/d/1lj4OuEE4IYwy2v7RzcG79lHjNdFwmDETMDTDaRAWojY/edit#gid=1133203354) document that Mark and Montana are collaborating within. Some minor revisions might be coming based on the experiences of running it through this application. 
+
+High level to-dos: 
 - convert to actual LinkML artifacts after that
     - use gen-yaml for inference and expansion
-- convert to DataHarmonizer template
+- develop a general LinkML to DataHarmonizer template converter
 
 Development or use within the repo requires [Poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions)
 
@@ -58,7 +60,7 @@ becli --help
 - Otherwise direct linkml methods
 - Otherwise dict -> yaml file
 
-## To-dos
+## Dev ops to-dos
 	
 ### Poetry autocomplete
 
