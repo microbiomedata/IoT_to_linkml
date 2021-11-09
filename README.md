@@ -1,11 +1,9 @@
-# badexperiment
-Convert Index of Terms to LinkML YAML. 
+# Convert Index of Terms to LinkML YAML. 
 
 TODOs: 
-- convert to actual LinkML artifcats after that
+- convert to actual LinkML artifacts after that
+    - use gen-yaml for inference and expansion
 - convert to DataHarmonizer template
-
-Many moving parts = bad experiment.
 
 Development or use within the repo requires [Poetry](https://python-poetry.org/docs/#osx--linux--bashonwindows-install-instructions)
 
@@ -13,7 +11,8 @@ Development or use within the repo requires [Poetry](https://python-poetry.org/d
 `poetry run becli`
 
 ## Publishing
-Don't forget to update `version` in `[tool.poetry]`
+- Don't forget to update `version` in the `[tool.poetry]` section in `pyproject.toml` 
+- Some additional one-time edits may be required since this repo was just forked out of `turbomam/badexperiment`
 
 **Note the use of initial whitespace for [keeping the PyPI password out of the zsh history](https://superuser.com/questions/352788/how-to-prevent-a-command-in-the-zshell-from-being-saved-into-history).** There are similar tricks for other shells like Bash.
 
@@ -25,8 +24,8 @@ poetry build
 poetry publish --username $pypi_user --password $pypi_pw
 ```
 
-## Installation outside of this repo
-Aggressive cleanup?
+## pip-based installation inside of this repo
+- Excessively aggressive cleanup?
 
 ```shell
 # assume we're inside a venv virtual environment
@@ -40,10 +39,10 @@ python3.9 -m pip install --upgrade pip
 pip install wheel
 # check status of package under development
 # don't continue with installation when
-pip index versions badexperiment
+pip index versions IoT_to_linkml
 # installation of pandas is slow
 #   platform dependent? M1 MBA
-pip install badexperiment
+pip install IoT_to_linkml
 ```
 
 ## Usage outside of this repo
@@ -58,10 +57,14 @@ becli --help
 - Preferably with schemaview
 - Otherwise direct linkml methods
 - Otherwise dict -> yaml file
+
+## To-dos
 	
 ### Poetry autocomplete
 
 ### Values trying to be set on a copy of a slice from a DataFrame
+
+These error messages show paths from a previous repository, badexperiment. They have not been edited.
 
 > /Users/mark/sandbox/venv/lib/python3.9/site-packages/pandas/core/indexing.py:1667: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
