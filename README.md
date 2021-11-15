@@ -41,10 +41,10 @@ python3.9 -m pip install --upgrade pip
 pip install wheel
 # check status of package under development
 # don't continue with installation when
-pip index versions IoT_to_linkml
+pip index versions iot_to_linkml
 # installation of pandas is slow
 #   platform dependent? M1 MBA
-pip install IoT_to_linkml
+pip install iot_to_linkml
 ```
 
 ## Usage outside of this repo

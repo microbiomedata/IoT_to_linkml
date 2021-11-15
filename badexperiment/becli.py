@@ -312,7 +312,8 @@ def make_iot_yaml(cred, mixs, yamlout):
                 print("mixs_only")
                 yaml_string = yamlgen.as_yaml(mixs_enum_attempt)
                 s = StringIO(yaml_string)
-                loaded_yaml = yaml.load(s)
+                # loaded_yaml = yaml.load(s)
+                loaded_yaml = yaml.safe_load(s)
                 made_yaml['enums'][i] = loaded_yaml
         else:
             if iot_enum_finding:
@@ -323,13 +324,13 @@ def make_iot_yaml(cred, mixs, yamlout):
         if type_attempt is not None:
             yaml_string = yamlgen.as_yaml(type_attempt)
             s = StringIO(yaml_string)
-            loaded_yaml = yaml.load(s)
+            loaded_yaml = yaml.safe_load(s)
             # assume all types are from linkml anyway?
             # made_yaml['types'][i] = loaded_yaml
         if class_attempt is not None:
             yaml_string = yamlgen.as_yaml(class_attempt)
             s = StringIO(yaml_string)
-            loaded_yaml = yaml.load(s)
+            loaded_yaml = yaml.safe_load(s)
             made_yaml['classes'][i] = loaded_yaml
 
     # use slot usage in cases where a slot name appears on two rows,
