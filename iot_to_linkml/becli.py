@@ -8,7 +8,7 @@ import yaml
 from linkml.generators import yamlgen
 from linkml_runtime.utils.schemaview import SchemaView
 
-import badexperiment.sheet2yaml as s2y
+import iot_to_linkml.sheet2yaml as s2y
 
 dupe_unresolved_filename = "iot_duplciated_names.tsv"
 mixs_uri = "https://gensc.org/mixs/"
