@@ -31,11 +31,11 @@ def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_s
 
 @click.command()
 @click.option('--cred', default='google_api_credentials.json', help="path to google_api_credentials.json",
-              type=click.Path(exists=True))
+              type=click.Path(exists=True), show_default=True)
 @click.option('--mixs', default='../mixs-source/model/schema/mixs.yaml', help="path to mixs.yaml and friends",
-              type=click.Path(exists=True))
+              type=click.Path(exists=True), show_default=True)
 @click.option('--yamlout', default='iot.yaml', help="YAML output file name",
-              type=click.Path())
+              type=click.Path(), show_default=True)
 def make_iot_yaml(cred, mixs, yamlout):
     """Command line wrapper for processing the Index of Terms."""
 
@@ -103,12 +103,12 @@ def make_iot_yaml(cred, mixs, yamlout):
     dysl = list(dupe_yes_slots)
     dysl.sort()
     for i in dysl:
-        print(i)
+        print(f"{i} defined on more than one row.")
         per_slot_frame = dupe_yes_frame.loc[dupe_yes_frame['name'].eq(i)]
         dupe_unresolved_frame = dupe_unresolved_frame.append(per_slot_frame)
         dupe_row_count = len(per_slot_frame.index)
         if dupe_row_count > 2:
-            print("More than two rows with the same name. Discarding.")
+            print("Actually defined on two or more rows! Discarding.")
             break
 
         packlists = list(per_slot_frame["packlist"])
@@ -133,7 +133,7 @@ def make_iot_yaml(cred, mixs, yamlout):
         elif pl0_len < pl1_len:
             print("Row 1 has more packages")
             if len(pl0_only) > 0:
-                print(f"But only row 0 contains {pl0_only}")
+                print(f"But discarding because only row 0 contains {pl0_only}")
             else:
                 print("and includes all row 0 packages")
                 temp = per_slot_frame.iloc[[1]]
@@ -259,8 +259,8 @@ def make_iot_yaml(cred, mixs, yamlout):
                     # hard to believe that IoT Guidance will even match the previous comments
                     #   not checking for opportunities to omit a useless annotation
                     annotations.append({"overwritten_comments": prev})
-                    model_slots[slot]['comments'] = sd_row['Guidance']
-                    # annotations.append({"Guidance": sd_row['Guidance']})
+                model_slots[slot]['comments'] = sd_row['Guidance']
+                # annotations.append({"Guidance": sd_row['Guidance']})
             if sd_row['name'] != '' and sd_row['mixs_6_slot_name'] != '' and sd_row['name'] != sd_row[
                 'mixs_6_slot_name']:
                 if "aliases" in list(model_slots[slot].keys()):
@@ -268,8 +268,8 @@ def make_iot_yaml(cred, mixs, yamlout):
                     prev = "|".join(prev)
                     # not checking for opportunities to omit a useless annotation
                     annotations.append({"overwritten_aliases": prev})
-                    model_slots[slot]['aliases'] = sd_row['name']
-                    # model_slots[slot]['aliases'] = sd_row['name']
+                model_slots[slot]['aliases'] = sd_row['name']
+                # model_slots[slot]['aliases'] = sd_row['name']
 
         model_slots[slot]['annotations'] = annotations
 
@@ -309,7 +309,7 @@ def make_iot_yaml(cred, mixs, yamlout):
             if iot_enum_finding:
                 pass
             else:
-                print("mixs_only")
+                print(f"{i} only defined in MIxS")
                 yaml_string = yamlgen.as_yaml(mixs_enum_attempt)
                 s = StringIO(yaml_string)
                 # loaded_yaml = yaml.load(s)
@@ -333,14 +333,18 @@ def make_iot_yaml(cred, mixs, yamlout):
             loaded_yaml = yaml.safe_load(s)
             made_yaml['classes'][i] = loaded_yaml
 
+    print("\n")
+
     # use slot usage in cases where a slot name appears on two rows,
     #   with completely different packages on the two rows?
     # made_yaml['classes']['soil']['slot_usage'] = {"samp_name": {'required': True, 'aliases': ['specimen moniker 2']}}
 
     for k, v in prefixes.items():
-        print(k)
-        print(v)
+        print(f"expanding prefix {k} as {v}")
+        # print(k)
+        # print(v)
         made_yaml['prefixes'][k] = v
+    print("\n")
 
     with open(yamlout, 'w') as outfile:
         yaml.dump(made_yaml, outfile, default_flow_style=False, sort_keys=False)

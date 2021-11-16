@@ -831,6 +831,8 @@ slots:
       link all analytes and subsamples derived from it.
     slot_uri: IoT:ID
     title: Globally Unique ID
+    comments: 'Field REQUIRED for ALL sample submission. Options: IGSN- http://www.geosamples.org/getigsn
+      ; UUID- https://www.uuidgenerator.net/'
     annotations:
     - Category: sample identification
   agrochem_addition:
@@ -2664,6 +2666,7 @@ slots:
     description: Taxonomic information about the host below subspecies level
     slot_uri: IoT:host_infra_specific_name
     title: host infra-specific name
+    aliases: host_infra_spec_name
     annotations: []
   host_infra_specific_rank:
     notes: null
@@ -2672,6 +2675,7 @@ slots:
       such as variety, form, rank etc.
     slot_uri: IoT:host_infra_specific_rank
     title: host infra-specific rank
+    aliases: host_infra_spec_rank
     annotations: []
   host_length:
     comments:
@@ -3507,6 +3511,8 @@ slots:
     description: ''
     slot_uri: IoT:other
     title: Other
+    comments: Other details about your sample that you feel can't be accurately represented
+      in the available columns.
     annotations:
     - Category: required where applicable
   other_treatment:
@@ -3549,6 +3555,7 @@ slots:
     description: ''
     slot_uri: IoT:package
     title: Sample Type
+    comments: MIxS Package
     annotations:
     - Category: sample identification
   part_org_carb:
@@ -3981,6 +3988,9 @@ slots:
       the target test or what this test sample is meant to resolve.
     slot_uri: IoT:practice_method-dev
     title: Practice Target
+    comments: Example, if it's unclear if lyophilizing will affect your results, so
+      you're sending a lyophilized and not lyophilized sample, the Practice Target
+      would be "lyophilization affect, dry (or wet)"
     annotations: []
   pre_treatment:
     comments:
@@ -4257,6 +4267,8 @@ slots:
     description: If sending biological replicates, indicate the rep number here.
     slot_uri: IoT:replicate_number
     title: Replicate Number
+    comments: This will guide staff in ensuring your samples are block & randomized
+      correctly
     annotations:
     - Category: sample identification
   root_cond:
@@ -4522,6 +4534,7 @@ slots:
     description: The method or device employed for collecting the sample
     slot_uri: IoT:samp_collect_device
     title: sample collection device
+    comments: Report dimensions and details when applicable
     annotations:
     - Category: required where applicable
   samp_dis_stage:
@@ -4633,6 +4646,7 @@ slots:
     title: Sample size
     pattern: None
     multivalued: 'False'
+    aliases: sample_size
     annotations:
     - overwritten_title: amount or size of sample collected
   samp_store_temp:
@@ -5103,6 +5117,7 @@ slots:
     title: Source Material ID
     pattern: '{text}'
     multivalued: 'False'
+    aliases: source_mat_ID
     annotations:
     - overwritten_title: source material identifiers
     - overwritten_comments: 'Expected value: for cultures of microorganisms: identifiers
@@ -5491,6 +5506,7 @@ slots:
     description: Reference or method used in determining the total nitrogen
     slot_uri: IoT:tot_n_meth
     title: total nitrogen content method
+    aliases: tot_nitro_content_meth
     annotations: []
   tot_nitro:
     comments:
@@ -5714,6 +5730,7 @@ slots:
     title: water content method
     pattern: '{PMID}|{DOI}|{URL}'
     multivalued: 'False'
+    aliases: water_content_meth
     annotations: []
   water_content:
     comments:
@@ -5808,278 +5825,278 @@ enums:
   biol_stat_enum:
     permissible_values:
     - hybrid
-    - inbred line
-    - natural
     - mutant
-    - semi-natural
     - breeder's line
     - clonal selection
+    - semi-natural
+    - natural
+    - inbred line
     - wild
   biotic_relationship_enum:
     permissible_values:
-    - symbiotic
-    - mutualism
-    - parasitism
-    - commensalism
     - free living
+    - commensalism
+    - mutualism
+    - symbiotic
+    - parasitism
   cur_land_use_enum:
     permissible_values:
-    - Intermixed Hardwood and Conifers
-    - Crop Trees (nuts,fruit,christmas trees,nursery trees)
+    - Rangeland
+    - Tropical (e.g. mangrove,palms)
+    - Industrial Areas
+    - Farmstead
+    - Mudflats
+    - Swamp (permanent or semi-permanent water body dominated by woody plants)
     - Roads/Railroads
-    - Sand
+    - Meadows (grasses,alfalfa,fescue,bromegrass,timothy)
+    - Small Grains
+    - Hardwoods (e.g. oak,hickory,elm,aspen)
+    - Badlands
     - Vegetable Crops
+    - Oil Waste Areas
+    - Sand
+    - Pastureland (grasslands used for livestock grazing)
+    - Permanent Snow or Ice
+    - Gravel
+    - Marshlands (grass,sedges,rushes)
+    - Crop Trees (nuts,fruit,christmas trees,nursery trees)
+    - Salt Flats
     - Row Crops
     - Cities
-    - Small Grains
+    - Rainforest (evergreen forest receiving >406 cm annual rainfall)
+    - Successional Shrub Land (tree saplings,hazels,sumacs,chokecherry,shrub dogwoods,blackberries)
     - Rock
     - Mines/Quarries
+    - Shrub Crops (blueberries,nursery ornamentals,filberts)
+    - Horticultural Plants (e.g. tulips)
+    - Conifers (e.g. pine,spruce,fir,cypress)
+    - Hayland
+    - Tundra (mosses,lichens)
+    - Shrub Land (e.g. mesquite,sage-brush,creosote bush,shrub oak,eucalyptus)
+    - Intermixed Hardwood and Conifers
     - Vine Crops (grapes)
     - Saline Seeps
-    - Tundra (mosses,lichens)
-    - Meadows (grasses,alfalfa,fescue,bromegrass,timothy)
-    - Permanent Snow or Ice
-    - Industrial Areas
-    - Swamp (permanent or semi-permanent water body dominated by woody plants)
-    - Horticultural Plants (e.g. tulips)
-    - Mudflats
-    - Hardwoods (e.g. oak,hickory,elm,aspen)
-    - Tropical (e.g. mangrove,palms)
-    - Rainforest (evergreen forest receiving >406 cm annual rainfall)
-    - Salt Flats
-    - Farmstead
-    - Marshlands (grass,sedges,rushes)
-    - Badlands
-    - Gravel
-    - Hayland
-    - Shrub Land (e.g. mesquite,sage-brush,creosote bush,shrub oak,eucalyptus)
-    - Oil Waste Areas
-    - Rangeland
-    - Successional Shrub Land (tree saplings,hazels,sumacs,chokecherry,shrub dogwoods,blackberries)
-    - Shrub Crops (blueberries,nursery ornamentals,filberts)
-    - Pastureland (grasslands used for livestock grazing)
-    - Conifers (e.g. pine,spruce,fir,cypress)
   drainage_class_enum:
     permissible_values:
-    - Well
     - Poorly
-    - Somewhat Poorly
-    - Very Poorly
     - Moderately Well
+    - Somewhat Poorly
     - Excessively Drained
+    - Well
+    - Very Poorly
   fao_class_enum:
     permissible_values:
-    - Ferralsols
-    - Histosols
-    - Vertisols
-    - Greyzems
-    - Arenosols
-    - Luvisols
-    - Lithosols
-    - Chernozems
-    - Cambisols
+    - Gypsisols
+    - Planosols
     - Yermosols
-    - Acrisols
-    - Podzoluvisols
     - Andosols
     - Regosols
-    - Fluvisols
-    - Nitosols
-    - Rendzinas
-    - Solonchaks
-    - Rankers
-    - Podzols
-    - Gleysols
-    - Planosols
-    - Kastanozems
-    - Gypsisols
+    - Acrisols
+    - Greyzems
+    - Chernozems
     - Solonetz
+    - Podzols
+    - Fluvisols
+    - Ferralsols
+    - Rendzinas
+    - Arenosols
+    - Lithosols
+    - Cambisols
+    - Gleysols
+    - Kastanozems
+    - Rankers
+    - Luvisols
+    - Histosols
+    - Vertisols
+    - Nitosols
     - Phaeozems
+    - Solonchaks
+    - Podzoluvisols
   growth_facil_enum:
     permissible_values:
     - field_incubation
-    - field
     - other
-    - open_top_chamber
     - experimental_garden
-    - greenhouse
     - lab_incubation
+    - open_top_chamber
     - growth_chamber
+    - greenhouse
+    - field
   growth_habit_enum:
     permissible_values:
-    - prostrate
-    - spreading
     - semi-erect
     - erect
+    - spreading
+    - prostrate
   growth_medium_enum:
     permissible_values:
     - agar_plate
-    - plate
     - media_composition
-    - bioreactor
+    - plate
     - broth
     - 3D-structure
+    - bioreactor
   horizon_enum:
     permissible_values:
+    - A Horizon
+    - C Horizon
+    - R Layer
     - B Horizon
+    - Permafrost
     - O Horizon
     - E Horizon
-    - R Layer
-    - C Horizon
-    - Permafrost
-    - A Horizon
   investigation_type_enum:
     permissible_values:
+    - organic matter
     - genome
     - imaging- electron
-    - lipidome
-    - organic matter
-    - imaging- light
-    - metabolome
     - imaging- ion
-    - chemical speciation/mapping
     - molecular structure
     - proteome
+    - chemical speciation/mapping
+    - lipidome
+    - metabolome
     - transcriptome
+    - imaging- light
   oxy_stat_samp_enum:
     permissible_values:
-    - microanaerobe
-    - obligate anaerobe
-    - facultative
-    - anaerobic
-    - anoxic
-    - aerobic
-    - microaerophilic
     - obligate aerobe
+    - microanaerobe
+    - microaerophilic
+    - anaerobic
+    - aerobic
+    - facultative
+    - obligate anaerobe
+    - anoxic
   plant_sex_enum:
     permissible_values:
-    - Hermaphroditic
-    - Diclinous
-    - Gynoecious
-    - Polygamous
-    - Bisexual
-    - Trimonoecious
-    - Dichogamous
-    - Monoecious
-    - Protandrous
-    - Subgynoecious
-    - Gynomonoecious
-    - Andromonoecious
-    - Androdioecious
-    - Protogynous
-    - Monoclinous
-    - Synoecious
-    - Androecious
     - Polygamomonoecious
+    - Androecious
+    - Andromonoecious
     - Subdioecious
-    - Imperfect
+    - Unisexual
+    - Monoecious
+    - Gynoecious
+    - Synoecious
     - Polygamodioecious
+    - Perfect
+    - Trioecious
+    - Bisexual
+    - Gynomonoecious
+    - Trimonoecious
+    - Diclinous
     - Dioecious
+    - Dichogamous
+    - Protandrous
+    - Protogynous
     - Androgynomonoecious
     - Subandroecious
+    - Monoclinous
     - Gynodioecious
-    - Trioecious
-    - Perfect
-    - Unisexual
+    - Hermaphroditic
+    - Subgynoecious
+    - Polygamous
+    - Imperfect
+    - Androdioecious
   plant_struc_enum:
     permissible_values:
-    - leaf
+    - rhizodeposits
+    - stem
+    - fine_roots
     - whole_plant
     - root
-    - stem
-    - rhizodeposits
-    - fine_roots
+    - leaf
   profile_position_enum:
     permissible_values:
-    - Summit
     - Footslope
-    - Shoulder
+    - Summit
     - Backslope
     - profile_position
+    - Shoulder
     - Toeslope
   samp_capt_status_enum:
     permissible_values:
-    - farm sample
-    - other
-    - market sample
-    - active surveillance in response to an outbreak
     - active surveillance not initiated by an outbreak
+    - active surveillance in response to an outbreak
+    - market sample
+    - other
+    - farm sample
   samp_dis_stage_enum:
     permissible_values:
-    - infection
+    - penetration
     - dissemination
     - growth and reproduction
     - other
-    - penetration
     - inoculation
+    - infection
   samp_store_temp_enum:
     permissible_values:
     - -80 degree Celsius
     - other
-    - 4 degree Celsius
     - -20 degree Celsius
     - room temperature
+    - 4 degree Celsius
   sediment_type_enum:
     permissible_values:
-    - cosmogenous
     - hydrogenous
-    - biogenous
     - lithogenous
+    - cosmogenous
+    - biogenous
   store_cond_enum:
     permissible_values:
-    - fresh
     - lyophilized
+    - fresh
     - other
     - frozen
   tidal_stage_enum:
     permissible_values:
     - ebb tide
-    - low tide
     - flood tide
     - high tide
+    - low tide
   tillage_enum:
     permissible_values:
-    - Zonal Tillage
     - Disc Plough
-    - Strip Tillage
-    - Ridge Till
-    - Drill
-    - Chisel
     - Cutting Disc
     - Mouldboard
+    - Strip Tillage
     - Tined
+    - Zonal Tillage
+    - Chisel
+    - Ridge Till
+    - Drill
   trophic_level_enum:
     permissible_values:
-    - chemoautolithotroph
-    - heterotroph
-    - methanotroph
-    - photoautotroph
-    - chemoautotroph
-    - mixotroph
-    - organotroph
-    - photolithotroph
-    - phototroph
-    - autotroph
-    - chemotroph
-    - oligotroph
-    - chemoheterotroph
-    - lithotroph
-    - carboxydotroph
     - copiotroph
-    - chemoorganotroph
-    - diazotroph
-    - facultative
-    - methylotroph
+    - chemoheterotroph
     - chemosynthetic
-    - photoheterotroph
-    - lithoautotroph
+    - photolithotroph
+    - chemotroph
     - photosynthetic
-    - obligate
-    - chemoorganoheterotroph
-    - chemolithoautotroph
-    - chemolithotroph
-    - organoheterotroph
+    - mixotroph
+    - chemoautotroph
+    - methanotroph
     - photolithoautotroph
+    - oligotroph
+    - organotroph
+    - chemolithoautotroph
+    - lithoautotroph
+    - chemoorganoheterotroph
+    - photoautotroph
+    - phototroph
+    - methylotroph
+    - chemoautolithotroph
+    - organoheterotroph
+    - chemolithotroph
+    - heterotroph
+    - lithotroph
+    - diazotroph
+    - autotroph
+    - carboxydotroph
+    - chemoorganotroph
+    - obligate
+    - facultative
+    - photoheterotroph
     - lithoheterotroph
   organism_count_enum:
     name: organism_count_enum

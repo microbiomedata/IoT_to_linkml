@@ -279,6 +279,7 @@ def template_package(
 
 
 def make_yaml():
+    # add more prefixes?
     the_yaml = {"name": "IndexOfTerms", "id": "http://example.com/IoT",
                 "prefixes": {"linkml": "https://w3id.org/linkml/"},
                 "imports": ["linkml:types"],
