@@ -11,16 +11,16 @@ from linkml_runtime.utils.schemaview import SchemaView
 import iot_to_linkml.sheet2yaml as s2y
 
 dupe_unresolved_filename = "iot_duplciated_names.tsv"
+
+# TODO review these with other stakeholders
 mixs_uri = "https://gensc.org/mixs/"
 emsl_uri = "https://www.emsl.pnnl.gov/"
 
-# WARNING:YAMLGenerator:File "<file>", line 820, col 15: Unrecognized prefix: IoT
-# WARNING:YAMLGenerator:File "<file>", line 838, col 15: Unrecognized prefix: MIXS
-
-prefixes = {"MIXS": mixs_uri, "IoT": emsl_uri}
+hardcoded_prefixes = {"MIXS": mixs_uri, "IoT": emsl_uri}
 
 
-def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_slot_name",
+def coalesce_package_names(df, orig_col_name="name",
+                           repaired_col_name="mixs_6_slot_name",
                            coalesced="repaired_name", ):
     df[coalesced] = df[repaired_col_name]
     df[coalesced].loc[
@@ -37,7 +37,8 @@ def coalesce_package_names(df, orig_col_name="name", repaired_col_name="mixs_6_s
 @click.option('--yamlout', default='iot.yaml', help="YAML output file name",
               type=click.Path(), show_default=True)
 def make_iot_yaml(cred, mixs, yamlout):
-    """Command line wrapper for processing the Index of Terms."""
+    """Command line wrapper for converting the Index of Terms into LinkML,
+    for subsequent conversion into a DataHarmonizer template."""
 
     mixs_view = SchemaView(mixs)
 
@@ -84,8 +85,6 @@ def make_iot_yaml(cred, mixs, yamlout):
     dupe_yes_slots = dupe_yes.index
     dupe_yes_frame = my_iot_glossary_frame.loc[my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
 
-    # dupe_no = dupe_search.loc[dupe_search == 1]
-    # dupe_no_slots = dupe_no.index
     dupe_no_frame = my_iot_glossary_frame.loc[~ my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
 
     dupe_unresolved_frame = pd.DataFrame(columns=dupe_no_frame.columns)
@@ -118,13 +117,12 @@ def make_iot_yaml(cred, mixs, yamlout):
         pl1_len = len(pl1)
         pl0_only = set(pl0) - set(pl0)
         pl1_only = set(pl1) - set(pl0)
-        # p_intersection = set(pl0).intersection(set(pl1))
 
         if pl0_len > pl1_len:
             print("Row 0 has more packages")
             pl1_only = set(pl1) - set(pl0)
             if len(pl1_only) > 0:
-                print(f"But only row 1 contains {pl1_only}")
+                print(f"But discarding because only row 1 contains {pl1_only}")
             else:
                 print("and includes all row 1 packages")
                 temp = per_slot_frame.iloc[[0]]
@@ -144,13 +142,10 @@ def make_iot_yaml(cred, mixs, yamlout):
 
         else:
             print("Both rows have the same, non-zero number of packages")
-            # intersection_only = True
             if len(pl0_only) > 0:
                 print(f"but only row 0 contains packages: {pl0_only}")
-                # intersection_only = False
             elif len(pl1_only) > 0:
                 print(f"but only row 1 contains packages: {pl1_only}")
-                # intersection_only = False
             else:
                 print("and both rows contain the same packages")
                 temp = per_slot_frame.iloc[[0]]
@@ -161,7 +156,7 @@ def make_iot_yaml(cred, mixs, yamlout):
 
     iot_glossary_exploded = dupe_no_frame.explode('packlist')
 
-    made_yaml = s2y.make_yaml()
+    made_yaml = s2y.initialize_yaml()
 
     collected_classes = {}
     all_slots = set()
@@ -339,10 +334,8 @@ def make_iot_yaml(cred, mixs, yamlout):
     #   with completely different packages on the two rows?
     # made_yaml['classes']['soil']['slot_usage'] = {"samp_name": {'required': True, 'aliases': ['specimen moniker 2']}}
 
-    for k, v in prefixes.items():
+    for k, v in hardcoded_prefixes.items():
         print(f"expanding prefix {k} as {v}")
-        # print(k)
-        # print(v)
         made_yaml['prefixes'][k] = v
     print("\n")
 
