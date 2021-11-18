@@ -18,15 +18,18 @@ emsl_uri = "https://www.emsl.pnnl.gov/"
 
 hardcoded_prefixes = {"MIXS": mixs_uri, "IoT": emsl_uri}
 
+required_categories = ["sample identification", "required", "required where applicable"]
+recommended_categories = []
 
-def coalesce_package_names(df, orig_col_name="name",
-                           repaired_col_name="mixs_6_slot_name",
-                           coalesced="repaired_name", ):
-    df[coalesced] = df[repaired_col_name]
-    df[coalesced].loc[
-        df[coalesced] == ""
-        ] = df[orig_col_name].loc[df[coalesced] == ""]
-    return df
+
+# def coalesce_package_names(df, orig_col_name,
+#                            repaired_col_name,
+#                            coalesced="coalesced", ):
+#     df[coalesced] = df[repaired_col_name]
+#     df[coalesced].loc[
+#         df[coalesced] == ""
+#         ] = df[orig_col_name].loc[df[coalesced] == ""]
+#     return df
 
 
 @click.command()
@@ -36,68 +39,81 @@ def coalesce_package_names(df, orig_col_name="name",
               type=click.Path(exists=True), show_default=True)
 @click.option('--yamlout', default='iot.yaml', help="YAML output file name",
               type=click.Path(), show_default=True)
-def make_iot_yaml(cred, mixs, yamlout):
+@click.option('--idcol', default='Globally Unique ID', help="this column will get unique validation in DH",
+              show_default=True)
+def make_iot_yaml(cred, mixs, yamlout, idcol):
     """Command line wrapper for converting the Index of Terms into LinkML,
     for subsequent conversion into a DataHarmonizer template."""
 
     mixs_view = SchemaView(mixs)
+    mixs_slotnames = list(mixs_view.all_slots().keys())
+    mixs_slotnames.sort()
 
-    mixs_slotnames = []
-    mixs_slots = mixs_view.all_slots()
-    # there's got to be a better way
-    for i in mixs_slots:
-        mixs_slotnames.append(i)
+    mixs_classnames = list(mixs_view.all_classes().keys())
+    mixs_classnames.sort()
+
+    mixs_parent_classes = set()
+
+    iot_parent_slots = set()
+
+    # especially interested in those with mixins but not subclasses of anything else?
+    # can also get packages from some enum?
+    # mixs_view.all_enums()
+    for one_mc in mixs_classnames:
+        current_class = mixs_view.get_class(one_mc)
+        current_parent = current_class.is_a
+        if current_parent is not None:
+            mixs_parent_classes.add(current_parent)
+
+    mixs_parent_classes = list(mixs_parent_classes)
+    mixs_parent_classes.sort()
 
     print(f"Getting credentials from {cred}")
-
-    my_iot_glossary_frame = s2y.get_iot_glossary_frame(client_secret_file="google_api_credentials.json")
 
     ctf = s2y.get_iot_controlled_terms_frame()
     ct_dol = s2y.get_ct_dol(ctf)
     ct_keys = s2y.get_ct_keys(ct_dol)
 
-    my_iot_glossary_frame = coalesce_package_names(my_iot_glossary_frame, "name", "mixs_6_slot_name", "coalesced")
+    my_iot_glossary_frame = s2y.get_iot_glossary_frame(client_secret_file="google_api_credentials.json")
 
-    # replace leading ?s in slot names with Q
-    raw_name = my_iot_glossary_frame['name']
-    no_quest = raw_name.str.replace('^\?+', 'Q', regex=True)
-    my_iot_glossary_frame['no_quest'] = no_quest
+    # # TIDY UP SLOT NAMES AND RECONCILE WITH MIXS (PREFERRING MIXS)
+    # # SHOULD USE coalesced FROM HERE ON OUT
+    # # replace leading ?s in slot names with Q
+    # # apply any other name tidying?
+    # my_iot_glossary_frame['no_quest'] = my_iot_glossary_frame['name'].str.replace(r'^\?+', 'Q', regex=True)
+    # my_iot_glossary_frame = coalesce_package_names(my_iot_glossary_frame, "no_quest", "mixs_6_slot_name", "coalesced")
 
-    uap = list(my_iot_glossary_frame['Associated Packages'].unique())
-    uap = [i for i in uap if i not in ['all', '', None]]
-    uap = [re.split('; *', i) for i in uap]
-    uap = [item for sublist in uap for item in sublist]
-
-    all_packages_list = list(set(uap))
-    all_packages_list.sort()
-    all_packages_str = '; '.join(all_packages_list)
-
+    # CONVERT PACKAGE "LIST" string, INCLUDING "all" ALIAS
+    # TO REAL LISTS
+    # CHECK FOR DUPLICATE NAMES AFTER THAT
+    # AND THEN EXPLODE FOR UNIQUE SLOT NAME/PACKAGE ROWS
+    iot_packages = list(my_iot_glossary_frame['Associated Packages'].unique())
+    iot_packages = [i for i in iot_packages if i not in ['all', '', None]]
+    iot_packages = [re.split('; *', i) for i in iot_packages]
+    iot_packages = [item for sublist in iot_packages for item in sublist]
+    iot_packages = list(set(iot_packages))
+    iot_packages.sort()
+    all_packages_str = '; '.join(iot_packages)
     my_iot_glossary_frame['explicit_packs'] = my_iot_glossary_frame['Associated Packages']
-
     my_iot_glossary_frame['explicit_packs'].loc[
         my_iot_glossary_frame['Associated Packages'].eq('all')] = all_packages_str
-
     my_iot_glossary_frame['packlist'] = my_iot_glossary_frame['explicit_packs'].str.split(pat='; *')
 
     # are there any rows that share names?
-    dupe_search = my_iot_glossary_frame['coalesced'].value_counts()
+    dupe_search = my_iot_glossary_frame['name'].value_counts()
     dupe_yes = dupe_search.loc[dupe_search > 1]
     dupe_yes_slots = dupe_yes.index
-    dupe_yes_frame = my_iot_glossary_frame.loc[my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
-
-    dupe_no_frame = my_iot_glossary_frame.loc[~ my_iot_glossary_frame['coalesced'].isin(dupe_yes_slots)]
-
+    dupe_yes_frame = my_iot_glossary_frame.loc[my_iot_glossary_frame['name'].isin(dupe_yes_slots)]
+    dupe_no_frame = my_iot_glossary_frame.loc[~ my_iot_glossary_frame['name'].isin(dupe_yes_slots)]
     dupe_unresolved_frame = pd.DataFrame(columns=dupe_no_frame.columns)
-
     # working agreement with Montana:
     #   if there are two rows with the same name, use the one with the larger number of packages
     #   if that is inclusive of the other row
     #   no attributes from the discarded row will be propagated
 
-    # this generates a report and an export, which can be used to update or delete rows
+    # FOLLOWING CODE prints a report to the screen and saves dataframe dupe_unresolved_frame,
+    #   which can be used to update or delete rows
     # could also use slot_usages to customize per-class (package) slot usage
-
-    # also report duplicated enums
     print("\n")
     dysl = list(dupe_yes_slots)
     dysl.sort()
@@ -109,7 +125,6 @@ def make_iot_yaml(cred, mixs, yamlout):
         if dupe_row_count > 2:
             print("Actually defined on two or more rows! Discarding.")
             break
-
         packlists = list(per_slot_frame["packlist"])
         pl0 = packlists[0]
         pl0_len = len(pl0)
@@ -117,7 +132,6 @@ def make_iot_yaml(cred, mixs, yamlout):
         pl1_len = len(pl1)
         pl0_only = set(pl0) - set(pl0)
         pl1_only = set(pl1) - set(pl0)
-
         if pl0_len > pl1_len:
             print("Row 0 has more packages")
             pl1_only = set(pl1) - set(pl0)
@@ -127,7 +141,6 @@ def make_iot_yaml(cred, mixs, yamlout):
                 print("and includes all row 1 packages")
                 temp = per_slot_frame.iloc[[0]]
                 dupe_no_frame = dupe_no_frame.append(temp)
-
         elif pl0_len < pl1_len:
             print("Row 1 has more packages")
             if len(pl0_only) > 0:
@@ -136,10 +149,8 @@ def make_iot_yaml(cred, mixs, yamlout):
                 print("and includes all row 0 packages")
                 temp = per_slot_frame.iloc[[1]]
                 dupe_no_frame = dupe_no_frame.append(temp)
-
         elif pl0_len == pl1_len == 0:
             print("Both rows have 0 packages")
-
         else:
             print("Both rows have the same, non-zero number of packages")
             if len(pl0_only) > 0:
@@ -151,55 +162,82 @@ def make_iot_yaml(cred, mixs, yamlout):
                 temp = per_slot_frame.iloc[[0]]
                 dupe_no_frame = dupe_no_frame.append(temp)
         print("\n")
-
     dupe_unresolved_frame.to_csv(dupe_unresolved_filename, index=False, sep="\t")
 
+    # DUPLICATE SLOT NAME/PACKAGE ROWS HAVE BEEN RESOLVED, SO NOW EXPLODE
     iot_glossary_exploded = dupe_no_frame.explode('packlist')
 
     made_yaml = s2y.initialize_yaml()
 
+    # create YAML that says which slots go with which packages
+    # we are looping over the IoT slots
+    # and what are we gathering in all_used_iot_slots?
     collected_classes = {}
-    all_slots = set()
-    for package in all_packages_list:
+    all_used_iot_slots = set()
+    for package in iot_packages:
         package_details_row = iot_glossary_exploded.loc[iot_glossary_exploded['packlist'].eq(package)]
         pack_slots = []
         # slot_usages = {}
-        for slot in package_details_row['coalesced']:
+        sorted_packages = list(package_details_row['name'])
+        sorted_packages.sort()
+        for slot in sorted_packages:
             pack_slots.append(slot)
-            all_slots.add(slot)
+            all_used_iot_slots.add(slot)
         collected_classes[package] = {'slots': pack_slots}
 
     made_yaml['classes'] = collected_classes
+    # how is this different from the mixs slot list or the IoT slot list?
+    all_used_iot_slots = list(all_used_iot_slots)
+    all_used_iot_slots.sort()
 
     enums = {}
 
-    all_slots = list(all_slots)
-    all_slots.sort()
     model_slots = {}
     ranges = []
-    for slot in all_slots:
+    for slot in all_used_iot_slots:
         model_slots[slot] = {}
-        slot_details = dupe_no_frame.loc[dupe_no_frame['coalesced'].eq(slot)].to_dict(orient="records")
+        slot_details = dupe_no_frame.loc[dupe_no_frame['name'].eq(slot)].to_dict(orient="records")
         if len(slot_details) == 1:
             sd_row = slot_details[0]
         annotations = []
 
         if slot in mixs_slotnames:
             # when to take value as is
-            # when to explicitly cast to str
-            # when to iterate?
+            #   when to explicitly cast to str
+            #   when to iterate?
             mixs_slot_def = mixs_view.get_slot(slot)
             model_slots[slot]['comments'] = []
-            for i in mixs_slot_def.comments:
-                model_slots[slot]['comments'].append(str(i))
+            for one_comment in mixs_slot_def.comments:
+                model_slots[slot]['comments'].append(str(one_comment))
             model_slots[slot]['conforms_to'] = mixs_uri
             model_slots[slot]['description'] = str(mixs_slot_def.description)
             model_slots[slot]['examples'] = []
-            for i in mixs_slot_def.examples:
-                temp = {"value": str(i['value'])}
+            for one_example in mixs_slot_def.examples:
+                temp = {"value": str(one_example['value'])}
                 model_slots[slot]['examples'].append(temp)
             model_slots[slot]['notes'] = mixs_slot_def.notes
-            model_slots[slot]['recommended'] = mixs_slot_def.recommended
+
+            mrq = mixs_slot_def.required
+            mrc = mixs_slot_def.recommended
+            irq = sd_row['Category'] in required_categories
+            irc = sd_row['Category'] in recommended_categories
+
+            if mrq or irq:
+                # model_slots[slot]["is_a"] = "required"
+                # iot_parent_slots.add("required")
+                model_slots[slot]['required'] = True
+            elif mrc or irc:
+                # model_slots[slot]["is_a"] = "required where applicable"
+                # iot_parent_slots.add("required where applicable")
+                model_slots[slot]['recommended'] = True
+            else:
+                pass
+                # model_slots[slot]["is_a"] = "optional"
+                # iot_parent_slots.add("optional")
+
+            model_slots[slot]["is_a"] = sd_row['Category']
+            iot_parent_slots.add(sd_row['Category'])
+
             # don't assert a range that isn't already defined as an element
             # some ranges will be enums
             # does IoT overwrite them?
@@ -207,23 +245,29 @@ def make_iot_yaml(cred, mixs, yamlout):
             current_range = str(mixs_slot_def.range)
             ranges.append(current_range)
 
-            model_slots[slot]['required'] = mixs_slot_def.required
             model_slots[slot]['slot_uri'] = str(mixs_slot_def.slot_uri)
             model_slots[slot]['see_also'] = str(mixs_slot_def.see_also)
             model_slots[slot]['title'] = str(mixs_slot_def.title)
             model_slots[slot]['pattern'] = str(mixs_slot_def.pattern)
             model_slots[slot]['multivalued'] = str(mixs_slot_def.multivalued)
-            # core attribute in is_a could have gone in category?
+
         else:
             if len(slot_details) == 1:
-                if sd_row['Category'] == "required":
+                if sd_row['Category'] in required_categories:
                     model_slots[slot]['required'] = True
-                    annotations.append({"Category": 'required where applicable'})
-                if sd_row['Category'] == "required where applicable":
+                elif sd_row['Category'] in recommended_categories:
                     model_slots[slot]['recommended'] = True
-                    annotations.append({"Category": 'required where applicable'})
-                if sd_row['Category'] == "sample identification":
-                    annotations.append({"Category": 'sample identification'})
+                else:
+                    pass
+
+                if sd_row['Category'] != "" and sd_row['Category'] is not None:
+                    model_slots[slot]["is_a"] = sd_row['Category']
+                    # iot_parent_slots.add(sd_row['Category'])
+                else:
+                    pass
+                    # model_slots[slot]["is_a"] = "other"
+                    # iot_parent_slots.add("other")
+
                 if sd_row['Notes'] != "":
                     model_slots[slot]['notes'] = sd_row['Notes']
                 if sd_row['Origin'] == "EMSL":
@@ -233,15 +277,27 @@ def make_iot_yaml(cred, mixs, yamlout):
                 model_slots[slot]['description'] = sd_row['Definition']
                 model_slots[slot]['slot_uri'] = "IoT:" + slot
 
+        # what if len(slot_details) != 1 ???
         if len(slot_details) == 1:
             # allow IoT "Column Header" to override title
             if sd_row['Column Header'] != "" and sd_row['Column Header'] is not None:
                 # temp = {"local_name_source": "IoT", "local_name_value": sd_row['Column Header']}
                 # model_slots[slot]['local_names'] = temp
+                # print(model_slots[slot])
+                if 'alias' in model_slots[slot]:
+                    print('alias')
+                    # print(model_slots[slot]['alias'])
+                if 'aliases' in model_slots[slot]:
+                    print('aliases')
+                    # print(model_slots[slot]['aliases'])
+                if 'local_names' in model_slots[slot]:
+                    print('local names')
+                    # print(model_slots[slot]['local_names'])
                 if "title" in list(model_slots[slot].keys()):
                     prev = model_slots[slot]['title']
                     if prev != sd_row['Column Header']:
                         annotations.append({"overwritten_title": prev})
+                        # todo make it an alias
                 model_slots[slot]['title'] = sd_row['Column Header']
             # might not even make it into DH so don't overwrite
             if sd_row['GitHub Ticket'] != "" and sd_row['GitHub Ticket'] is not None:
@@ -256,23 +312,31 @@ def make_iot_yaml(cred, mixs, yamlout):
                     annotations.append({"overwritten_comments": prev})
                 model_slots[slot]['comments'] = sd_row['Guidance']
                 # annotations.append({"Guidance": sd_row['Guidance']})
-            if sd_row['name'] != '' and sd_row['mixs_6_slot_name'] != '' and sd_row['name'] != sd_row[
-                'mixs_6_slot_name']:
-                if "aliases" in list(model_slots[slot].keys()):
-                    prev = model_slots[slot]['aliases']
-                    prev = "|".join(prev)
-                    # not checking for opportunities to omit a useless annotation
-                    annotations.append({"overwritten_aliases": prev})
-                model_slots[slot]['aliases'] = sd_row['name']
-                # model_slots[slot]['aliases'] = sd_row['name']
+
+            # if sd_row['name'] != '' and sd_row['mixs_6_slot_name'] != '' and sd_row['name'] != sd_row[
+            #     'mixs_6_slot_name']:
+            #     if "aliases" in list(model_slots[slot].keys()):
+            #         prev = model_slots[slot]['aliases']
+            #         prev = "|".join(prev)
+            #         # not checking for opportunities to omit a useless annotation
+            #         annotations.append({"overwritten_aliases": prev})
+            #     model_slots[slot]['aliases'] = sd_row['name']
+            #     # model_slots[slot]['aliases'] = sd_row['name']
+
+            if sd_row["Column Header"] == idcol:
+                # # print(f"{sd_row['Column Header']} is the unique ID col")
+                # annotations.append({"unique_id": True})
+                model_slots[slot]['identifier'] = True
 
         model_slots[slot]['annotations'] = annotations
 
+        # process enums
+        # identify and uniqify enums with duplicate permitted values
         if slot in ct_keys:
             current_pvs = ct_dol[slot]
             current_pvs.sort()
             values, counts = np.unique(current_pvs, return_counts=True)
-            any_over = any(i for i in counts if i > 1)
+            any_over = any(guilty for guilty in counts if guilty > 1)
             if any_over:
                 print(f"{slot} has duplicated enumerated values")
                 unique_count = len(counts)
@@ -293,40 +357,43 @@ def make_iot_yaml(cred, mixs, yamlout):
 
     ranges = list(set(ranges))
     ranges.sort()
-    for i in ranges:
-        # print(i)
-        type_attempt = mixs_view.get_type(i)
-        class_attempt = mixs_view.get_class(i)
-        mixs_enum_attempt = mixs_view.get_enum(i)
+    for one_range in ranges:
+        type_attempt = mixs_view.get_type(one_range)
+        class_attempt = mixs_view.get_class(one_range)
+        mixs_enum_attempt = mixs_view.get_enum(one_range)
         mixs_enum_finding = mixs_enum_attempt is not None
-        iot_enum_finding = i in made_yaml_enums
+        iot_enum_finding = one_range in made_yaml_enums
         if mixs_enum_finding:
+            # both
             if iot_enum_finding:
                 pass
+            # mixs only
             else:
-                print(f"{i} only defined in MIxS")
+                print(f"{one_range} only defined in MIxS")
                 yaml_string = yamlgen.as_yaml(mixs_enum_attempt)
                 s = StringIO(yaml_string)
-                # loaded_yaml = yaml.load(s)
                 loaded_yaml = yaml.safe_load(s)
-                made_yaml['enums'][i] = loaded_yaml
+                made_yaml['enums'][one_range] = loaded_yaml
         else:
+            # iot only
             if iot_enum_finding:
                 pass
+            # neither !?
             else:
                 pass
 
         if type_attempt is not None:
-            yaml_string = yamlgen.as_yaml(type_attempt)
-            s = StringIO(yaml_string)
-            loaded_yaml = yaml.safe_load(s)
-            # assume all types are from linkml anyway?
-            # made_yaml['types'][i] = loaded_yaml
+            # yaml_string = yamlgen.as_yaml(type_attempt)
+            # s = StringIO(yaml_string)
+            # loaded_yaml = yaml.safe_load(s)
+            # # assume all types are from linkml anyway?
+            # made_yaml['types'][one_range] = loaded_yaml
+            pass
         if class_attempt is not None:
             yaml_string = yamlgen.as_yaml(class_attempt)
             s = StringIO(yaml_string)
             loaded_yaml = yaml.safe_load(s)
-            made_yaml['classes'][i] = loaded_yaml
+            made_yaml['classes'][one_range] = loaded_yaml
 
     print("\n")
 
@@ -338,6 +405,17 @@ def make_iot_yaml(cred, mixs, yamlout):
         print(f"expanding prefix {k} as {v}")
         made_yaml['prefixes'][k] = v
     print("\n")
+
+    # iot_parent_slots = list(iot_parent_slots)
+
+    iot_parent_slots = list(set(list(my_iot_glossary_frame['Category'])))
+    iot_parent_slots = [slot for slot in iot_parent_slots if slot != "" and slot is not None]
+
+    iot_parent_slots.sort()
+    print("parent slots:")
+    for one_parent in iot_parent_slots:
+        print(f"  {one_parent}")
+        made_yaml['slots'][one_parent] = {}
 
     with open(yamlout, 'w') as outfile:
         yaml.dump(made_yaml, outfile, default_flow_style=False, sort_keys=False)
